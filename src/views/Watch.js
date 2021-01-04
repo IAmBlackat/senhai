@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
-import { Box, Button, FormControl, InputLabel, makeStyles, MenuItem, Paper, Select, Typography } from '@material-ui/core'
+import { useSelector } from 'react-redux'
+import { Box, Button, Container, FormControl, InputLabel, makeStyles, MenuItem, Paper, Select, Typography } from '@material-ui/core'
 import Loading from '../components/Loading'
-import { watchEpisode } from '../redux/action'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
 const useStyles = makeStyles( (theme) => ({
@@ -12,11 +11,12 @@ const useStyles = makeStyles( (theme) => ({
         // height: 'auto'
     },
     title: {
-        padding: '30px',
+        padding: '20px',
         textTransform: 'uppercase'
     },
     p: {
-        height: '200px'
+        // paddingBottom: '5px',
+        // width: '50%'
     },
     btn: {
         margin: '10px',
@@ -37,6 +37,12 @@ const useStyles = makeStyles( (theme) => ({
     },
     box: {
         // maxHeight: '100vh'
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        alignItems: 'baseline'
+    },
+    epnav: {
+        marginBottom: theme.spacing(2)
     }
 
 }))
@@ -78,19 +84,25 @@ function Watch() {
             setDl({epdl: epLinks})
         })
         .catch(err => {
-            if(err.response.status >= 400) history.push('/error')
+            if(err.response.status >= 400) history.push('/details/' + id)
         })
     }, [url, history, currentEp])
 
-    console.log(id.split('-').join(' '))
+    // console.log(id.split('-').join(' '))
     let title = id.split('-').join(' ')
 
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
-                <Typography className={classes.title} variant='h5'>{title} // Episode: {currentEp}</Typography>
+            <Paper className={classes.p} square elevation={0}>
+                <Container maxWidth='sm'>
+                    <Typography className={classes.title} variant='h5'>{title}</Typography>
+                    <Typography variant='h6'>
+                        Episode: {currentEp}
+                    </Typography>
+                </Container>
                 
-                <div className={classes.p}>
-                    <Box className={classes.box}>
+                <Paper square className={classes.p} elevation={0}>
+                    <Container maxWidth='md' className={classes.box}>
                         <FormControl>
                             <InputLabel>Quality</InputLabel>
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
@@ -101,6 +113,22 @@ function Watch() {
                                 ))}
                             </Select>
                         </FormControl>
+                        
+                        <Box>
+                            <Link to={'/details/' + id} className={classes.link}>
+                                <Button className={classes.btn}>
+                                    Episode List
+                                </Button>
+                            </Link>
+                        </Box>
+                    </Container>
+                </Paper>
+
+                <Paper square elevation={0} >     
+
+                    <video src={quality} controls className={classes.video}/>
+
+                    <Box className={classes.epnav}>
                         <span>
                             <Link to={'/watching/' + id + '/' + (currentEp-1)} className={classes.link}>
                                 <Button variant='outlined' className={classes.btn}>
@@ -116,23 +144,19 @@ function Watch() {
                             </Link>
                         </span>
                     </Box>
+                </Paper>
 
-                     <Paper >               
-                        <video src={quality} controls className={classes.video}/>
-                    </Paper>
-                    <Paper className={classes.box}>   
-                        <Typography>
-                            Download Links 
-                        </Typography>
-                        {links.map( (i,index) => (
-                            <Button href={i} variant='outlined' download className={classes.btn} key={index}>
-                                {dl.epdl[index]}
-                            </Button>
-                        ))}
-                    </Paper>
-                    
-                </div>
-           
+                <Paper square elevation={0}>   
+                    <Typography>
+                        Download Links 
+                    </Typography>
+                    {links.map( (i,index) => (
+                        <Button href={i} variant='outlined' download className={classes.btn} key={index}>
+                            {dl.epdl[index]}
+                        </Button>
+                    ))}
+                </Paper>
+            </Paper>
         </Paper>
     )
 }
