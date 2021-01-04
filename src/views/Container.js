@@ -7,6 +7,7 @@ import Loading from '../components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkDetails, watchEpisode } from '../redux/action'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+import NoneFound from '../components/NoneFound';
 
 const useStyles = makeStyles({
     root: {
@@ -64,8 +65,6 @@ function Container( {page}) {
 
     const location = useLocation()
     const history = useHistory()
-
-    console.log(location)
     
     const state = useSelector( state => state)
     const dispatch = useDispatch()  
@@ -83,6 +82,7 @@ function Container( {page}) {
         setImgLoad(true)
         axios.get(url)
         .then( res => {
+            // console.log(res)
             setLists(res.data)
             setLoading(false)
         })
@@ -99,13 +99,12 @@ function Container( {page}) {
                     <Button variant='outlined' className={classes.btn} onClick={ () => setPageUrl(pageUrl - 1 )} disabled={pageUrl === 1 ? true : false}>
                         <NavigateBeforeIcon /> Previous
                     </Button>
-                    <text className={classes.btn}>
+                    <b className={classes.btn}>
                     {pageUrl}
-                    </text>
+                    </b>
                     <Button variant='outlined' className={classes.btn} onClick={ () => setPageUrl(pageUrl + 1 )}>
                         Next <NavigateNextIcon /> 
                     </Button>
-                    
                 </Box>
             }
             </>
@@ -130,6 +129,8 @@ function Container( {page}) {
             <Pages />
             
             <Grid container spacing={3} align='center'>
+                {lists.results.length === 0 ? <NoneFound /> : ''}
+
                 {lists.results.map( list => (
                     <Grid item xs={12} sm={3} key={list.id}>
                         <Card className={classes.root} >
@@ -152,7 +153,6 @@ function Container( {page}) {
                     </Grid>
                 ))}   
             </Grid>
-            
             <Pages />
 
             </Paper>

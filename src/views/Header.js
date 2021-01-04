@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, InputBase, Button} from '@material-ui/core'
+import { AppBar, Toolbar, Typography, InputBase, Button} from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link, useHistory } from 'react-router-dom';
@@ -85,7 +85,7 @@ function Header() {
       e.preventDefault()
       dispatch(searchAnime(search))
       setSearch('')
-      history.push('/search')  
+      history.push('/search/' + search)  
   }
 
   const handleClick = () => {
@@ -96,21 +96,16 @@ function Header() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-            {/* <Link to='/'>
-                <Button onClick={handleClick}>
-                    Home
-                </Button>
-            </Link> */}
-            <Link to='/' className={classes.link}>
-                <Button onClick={handleClick}>
-                    New
-                </Button>
-            </Link>
-            <Link to='/popular' className={classes.link}>
-                <Button onClick={handleClick}>
-                    Popular
-                </Button>
-            </Link>
+          <Link to='/' className={classes.link}>
+              <Button onClick={handleClick}>
+                  New
+              </Button>
+          </Link>
+          <Link to='/popular' className={classes.link}>
+              <Button onClick={handleClick}>
+                  Popular
+              </Button>
+          </Link>
           <Typography className={classes.title} variant="h6" noWrap>
             Senpai - Kouhai
           </Typography>

@@ -41,8 +41,6 @@ function Details() {
 
     const location = useLocation()
     const history = useHistory()
-    
-    console.log(location.pathname.split("/")[2])
 
     const id = location.pathname.split("/")[2]
 
@@ -55,7 +53,7 @@ function Details() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            console.log(res.data)
+            // console.log(res.data)
             setDetails(res.data.results)
             setLoading(false)
         })

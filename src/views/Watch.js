@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
 import { Box, Button, Container, FormControl, InputLabel, makeStyles, MenuItem, Paper, Select, Typography } from '@material-ui/core'
 import Loading from '../components/Loading'
 import { Link, useHistory, useLocation } from 'react-router-dom'
@@ -62,7 +61,7 @@ function Watch() {
     let currentEp = Number(path[3])
     const id = path[2]
 
-    const state = useSelector( state => state)
+    // const state = useSelector( state => state)
     // const dispatch = useDispatch()
     
     const rootUrl = "https://anime-x.vercel.app/api/watching/"
@@ -86,7 +85,7 @@ function Watch() {
         .catch(err => {
             if(err.response.status >= 400) history.push('/details/' + id)
         })
-    }, [url, history, currentEp])
+    }, [url, history, currentEp, id])
 
     // console.log(id.split('-').join(' '))
     let title = id.split('-').join(' ')

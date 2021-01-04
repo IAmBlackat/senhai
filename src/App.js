@@ -6,7 +6,7 @@ import Header from './views/Header'
 import Details from './views/Details';
 import Watch from './views/Watch';
 import Container from './views/Container';
-import Error from './views/Error';
+import Error from './components/Error';
 import { HashRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
