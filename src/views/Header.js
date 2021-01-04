@@ -126,6 +126,7 @@ function Header() {
                           input: classes.inputInput,
                       }}
                       inputProps={{ 'aria-label': 'search' }}
+                      required
                     />
                 
               </div>
