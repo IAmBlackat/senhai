@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/senhai/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/senhai/static/js/main.57330336.chunk.js",
-    "main.js.map": "/senhai/static/js/main.57330336.chunk.js.map",
+    "main.js": "/senhai/static/js/main.29b1905f.chunk.js",
+    "main.js.map": "/senhai/static/js/main.29b1905f.chunk.js.map",
     "runtime-main.js": "/senhai/static/js/runtime-main.c8e04a80.js",
     "runtime-main.js.map": "/senhai/static/js/runtime-main.c8e04a80.js.map",
-    "static/js/2.721375b7.chunk.js": "/senhai/static/js/2.721375b7.chunk.js",
-    "static/js/2.721375b7.chunk.js.map": "/senhai/static/js/2.721375b7.chunk.js.map",
+    "static/js/2.5bfb36a6.chunk.js": "/senhai/static/js/2.5bfb36a6.chunk.js",
+    "static/js/2.5bfb36a6.chunk.js.map": "/senhai/static/js/2.5bfb36a6.chunk.js.map",
     "index.html": "/senhai/index.html",
     "static/css/main.8c8b27cf.chunk.css.map": "/senhai/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.721375b7.chunk.js.LICENSE.txt": "/senhai/static/js/2.721375b7.chunk.js.LICENSE.txt"
+    "static/js/2.5bfb36a6.chunk.js.LICENSE.txt": "/senhai/static/js/2.5bfb36a6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c8e04a80.js",
-    "static/js/2.721375b7.chunk.js",
+    "static/js/2.5bfb36a6.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.57330336.chunk.js"
+    "static/js/main.29b1905f.chunk.js"
   ]
 }
