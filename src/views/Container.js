@@ -91,10 +91,13 @@ function Container( {page}) {
         })
     }, [url, history, state.loading])
 
+    console.log(location.pathname.split('/')[2])
+
     const Pages = () => {
+        let id = location.pathname.split('/')[2]
         return(
             <>
-            {location.pathname === '/search' ? '' :
+            {location.pathname === '/search/' + id ? '' :
                 <Box className={classes.box}>
                     <Button variant='outlined' className={classes.btn} onClick={ () => setPageUrl(pageUrl - 1 )} disabled={pageUrl === 1 ? true : false}>
                         <NavigateBeforeIcon /> Previous
@@ -153,6 +156,7 @@ function Container( {page}) {
                     </Grid>
                 ))}   
             </Grid>
+
             <Pages />
 
             </Paper>

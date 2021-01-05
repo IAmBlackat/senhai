@@ -22,7 +22,7 @@ function NoneFound() {
         <Container maxWidth='md'>
             <Paper className={classes.root} elevation={0}>
                 <Box className={classes.box}>
-                <img className={classes.gif} src='https://media1.tenor.com/images/f8ebac90fb5c4aeb4d73945c63b5cc9d/tenor.gif?itemid=15005984' alt='' />
+                <img className={classes.gif} src='https://i.pinimg.com/originals/25/e0/45/25e0450a39f1c01fef9cac41a2da14bb.gif' alt='' />
                 </Box>
                 <Typography variant='h5' className={classes.cap}>
                     Sorry nothing found

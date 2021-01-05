@@ -37,13 +37,12 @@ const useStyles = makeStyles( (theme) => ({
     box: {
         // maxHeight: '100vh'
         display: 'flex',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-around',
         alignItems: 'baseline'
     },
     epnav: {
         marginBottom: theme.spacing(2)
     }
-
 }))
 
 
@@ -90,6 +89,8 @@ function Watch() {
     // console.log(id.split('-').join(' '))
     let title = id.split('-').join(' ')
 
+    console.log(dl.epdl.length)
+
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             <Paper className={classes.p} square elevation={0}>
@@ -107,7 +108,7 @@ function Watch() {
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
                                 {links.map( (i,index) => (
                                     <MenuItem value={i} href={i} variant='outlined' download className={classes.btn} key={index}>
-                                        {dl.epdl[index]}
+                                        {dl.epdl.length === undefined ? '' : dl.epdl[index].split('.')[2] === undefined ? 'original' : dl.epdl[index].split('.')[2] }
                                     </MenuItem>
                                 ))}
                             </Select>

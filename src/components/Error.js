@@ -27,7 +27,7 @@ function Error() {
         <Paper square className={useStyle().root} >
             <img 
                 className={useStyle().img} 
-                src='https://78.media.tumblr.com/bb8f1a49c91d5c8333c94c61f1141e90/tumblr_o2d04w4ow81ub2z4po2_500.gif' 
+                src='https://media1.tenor.com/images/6db6d393f50f2ee9df4058b95f0b21a1/tenor.gif?itemid=13628544' 
                 alt=''
             />
             <Typography variant='h4'>
