@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
-import Loading from '../components/Loading'
+import Loading from './Loading'
 import { watchEpisode } from '../redux/action'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+// import Mangadex from 'mangadex-api'
 
 const useStyles = makeStyles({
     root: {
@@ -30,6 +31,8 @@ function Recent() {
     const [anime, setAnime] = useState({episode: '', title: ''})
 
     const dispatch = useDispatch()
+    
+    // Mangadex.getHome().then( home => console.log(home))
 
     // useEffect( () => {
     //     axios.get('https://www.mangahere.cc/manga/tensei_shitara_slime_datta_ken/c077')
@@ -45,14 +48,22 @@ function Recent() {
 //18003 slime id
 //15241 nyaruko
     useEffect( () => {
-        axios.get('https://mangahub.io/search')
+        axios.get('https://mangadex.org/api/manga/28792')
         .then( res => {
-            console.log(res.request.responseText)
+            // const dom = new DOMParser()
+            // let a = dom.parseFromString(res.data, 'text/html')
+            // console.log(dom.parseFromString(res.data, 'text/html'))
+            console.log(res)
             setRecent(res.request.response)
         })
+    //     fetch("https://mangadex.herokuapp.com/graphql")
+    //   .then(data => {
+    //     console.log(data)
+    //   })
     }, [])
 
-    // console.log(recent)
+    // Mangadex.getHome()
+
   
     return loading ? <Loading /> : (
         <Paper elevation={0} square>

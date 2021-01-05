@@ -63,6 +63,12 @@ function Details() {
         })
     }, [url, history])
     
+    useEffect( () => {
+        axios.post('https://mangadex.org/api/manga/28792')
+        .then( res => console.log(res))
+        .catch( err => console.log(err))
+    }, [])
+
     var ep = Number(details.map( ep => ep.totalepisode));
     const epList = () => {
       let L = [];

@@ -1,6 +1,6 @@
 import './App.css';
 // import Popular from './views/Popular'
-// import Recent from './views/Recent';
+// import Recent from './components/Recent';
 // import Search from './views/Search';
 import Header from './views/Header'
 import Details from './views/Details';

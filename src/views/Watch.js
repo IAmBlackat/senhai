@@ -69,7 +69,7 @@ function Watch() {
     
     const rootUrl = "https://anime-x.vercel.app/api/watching/"
     var url = rootUrl + id +"/" + currentEp
-
+    
     useEffect( () => {
         axios.get(url)
         .then( res => {
