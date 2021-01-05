@@ -32,7 +32,11 @@ const useStyles = makeStyles( (theme) => ({
         }
     },
     link: {
-        textDecoration: 'none'    
+        textDecoration: 'none',  
+    },
+    linkDisabled: {
+        textDecoration: 'none', 
+        pointerEvents: 'none'
     },
     box: {
         // maxHeight: '100vh'
@@ -130,8 +134,8 @@ function Watch() {
 
                     <Box className={classes.epnav}>
                         <span>
-                            <Link to={'/watching/' + id + '/' + (currentEp-1)} className={classes.link}>
-                                <Button variant='outlined' className={classes.btn}>
+                            <Link to={'/watching/' + id + '/' + (currentEp-1)} className={currentEp === 1 ? classes.linkDisabled : classes.link}>
+                                <Button variant='outlined' className={classes.btn} disabled={currentEp === 1 ? true : false}>
                                     Previous
                                 </Button>
                             </Link>
