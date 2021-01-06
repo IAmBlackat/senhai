@@ -9,10 +9,10 @@ const useStyle = makeStyles( (theme) => ({
         width: '100%'
     },
     box: {
-        width: '80%',
-        [theme.breakpoints.up('sm')]: {
-            width: '60%'
-        }
+        width: '90%',
+        // [theme.breakpoints.up('sm')]: {
+        //     width: '90%'
+        // }
     },
     cap: {
         marginTop: '1em'
@@ -25,7 +25,7 @@ function NoneFound() {
         <Container maxWidth='md'>
             <Paper className={classes.root} elevation={0}>
                 <Box className={classes.box}>
-                    <img className={classes.gif} src='https://i.pinimg.com/originals/25/e0/45/25e0450a39f1c01fef9cac41a2da14bb.gif' alt='' />
+                    <img className={classes.gif} src='https://media0.giphy.com/media/U6kGxfqszGeUBFnOT8/giphy.gif' alt='' />
                 </Box>
                 <Typography variant='h5' className={classes.cap}>
                     Sorry nothing found

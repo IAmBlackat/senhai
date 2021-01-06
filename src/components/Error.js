@@ -10,7 +10,7 @@ const useStyle = makeStyles( (theme) => ({
         padding: '2%',
         width: '80%',
         [theme.breakpoints.up('sm')]: {
-            width: '40%'
+            width: '55%'
         },
     },
     btn: {
@@ -27,15 +27,15 @@ function Error() {
         <Paper square className={useStyle().root} >
             <img 
                 className={useStyle().img} 
-                src='https://media1.tenor.com/images/6db6d393f50f2ee9df4058b95f0b21a1/tenor.gif?itemid=13628544' 
+                src='https://64.media.tumblr.com/6261fd9f8d871389d1efa94da25609f9/tumblr_nujz858dXb1tydz8to1_540.gifv' 
                 alt=''
             />
             <Typography variant='h4'>
-                "Error 404 not found"
+                Please Don't Wake Her Up
             </Typography>
             <Link to='/' className={useStyle().link}>
-                <Button className={useStyle().btn} variant='contained'>
-                    Go Home
+                <Button className={useStyle().btn} variant='outlined'>
+                    Go Back
                 </Button>
             </Link>
         </Paper>

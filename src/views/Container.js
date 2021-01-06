@@ -46,16 +46,6 @@ const useStyles = makeStyles({
     }
 })
 
-
-/*  api reference
-https://anime-x.vercel.app/api/watching/kuma-kuma-kuma-bear/1
-https://anime-x.vercel.app/api/search/kuma-kuma-kuma-bear/1
-https://anime-x.vercel.app/api/popular/1 done
-https://anime-x.vercel.app/list/all or alphabet /1
-https://anime-x.vercel.app/api/recentlyadded/page/1 done
-https://anime-x.vercel.app/api/details/name
-
-*/
 function Container( {page}) {
     const classes = useStyles()
     const [lists, setLists] = useState([])
@@ -91,7 +81,7 @@ function Container( {page}) {
         })
     }, [url, history, state.loading])
 
-    console.log(location.pathname.split('/')[2])
+    // console.log(location.pathname.split('/')[2])
 
     const Pages = () => {
         let id = location.pathname.split('/')[2]
