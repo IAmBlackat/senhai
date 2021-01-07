@@ -47,8 +47,9 @@ function Recent() {
     // }, [])
 //18003 slime id
 //15241 nyaruko
+//https://mangadex.org/api/manga/28792
     useEffect( () => {
-        axios.get('https://mangadex.org/api/manga/28792')
+        axios.get('https://animeflix.io/api/episodes/latest?limit=20')
         .then( res => {
             // const dom = new DOMParser()
             // let a = dom.parseFromString(res.data, 'text/html')
@@ -68,6 +69,7 @@ function Recent() {
     return loading ? <Loading /> : (
         <Paper elevation={0} square>
             <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />
+            <video src='https://storage.googleapis.com/auengine.appspot.com/2205/dub/11_39715.mp4' controls />
 {/* 
             <Typography variant='h4' className={classes.title}>Newest Episode</Typography>
 

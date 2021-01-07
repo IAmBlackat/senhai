@@ -39,6 +39,7 @@ const useStyles = makeStyles({
         textAlign: 'right',
         padding: '20px',
         marginTop: '10px',
+        // width: 'auto'
     },
     btn: {
         marginRight: '10px',
@@ -69,6 +70,7 @@ function Container( {page}) {
 
     useEffect( () => {
         state.loading === undefined ? setLoading(true) : setLoading(state.loading)
+
         setImgLoad(true)
         axios.get(url)
         .then( res => {
@@ -92,9 +94,11 @@ function Container( {page}) {
                     <Button variant='outlined' className={classes.btn} onClick={ () => setPageUrl(pageUrl - 1 )} disabled={pageUrl === 1 ? true : false}>
                         <NavigateBeforeIcon /> Previous
                     </Button>
+
                     <b className={classes.btn}>
                     {pageUrl}
                     </b>
+
                     <Button variant='outlined' className={classes.btn} onClick={ () => setPageUrl(pageUrl + 1 )}>
                         Next <NavigateNextIcon /> 
                     </Button>
@@ -125,7 +129,7 @@ function Container( {page}) {
                 {lists.results.length === 0 ? <NoneFound /> : ''}
 
                 {lists.results.map( list => (
-                    <Grid item xs={12} sm={3} key={list.id}>
+                    <Grid item xs={6} sm={3} key={list.id}>
                         <Card className={classes.root} >
                             <Link to={page === 'recentlyadded' ? '/watching/'+list.id+'/'+list.episodenumber+'' : '/details/'+list.id+'/' } className={classes.decor}>
                                 <CardActionArea onClick={ () => page === 'recentlyadded' ? dispatch(watchEpisode(list.episodenumber,list.id,list.title)) : dispatch(checkDetails(list.id)) }>
