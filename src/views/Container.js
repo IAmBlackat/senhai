@@ -47,7 +47,7 @@ const useStyles = makeStyles( (theme) => ({
         },
     },
     btn: {
-        marginRight: '5px',
+        marginRight: '8px',
         padding: '5px',
         [theme.breakpoints.up('sm')]: {
             marginRight: '10px',
