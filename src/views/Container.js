@@ -9,7 +9,7 @@ import { checkDetails, watchEpisode } from '../redux/action'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import NoneFound from '../components/NoneFound';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( (theme) => ({
     root: {
         maxWidth: 200,
         maxHeight: 500,
@@ -29,7 +29,10 @@ const useStyles = makeStyles({
     paper: {
         // backgroundColor: '#616161'
         padding: '20px',
-        margin: ' 20px',
+        [theme.breakpoints.up('sm')]: {
+            margin: ' 20px',
+        },
+
         boxShadow: '5px 5px 25px rgba(0,0,0,1)'
     },
     ptitle: {
@@ -39,13 +42,19 @@ const useStyles = makeStyles({
         textAlign: 'right',
         padding: '20px',
         marginTop: '10px',
-        // width: 'auto'
+        [theme.breakpoints.down('sm')]: {
+            width: '100%'
+        },
     },
     btn: {
-        marginRight: '10px',
-        padding: '10px'
+        marginRight: '5px',
+        padding: '5px',
+        [theme.breakpoints.up('sm')]: {
+            marginRight: '10px',
+            padding: '10px',
+        },
     }
-})
+}))
 
 function Container( {page}) {
     const classes = useStyles()
@@ -125,7 +134,7 @@ function Container( {page}) {
 
             <Pages />
             
-            <Grid container spacing={3} align='center'>
+            <Grid container spacing={2} align='center'>
                 {lists.results.length === 0 ? <NoneFound /> : ''}
 
                 {lists.results.map( list => (
