@@ -21,8 +21,6 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   search: {
-    display: '',
-    
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -96,7 +94,12 @@ function Header() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Link to='/' className={classes.link}>
+        <Link to='/' className={classes.link}>
+              <Button onClick={handleClick}>
+                  Home
+              </Button>
+          </Link>
+          <Link to='/new' className={classes.link}>
               <Button onClick={handleClick}>
                   New
               </Button>

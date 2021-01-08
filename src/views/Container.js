@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { checkDetails, watchEpisode } from '../redux/action'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import NoneFound from '../components/NoneFound';
+import jikan from 'jikanjs'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -20,7 +21,11 @@ const useStyles = makeStyles( (theme) => ({
         maxHeight: 'auto',
     },
     title: {
-        padding: '30px',
+        padding: '30px 30px 10px',
+        marginLeft: '10px',
+        [theme.breakpoints.down('sm')]: {
+            paddingBottom: '40px'
+        }
     },
     decor: {
         textDecoration: 'none',
@@ -28,7 +33,7 @@ const useStyles = makeStyles( (theme) => ({
     },
     paper: {
         // backgroundColor: '#616161'
-        padding: '20px',
+        padding: '15px',
         [theme.breakpoints.up('sm')]: {
             margin: ' 20px',
         },
@@ -36,16 +41,17 @@ const useStyles = makeStyles( (theme) => ({
         boxShadow: '5px 5px 25px rgba(0,0,0,1)'
     },
     ptitle: {
-        paddingBottom: '10px'
+        paddingBottom: '10px',
+        backgroundColor: '#303030'
     },
     box: {
         textAlign: 'right',
-        // padding: '20px',
+        padding: '20px',
         marginTop: '10px',
         [theme.breakpoints.down('sm')]: {
-            width: '100%',
+            width: 'auto',
             paddingBottom: '20px',
-            paddingTop: '20px'
+            paddingTop: '20px',
         },
     },
     btn: {
@@ -95,6 +101,13 @@ function Container( {page}) {
     }, [url, history, state.loading])
 
     // console.log(location.pathname.split('/')[2])
+    // jikan.loadStatus().then( res => console.log(res))
+    // jikan.loadAnime(39617, 'news').then( res => console.log(res) )
+    // jikan.loadSeason(2021, 'winter').then( res => console.log(res))
+    // jikan.loadTop('anime',1,'airing').then( res => console.log(res))
+    // jikan.loadSeasonLater().then( res => console.log(res))
+    // let a = '5-toubun no Hanayome ∬'
+    // console.log(a.replace(/[^a-zA-Z0-9]/g, ' ').split('))
 
     const Pages = () => {
         let id = location.pathname.split('/')[2]
@@ -127,7 +140,7 @@ function Container( {page}) {
                     Results for ' {state.search} '
                 </Typography>
                 :             
-                <Typography variant='h4' className={classes.title}>
+                <Typography variant='h4' className={classes.title} align='left'>
                     {page === 'popular' ? "Popular" : "Newest Episode"}   
                 </Typography>
             }
@@ -135,8 +148,8 @@ function Container( {page}) {
             <Paper elevation={1} variant='outlined' className={classes.paper}>
 
             <Pages />
-            
-            <Grid container spacing={2} align='center'>
+
+            <Grid container spacing={3} align='center'>
                 {lists.results.length === 0 ? <NoneFound /> : ''}
 
                 {lists.results.map( list => (

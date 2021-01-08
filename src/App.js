@@ -8,6 +8,7 @@ import Watch from './views/Watch';
 import Container from './views/Container';
 import Error from './components/Error';
 import { HashRouter as Router, Switch, Route} from 'react-router-dom'
+import Home from './views/Home';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
       <Header />
         <Switch>
           <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/new'>
             <Container page={'recentlyadded'} />
           </Route>
 
