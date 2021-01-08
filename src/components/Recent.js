@@ -4,8 +4,10 @@ import { Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Paper, 
 import Loading from './Loading'
 import { watchEpisode } from '../redux/action'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-// import Mangadex from 'mangadex-api'
+// import { Link } from 'react-router-dom'
+// import { searchResultsWhereNameAndType  } from 'myanimelists'
+// import scrapper from 'mal-scraper'
+import jikan from 'jikanjs'
 
 const useStyles = makeStyles({
     root: {
@@ -48,24 +50,33 @@ function Recent() {
 //18003 slime id
 //15241 nyaruko
 //https://mangadex.org/api/manga/28792
-    useEffect( () => {
-        axios.get('https://animeflix.io/api/episodes/latest?limit=20')
-        .then( res => {
-            // const dom = new DOMParser()
-            // let a = dom.parseFromString(res.data, 'text/html')
-            // console.log(dom.parseFromString(res.data, 'text/html'))
-            console.log(res)
-            setRecent(res.request.response)
-        })
+    // useEffect( () => {
+    //     axios.get('https://animeflix.io/api/anime-schema?slug=boku-no-hero-academia-4th-season')
+    //     .then( res => {
+    //         // const dom = new DOMParser()
+    //         // let a = dom.parseFromString(res.data, 'text/html')
+    //         // console.log(dom.parseFromString(res.data, 'text/html'))
+    //         console.log(res)
+    //         setRecent(res.request.response)
+    //     })
     //     fetch("https://mangadex.herokuapp.com/graphql")
     //   .then(data => {
     //     console.log(data)
     //   })
-    }, [])
+    // }, [])
 
     // Mangadex.getHome()
+    
+    // searchResultsWhereNameAndType('meagalobox', 'anime')
+    // .then(result => console.log(result))
+    // .catch(error => console.log(error));
 
-  
+    // scrapper.getInfoFromName('black clover').then( res => console.log(res))
+    // scrapper.getInfoFromName('black clover')
+    jikan.loadAnime(39808, 'videos').then( res => console.log(res))
+    // jikan.loadSeasonLater().then( res => console.log(res))
+    jikan.loadSeason(2021, 'winter').then( res => console.log(res.anime))
+
     return loading ? <Loading /> : (
         <Paper elevation={0} square>
             <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />

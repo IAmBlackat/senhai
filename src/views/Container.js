@@ -40,10 +40,12 @@ const useStyles = makeStyles( (theme) => ({
     },
     box: {
         textAlign: 'right',
-        padding: '20px',
+        // padding: '20px',
         marginTop: '10px',
         [theme.breakpoints.down('sm')]: {
-            width: '100%'
+            width: '100%',
+            paddingBottom: '20px',
+            paddingTop: '20px'
         },
     },
     btn: {

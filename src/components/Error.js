@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 
 const useStyle = makeStyles( (theme) => ({
     root: {
-        height: '91.5vh'
+        // height: '91.5vh'
+        height: 'auto'
     },
     img: {
         padding: '2%',
