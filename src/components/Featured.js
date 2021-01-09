@@ -3,12 +3,15 @@ import jikan from 'jikanjs'
 import { Box, Button, makeStyles, Typography } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
-
+import ReactPlayer from 'react-player'
+import { useDispatch } from 'react-redux'
+import { playing, searchAnime } from '../redux/action'
 
 function Featured( {page, id, image, index} ) {
     const [trailer, setTrailer] = useState('')
     const [status, setStatus] = useState('')
     const [jap, setJap] = useState('')
+    const [play, setPlay] = useState(false)
     const [loading, setLoading] = useState(true)
 
     const useStyles = makeStyles( (theme) => ({
@@ -22,7 +25,8 @@ function Featured( {page, id, image, index} ) {
         },
         featureContainer: {
             height: '100%',
-            padding: '30px'
+            padding: '30px',
+            // width: '100%'
         },
         featuredTitle: {
             // paddingTop: '30px',
@@ -78,7 +82,10 @@ function Featured( {page, id, image, index} ) {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            backgroundBlendMode: 'darken'
+            backgroundBlendMode: 'darken',
+            [theme.breakpoints.down('xs')]: {
+                height: '600px'
+            }
         },
         btnContainer: {
             width: '100%',
@@ -107,6 +114,15 @@ function Featured( {page, id, image, index} ) {
             setLoading(false)
         })
     }, [id])
+
+    // console.log(trailer.split('=').slice(0,3).join('=') + '=0')
+    console.log(window.location.href)
+    const dispatch = useDispatch()
+
+    const handlePlay = () => {
+        setPlay(true)
+        dispatch(playing(play))
+    }
     
     return loading ? <Loading /> : (
         <>
@@ -132,7 +148,7 @@ function Featured( {page, id, image, index} ) {
                         {page[index].genres.map( (i,index) => (<span key={index}>{i.name} </span>))}
                     </Typography>
                     <Box className={classes.btnContainer}>
-                        <Link to={'/details/' + page[index].title} className={classes.link}>
+                        <Link to={'/search/' + page[index].title}onClick={ () => dispatch(searchAnime(page[index].title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))} className={classes.link}>
                             <Button variant='contained' className={classes.btnWatch}>
                                 Details
                             </Button>
@@ -140,8 +156,17 @@ function Featured( {page, id, image, index} ) {
                     </Box>
                 </Box>
 
-                <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'} frameBorder='0' className={classes.trailer}/>
-
+                <Box className={classes.trailer}>
+                    <ReactPlayer 
+                        url={trailer.split('=').slice(0,3).join('=') + '=0'}
+                        // className={classes.trailer}
+                        controls
+                        // playing={ () => setPlay(!play)}
+                        onPlay={handlePlay}
+                        height='100%'
+                        origin={window.location.href}
+                    />
+                </Box>
             </Box>
         </Box>
         </>

@@ -3,8 +3,8 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
 import { checkDetails } from '../redux/action'
-import Loading from '../components/Loading'
-import { Link } from 'react-router-dom'
+import Loading from './Loading'
+import { Link, useLocation } from 'react-router-dom'
 
 //https://anime-x.vercel.app/api/search/kuma-kuma-kuma-bear/1
 
@@ -34,6 +34,10 @@ function Search() {
     const [loading, setLoading] = useState(true)
     const query = useSelector( state => state.search)
     const dispatch = useDispatch()
+
+    const location = useLocation()
+    console.log(location.pathname)
+
     const rootUrl = 'https://anime-x.vercel.app/api/search/'
     const url = rootUrl + query + '/' + 1
 

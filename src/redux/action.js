@@ -2,6 +2,14 @@ export const CHECK_DETAILS = 'CHECK_DETAILS'
 export const WATCH_EPISODE = 'WATCH_EPISODE'
 export const SEARCH_ANIME = 'SEARCH_ANIME'
 export const LOADING = 'LOADING'
+export const PLAY = 'PLAY'
+
+export const playing = (play) => {
+    return{
+        type: PLAY,
+        play: play
+    }
+}
 
 export const checkDetails = (title) => {
     return {

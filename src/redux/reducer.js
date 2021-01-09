@@ -1,7 +1,14 @@
-import { CHECK_DETAILS, LOADING, SEARCH_ANIME, WATCH_EPISODE } from './action'
+import { CHECK_DETAILS, LOADING, SEARCH_ANIME, WATCH_EPISODE, PLAY } from './action'
 
 const reducer = (state=[{loading: true}], action) => {
     switch(action.type){
+        case PLAY:
+            console.log(action.play)
+            return {
+                state,
+                play: action.play
+            }
+
         case CHECK_DETAILS:
             // console.log(action.id)
             return {

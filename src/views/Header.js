@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, InputBase, Button} from '@material-ui/core'
+import { AppBar, Toolbar, Typography, InputBase, Button, Box, IconButton} from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import MenuIcon from '@material-ui/icons/Menu'
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loading, searchAnime } from '../redux/action';
@@ -9,9 +10,6 @@ import { loading, searchAnime } from '../redux/action';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
@@ -69,14 +67,67 @@ const useStyles = makeStyles((theme) => ({
       display: 'none'
     }
   },
+  menuButton: {
+    // marginLeft: theme.spacing(2),
+    // [theme.breakpoints.up('sm')]: {
+    //   display: 'none'
+    // }
+  },
   link: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    [theme.breakpoints.down('xs')]: {
+      margin: '20px'
+    }
+  }, 
+  IconButton: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
+    }
+  },
+  navLinks: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'block',
+      position: 'absolute',
+      // top: '0',
+      left: '-100%',
+      // transition: 'all .2s ease-in',
+      // width: '100%',
+      // height: '100vh',
+      backgroundColor: '#212121',
+      zIndex: 100,
+      overflow: 'hidden'
+    },
+    // display: 'flex'
+  },
+  open: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      position: 'absolute',
+      // left: '0%',
+      transition: 'all .2s ease-in',
+      // top: '0',
+      left: '0%',
+      width: '100%',
+      // width: '100%',
+      height: '100vh',
+      backgroundColor: '#212121',
+      zIndex: 100,
+    },
+    btnLink: {
+      [theme.breakpoints.down('xs')]: {
+        // margin: '500px'
+        padding: '20px'
+      }
+    }
   }
 }));
 
 function Header() {
   const classes = useStyles();
   const [search, setSearch] = useState('')
+  const [open, setOpen] = useState(false)
+
   const dispatch = useDispatch()
   const history = useHistory()
   const handleSubmit = e => {
@@ -87,28 +138,39 @@ function Header() {
   }
 
   const handleClick = () => {
+    setOpen(false)
     dispatch(loading(true))
+    
   }
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-        <Link to='/' className={classes.link}>
-              <Button onClick={handleClick}>
-                  Home
-              </Button>
-          </Link>
-          <Link to='/new' className={classes.link}>
-              <Button onClick={handleClick}>
-                  New
-              </Button>
-          </Link>
-          <Link to='/popular' className={classes.link}>
-              <Button onClick={handleClick}>
-                  Popular
-              </Button>
-          </Link>
+          <Box>
+            <IconButton onClick={ () => setOpen(!open)} className={classes.IconButton}>
+              <MenuIcon className={classes.menuButton} />
+            </IconButton>
+
+            <Box className={ open ? classes.open : classes.navLinks}>
+              <Link to='/' className={classes.link}>
+                  <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
+                      Home
+                  </Button>
+              </Link>
+              <Link to='/new' className={classes.link}>
+                  <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
+                      New
+                  </Button>
+              </Link>
+              <Link to='/popular' className={classes.link}>
+                  <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
+                      Popular
+                  </Button>
+              </Link>
+            </Box>
+
+          </Box>
           <Typography className={classes.title} variant="h6" noWrap>
             Senpai - Kouhai
           </Typography>

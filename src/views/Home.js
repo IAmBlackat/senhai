@@ -6,6 +6,7 @@ import Carousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import { Link } from 'react-router-dom'
 import Featured from '../components/Featured'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -94,26 +95,37 @@ function Home() {
     const [lists, setLists] = useState([])
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState()
-
-    // jikan.loadSeason(2021, 'winter', 1).then( res => setLists(res))
     
     useEffect( () => {
         jikan.loadSeason( 2021, 'winter')
         .then( res => {
             console.log(res)
-            setLists(res.anime)
+            // setLists(res.anime)
             var pages = []
             for( var a = 0; a < 20; a++ ) {
                 pages.push(res.anime[a])
             }
             setPage(pages)
+            var item = [
+                <Featured page={pages} id={pages[0].mal_id} image={pages[0].image_url} index={0} />,
+                <Featured page={pages} id={pages[1].mal_id} image={pages[1].image_url} index={1} />,
+                <Featured page={pages} id={pages[2].mal_id} image={pages[2].image_url} index={2} />,
+                <Featured page={pages} id={pages[3].mal_id} image={pages[3].image_url} index={3} />,
+                <Featured page={pages} id={pages[4].mal_id} image={pages[4].image_url} index={4} />,
+                <Featured page={pages} id={pages[5].mal_id} image={pages[5].image_url} index={5} />,
+                <Featured page={pages} id={pages[6].mal_id} image={pages[6].image_url} index={6} />,
+                <Featured page={pages} id={pages[7].mal_id} image={pages[7].image_url} index={7} />,
+                <Featured page={pages} id={pages[8].mal_id} image={pages[8].image_url} index={8} />,
+                <Featured page={pages} id={pages[9].mal_id} image={pages[9].image_url} index={9} />,
+            ]
+            setLists(item)
             setLoading(false)
         })
         .catch( err => console.log(err))
     }, [])
     // console.log(lists.length)
     // let a = '5-toubun no Hanayome ∬'
-    // console.log(a.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join('-') )
+    // console.log(a.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ') )
     
     // console.log(page.map( i => i.title))
 
@@ -132,66 +144,6 @@ function Home() {
         }
     }
 
-    // const Features = () => {
-    //     const [trailer, setTrailer] = useState('')
-    //     const [status, setStatus] = useState('')
-    //     const [jap, setJap] = useState('')
-
-    //     useEffect( () => {
-    //         jikan.loadAnime(42897)
-    //         .then( resu => {
-    //             // console.log(resu)
-    //             setTrailer(resu.trailer_url)
-    //             setStatus(resu.status)
-    //             setJap(resu.title_japanese)
-    //         })
-    //     }, [])
-        
-    //     // console.log(trailer.split('=').slice(0,3).join('=') + '=0')
-
-    //     return(
-    //         <>
-    //         <Typography variant='h4' align='left' className={classes.title}>
-    //             Featured
-    //         </Typography>
-    //         {/* <Carousel 
-    //             mouseTracking
-    //             items={page.map( (i,index) )}
-    //         /> */}
-    //         <Box className={classes.featuredImg}>
-    //             <Box className={classes.featureContainer}>
-    //                 <Box className={classes.details}>
-    //                     <Typography variant='h3'  className={classes.featuredTitle}>
-    //                         {page[7].title}
-    //                     </Typography>
-    //                     <Typography variant='h6'>
-    //                         Japanese: {jap}
-    //                     </Typography>
-    //                     <Typography variant='h6' className={classes.status}>
-    //                         Status: {status}
-    //                     </Typography>
-    //                     <Typography variant='h6' className={classes.genre}>
-    //                         Genre: 
-    //                     </Typography>
-    //                     <Typography variant='h6' className={classes.genre}>
-    //                         {page[7].genres.map( (i,index) => (<span key={index}>{i.name} </span>))}
-    //                     </Typography>
-    //                     <Box className={classes.btnContainer}>
-    //                         <Link to={'/details/' + page[7].title} className={classes.link}>
-    //                             <Button variant='contained' className={classes.btnWatch}>
-    //                                 Details
-    //                             </Button>
-    //                         </Link>
-    //                     </Box>
-    //                 </Box>
-                
-    //                 <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'} frameBorder='0' className={classes.trailer}/>
-
-    //             </Box>
-    //         </Box>
-    //         </>
-    //     )
-    // }
 
         // jikan.loadAnime(42897)
         // .then(resu => {
@@ -203,6 +155,10 @@ function Home() {
         <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
         <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
     ]
+
+    const state = useSelector( state => state.play)
+    // console.log(page[0].image_url)
+
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             {/* <Featured page={page} /> */}
@@ -212,19 +168,27 @@ function Home() {
             </Typography>
             <Carousel 
                 mouseTracking
-                items={page.map( (i,index) => <Featured page={page} id={i.mal_id} image={i.image_url} key={index} index={index} />)}
+                // items={page.map( (i,index) => <Featured page={page} id={i.mal_id} image={i.image_url} key={index} index={index} />)}
+                items={lists}
+                // autoPlayControls={state ? false: true}
+                // autoPlayStrategy
                 autoPlay
-                autoHeight
-                autoPlayInterval='3000'
+                // renderPlayPauseButton={state === undefined ? 'PLAY' : state ? 'PAUSE' : 'PLAY'}
+                // renderPlayPauseButton
+                // autoHeight
+                // playButtonEnabled
+                // onSlideChange={state ? false : true} ={state === undefined ? true : state ? true : false}
+                autoPlayInterval='10000'
                 infinite
                 disableButtonsControls
                 disableDotsControls={window.innerWidth < 600 ? true : false }
                 touchTracking
-                
+                autoPlayActionDisabled
+                height='500px'
             />
-            
+
             <Typography variant='h4' align='left' className={classes.title}>
-                Top Season Ongoing
+                Top Seasonal Ongoing
             </Typography>
             <Paper className={classes.topSeasonPaper}>
 
@@ -232,7 +196,7 @@ function Home() {
 
                 {/* <img src='https://media.kitsu.io/anime/poster_images/43545/original.jpg?1609224996' alt=''/>     */}
 
-                <Carousel 
+                {/* <Carousel 
                     mouseTracking
                     items={page.map( i => (
                         <div>
@@ -245,22 +209,22 @@ function Home() {
                     responsive={res}
                     autoPlay
                     disableButtonsControls
-                    autoPlayInterval='5000'
+                    autoPlayInterval='10000'
                     infinite
                     touchTracking
                     disableDotsControls={window.innerWidth < 600 ? true : false }
                     animationType
-                />
+                /> */}
                 <Grid container spacing={2} className={classes.gridContainer}>
-                    {/* {page.map( (i,index) => (
-                        <Grid item xs={6} sm={3} key={index}>
+                    {page.map( (i,index) => (
+                        <Grid item xs={12} sm={3} key={index}>
                         <img src={i.image_url} alt='' />
                         <Typography>
                             {i.title}
                         </Typography>
                     
                         </Grid>
-                    ))} */}
+                    ))}
                 </Grid>
                
             </Paper>
