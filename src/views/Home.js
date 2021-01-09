@@ -5,6 +5,7 @@ import Loading from '../components/Loading'
 import Carousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import { Link } from 'react-router-dom'
+import Featured from '../components/Featured'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -99,7 +100,7 @@ function Home() {
     useEffect( () => {
         jikan.loadSeason( 2021, 'winter')
         .then( res => {
-            // console.log(res)
+            console.log(res)
             setLists(res.anime)
             var pages = []
             for( var a = 0; a < 20; a++ ) {
@@ -130,79 +131,98 @@ function Home() {
             items: 5
         }
     }
-    
-    const items = [
-        <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
-        <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
-        <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
-    ]
 
-    const Featured = () => {
-        const [trailer, setTrailer] = useState('')
-        const [status, setStatus] = useState('')
-        const [jap, setJap] = useState('')
+    // const Features = () => {
+    //     const [trailer, setTrailer] = useState('')
+    //     const [status, setStatus] = useState('')
+    //     const [jap, setJap] = useState('')
 
-        useEffect( () => {
-            jikan.loadAnime(42897)
-            .then( resu => {
-                // console.log(resu)
-                setTrailer(resu.trailer_url)
-                setStatus(resu.status)
-                setJap(resu.title_japanese)
-            })
-        }, [])
+    //     useEffect( () => {
+    //         jikan.loadAnime(42897)
+    //         .then( resu => {
+    //             // console.log(resu)
+    //             setTrailer(resu.trailer_url)
+    //             setStatus(resu.status)
+    //             setJap(resu.title_japanese)
+    //         })
+    //     }, [])
         
-        // console.log(trailer.split('=').slice(0,3).join('=') + '=0')
+    //     // console.log(trailer.split('=').slice(0,3).join('=') + '=0')
 
-        return(
-            <>
-            <Typography variant='h4' align='left' className={classes.title}>
-                Featured
-            </Typography>
-            <Box className={classes.featuredImg}>
-                <Box className={classes.featureContainer}>
-                    <Box className={classes.details}>
-                        <Typography variant='h3'  className={classes.featuredTitle}>
-                            {page[7].title}
-                        </Typography>
-                        <Typography variant='h6'>
-                            Japanese: {jap}
-                        </Typography>
-                        <Typography variant='h6' className={classes.status}>
-                            Status: {status}
-                        </Typography>
-                        <Typography variant='h6' className={classes.genre}>
-                            Genre: 
-                        </Typography>
-                        <Typography variant='h6' className={classes.genre}>
-                            {page[7].genres.map( (i,index) => (<span key={index}>{i.name} </span>))}
-                        </Typography>
-                        <Box className={classes.btnContainer}>
-                            <Link to={'/details/' + page[7].title} className={classes.link}>
-                                <Button variant='contained' className={classes.btnWatch}>
-                                    Details
-                                </Button>
-                            </Link>
-                        </Box>
-                    </Box>
+    //     return(
+    //         <>
+    //         <Typography variant='h4' align='left' className={classes.title}>
+    //             Featured
+    //         </Typography>
+    //         {/* <Carousel 
+    //             mouseTracking
+    //             items={page.map( (i,index) )}
+    //         /> */}
+    //         <Box className={classes.featuredImg}>
+    //             <Box className={classes.featureContainer}>
+    //                 <Box className={classes.details}>
+    //                     <Typography variant='h3'  className={classes.featuredTitle}>
+    //                         {page[7].title}
+    //                     </Typography>
+    //                     <Typography variant='h6'>
+    //                         Japanese: {jap}
+    //                     </Typography>
+    //                     <Typography variant='h6' className={classes.status}>
+    //                         Status: {status}
+    //                     </Typography>
+    //                     <Typography variant='h6' className={classes.genre}>
+    //                         Genre: 
+    //                     </Typography>
+    //                     <Typography variant='h6' className={classes.genre}>
+    //                         {page[7].genres.map( (i,index) => (<span key={index}>{i.name} </span>))}
+    //                     </Typography>
+    //                     <Box className={classes.btnContainer}>
+    //                         <Link to={'/details/' + page[7].title} className={classes.link}>
+    //                             <Button variant='contained' className={classes.btnWatch}>
+    //                                 Details
+    //                             </Button>
+    //                         </Link>
+    //                     </Box>
+    //                 </Box>
                 
-                    <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'} frameBorder='0' className={classes.trailer}/>
+    //                 <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'} frameBorder='0' className={classes.trailer}/>
 
-                </Box>
-            </Box>
-            </>
-        )
-    }
+    //             </Box>
+    //         </Box>
+    //         </>
+    //     )
+    // }
 
         // jikan.loadAnime(42897)
         // .then(resu => {
         //     console.log(resu)
         //     setHori(resu)
         // })
-
+    const items = [
+        <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
+        <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
+        <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
+    ]
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
-            <Featured />
+            {/* <Featured page={page} /> */}
+            {/* <Features /> */}
+            <Typography variant='h4' align='left' className={classes.title}>
+                Featured
+            </Typography>
+            <Carousel 
+                mouseTracking
+                items={page.map( (i,index) => <Featured page={page} id={i.mal_id} image={i.image_url} key={index} index={index} />)}
+                autoPlay
+                autoHeight
+                autoPlayInterval='3000'
+                infinite
+                disableButtonsControls
+                disableDotsControls={window.innerWidth < 600 ? true : false }
+                touchTracking
+                
+            />
+            
             <Typography variant='h4' align='left' className={classes.title}>
                 Top Season Ongoing
             </Typography>
@@ -225,7 +245,7 @@ function Home() {
                     responsive={res}
                     autoPlay
                     disableButtonsControls
-                    autoPlayInterval='3000'
+                    autoPlayInterval='5000'
                     infinite
                     touchTracking
                     disableDotsControls={window.innerWidth < 600 ? true : false }

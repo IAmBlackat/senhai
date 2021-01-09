@@ -1,5 +1,5 @@
 import './App.css';
-// import Popular from './views/Popular'
+// import Popular from './components/Popular'
 // import Recent from './components/Recent';
 // import Search from './views/Search';
 import Header from './views/Header'
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       {/* <Recent /> */}
-      {/* <Details /> */}
+      {/* <Popular /> */}
       <Router>
       <Header />
         <Switch>

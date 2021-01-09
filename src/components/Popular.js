@@ -20,6 +20,10 @@ const useStyles = makeStyles({
     },
     decor: {
         textDecoration: 'none'
+    },
+    iframe: {
+        width: 'auto',
+        height: 'auto'
     }
 })
 
@@ -30,22 +34,31 @@ function Popular() {
 
     const dispatch = useDispatch()
     
-    const url = 'https://anime-x.vercel.app/api/popular/1'
-    useEffect( () => {
-        axios.get(url)
-        .then( res => {
-            setPopular(res.data)
-            setLoading(false)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }, [])
+    //http://animethemes-api.herokuapp.com/api/v1/
     
+    // const url = 'http://animethemes-api.herokuapp.com/api/v1/search/yuru'
+    // useEffect( () => {
+    //     axios.get(url)
+    //     .then( res => {
+    //         console.log(res)
+    //         // setPopular(res)
+    //         // setLoading(false)
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+    // }, [])
+    
+    fetch("http://animethemes-api.herokuapp.com/api/v1/search/yuru%20camp")
+    .then( res => res.json())
+      .then(data => {
+        console.log(data.data)
+      })
 
     return loading ? <Loading /> : (
         <Paper elevation={0} square>
-            <Typography variant='h4' className={classes.title}>Popular</Typography>
+            {/* <video controls className={classes.iframe} src='https://animethemes.moe/video/BlackClover-OP4.webm' /> */}
+            {/* <Typography variant='h4' className={classes.title}>Popular</Typography>
 
             <Grid container spacing={2} align='center'>
                 {popular.results.map( list => (
@@ -67,7 +80,7 @@ function Popular() {
                         </Link>
                     </Grid>
                 ))}   
-            </Grid>
+            </Grid> */}
         </Paper>
     )
 }
