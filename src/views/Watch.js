@@ -90,7 +90,7 @@ function Watch() {
         })
     }, [url, history, currentEp, id])
 
-    // console.log(id.split('-').join(' '))
+    console.log(id)
     let title = id.split('-').join(' ')
 
     console.log(dl.epdl.length)

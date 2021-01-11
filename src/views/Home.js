@@ -7,6 +7,7 @@ import 'react-alice-carousel/lib/alice-carousel.css'
 import { Link } from 'react-router-dom'
 import Featured from '../components/Featured'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -99,7 +100,7 @@ function Home() {
     useEffect( () => {
         jikan.loadSeason( 2021, 'winter')
         .then( res => {
-            console.log(res)
+            // console.log(res)
             // setLists(res.anime)
             var pages = []
             for( var a = 0; a < 20; a++ ) {
@@ -118,6 +119,11 @@ function Home() {
                 <Featured page={pages} id={pages[8].mal_id} image={pages[8].image_url} index={8} />,
                 <Featured page={pages} id={pages[9].mal_id} image={pages[9].image_url} index={9} />,
             ]
+            // pages.map( (i, index) => {
+            //     return <Featured page={i} id={i[index].mal_id} image={i[index].image_url} index={index} />
+            
+            // } )
+
             setLists(item)
             setLoading(false)
         })
@@ -157,15 +163,20 @@ function Home() {
     ]
 
     const state = useSelector( state => state.play)
-    // console.log(page[0].image_url)
-
+    // console.log(lists)
+    
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             {/* <Featured page={page} /> */}
             {/* <Features /> */}
+            {/* {console.log(page)} */}
             <Typography variant='h4' align='left' className={classes.title}>
                 Featured
             </Typography>
+            {/* <iframe src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4'/>  */}
+            {/* <video src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4' autoPlay={false} controls /> */}
+
+            {/* <Featured page={page} id={page[0].mal_id} image={page[0].image_url} index={0} /> */}
             <Carousel 
                 mouseTracking
                 // items={page.map( (i,index) => <Featured page={page} id={i.mal_id} image={i.image_url} key={index} index={index} />)}

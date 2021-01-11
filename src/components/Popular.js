@@ -49,15 +49,15 @@ function Popular() {
     //     })
     // }, [])
     
-    fetch("http://animethemes-api.herokuapp.com/api/v1/search/yuru%20camp")
-    .then( res => res.json())
-      .then(data => {
-        console.log(data.data)
-      })
+    // fetch("http://animethemes-api.herokuapp.com/api/v1/search/yuru%20camp")
+    // .then( res => res.json())
+    //   .then(data => {
+    //     console.log(data.data)
+    //   })
 
     return loading ? <Loading /> : (
         <Paper elevation={0} square>
-            {/* <video controls className={classes.iframe} src='https://animethemes.moe/video/BlackClover-OP4.webm' /> */}
+            <video controls className={classes.iframe} src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4' />
             {/* <Typography variant='h4' className={classes.title}>Popular</Typography>
 
             <Grid container spacing={2} align='center'>

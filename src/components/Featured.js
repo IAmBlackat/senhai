@@ -52,7 +52,8 @@ function Featured( {page, id, image, index} ) {
             [theme.breakpoints.down('xs')]: {
                 float: 'none',
                 textAlign: 'center',
-                width: '100%'
+                width: '100%',
+                
             }
         },
         trailer: {
@@ -84,7 +85,7 @@ function Featured( {page, id, image, index} ) {
             backgroundSize: 'cover',
             backgroundBlendMode: 'darken',
             [theme.breakpoints.down('xs')]: {
-                height: '600px'
+                height: '350px'
             }
         },
         btnContainer: {
@@ -101,7 +102,7 @@ function Featured( {page, id, image, index} ) {
     }))
 
     //https://media.kitsu.io/anime/poster_images/43545/original.jpg?1609224996
-    // console.log(key)
+    // console.log(window.innerWidth)
     const classes = useStyles()
 
     useEffect( () => {
@@ -116,14 +117,14 @@ function Featured( {page, id, image, index} ) {
     }, [id])
 
     // console.log(trailer.split('=').slice(0,3).join('=') + '=0')
-    console.log(window.location.href)
+    // console.log(trailer)
     const dispatch = useDispatch()
 
     const handlePlay = () => {
         setPlay(true)
         dispatch(playing(play))
     }
-    
+
     return loading ? <Loading /> : (
         <>
         {/* <Typography variant='h4' align='left' className={classes.title}>
@@ -132,19 +133,19 @@ function Featured( {page, id, image, index} ) {
         <Box className={classes.featuredImg}>
             <Box className={classes.featureContainer}>
                 <Box className={classes.details}>
-                    <Typography variant='h3'  className={classes.featuredTitle}>
+                    <Typography variant={ window.innerWidth < 600 ? 'h6' : 'h4'} className={classes.featuredTitle}>
                         {page[index].title}
                     </Typography>
-                    <Typography variant='h6'>
+                    <Typography variant={ window.innerWidth < 600 ? 'subtitle' : 'h6'}>
                         Japanese: {jap}
                     </Typography>
-                    <Typography variant='h6' className={classes.status}>
+                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'} className={classes.status}>
                         Status: {status}
                     </Typography>
-                    <Typography variant='h6' className={classes.genre}>
+                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'} className={classes.genre}>
                         Genre: 
                     </Typography>
-                    <Typography variant='h6' className={classes.genre}>
+                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'} className={classes.genre}>
                         {page[index].genres.map( (i,index) => (<span key={index}>{i.name} </span>))}
                     </Typography>
                     <Box className={classes.btnContainer}>
@@ -156,6 +157,8 @@ function Featured( {page, id, image, index} ) {
                     </Box>
                 </Box>
 
+                {/* <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'}  frameBorder='0' className={classes.trailer} onClick={ () => console.log('playing')}/> */}
+                
                 <Box className={classes.trailer}>
                     <ReactPlayer 
                         url={trailer.split('=').slice(0,3).join('=') + '=0'}
