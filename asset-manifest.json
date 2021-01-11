@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/senhai/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/senhai/static/js/main.14569e80.chunk.js",
-    "main.js.map": "/senhai/static/js/main.14569e80.chunk.js.map",
+    "main.js": "/senhai/static/js/main.043b9386.chunk.js",
+    "main.js.map": "/senhai/static/js/main.043b9386.chunk.js.map",
     "runtime-main.js": "/senhai/static/js/runtime-main.c8e04a80.js",
     "runtime-main.js.map": "/senhai/static/js/runtime-main.c8e04a80.js.map",
     "static/css/2.01bdca31.chunk.css": "/senhai/static/css/2.01bdca31.chunk.css",
-    "static/js/2.682a361d.chunk.js": "/senhai/static/js/2.682a361d.chunk.js",
-    "static/js/2.682a361d.chunk.js.map": "/senhai/static/js/2.682a361d.chunk.js.map",
+    "static/js/2.fb71ce3e.chunk.js": "/senhai/static/js/2.fb71ce3e.chunk.js",
+    "static/js/2.fb71ce3e.chunk.js.map": "/senhai/static/js/2.fb71ce3e.chunk.js.map",
     "index.html": "/senhai/index.html",
     "static/css/2.01bdca31.chunk.css.map": "/senhai/static/css/2.01bdca31.chunk.css.map",
     "static/css/main.8c8b27cf.chunk.css.map": "/senhai/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.682a361d.chunk.js.LICENSE.txt": "/senhai/static/js/2.682a361d.chunk.js.LICENSE.txt"
+    "static/js/2.fb71ce3e.chunk.js.LICENSE.txt": "/senhai/static/js/2.fb71ce3e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c8e04a80.js",
     "static/css/2.01bdca31.chunk.css",
-    "static/js/2.682a361d.chunk.js",
+    "static/js/2.fb71ce3e.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.14569e80.chunk.js"
+    "static/js/main.043b9386.chunk.js"
   ]
 }
