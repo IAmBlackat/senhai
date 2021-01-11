@@ -90,10 +90,10 @@ function Watch() {
         })
     }, [url, history, currentEp, id])
 
-    console.log(id)
+    // console.log(id)
     let title = id.split('-').join(' ')
 
-    console.log(dl.epdl.length)
+    // console.log(dl.epdl.length)
 
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>

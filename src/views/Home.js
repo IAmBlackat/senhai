@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
 import jikan from 'jikanjs'
 import Loading from '../components/Loading'
 import Carousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import { Link } from 'react-router-dom'
 import Featured from '../components/Featured'
-import { useSelector } from 'react-redux'
-import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { searchAnime } from '../redux/action'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -88,6 +88,21 @@ const useStyles = makeStyles( (theme) => ({
     },
     link: {
         textDecoration: 'none'
+    },
+    seasonalList: {
+        maxWidth: 200,
+        maxHeight: 500,
+        boxShadow: '5px 5px 25px #212121',
+    },
+    mobile: {
+        [theme.breakpoints.up('sm')]: {
+            display: 'none'
+        }
+    },
+    desktop: {  
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+        }
     }
 }))
 
@@ -103,7 +118,7 @@ function Home() {
             // console.log(res)
             // setLists(res.anime)
             var pages = []
-            for( var a = 0; a < 20; a++ ) {
+            for( var a = 0; a < 40; a++ ) {
                 pages.push(res.anime[a])
             }
             setPage(pages)
@@ -139,14 +154,17 @@ function Home() {
         0: {
             items: 1
         },
-        568: {
+        450: {
             items: 2
+        },
+        560: {
+            items: 3
         },
         1024: {
             items: 4
         },
         1400: {
-            items: 5
+            items: 6
         }
     }
 
@@ -162,7 +180,8 @@ function Home() {
         <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
     ]
 
-    const state = useSelector( state => state.play)
+    // const state = useSelector( state => state.play)
+    const dispatch = useDispatch()
     // console.log(lists)
     
     return loading ? <Loading /> : (
@@ -170,6 +189,7 @@ function Home() {
             {/* <Featured page={page} /> */}
             {/* <Features /> */}
             {/* {console.log(page)} */}
+            {/* <audio src='https://animethemes.moe/video/JakuCharaTomozakiKun-OP1.webm' controls typeof='audio/mpeg' /> */}
             <Typography variant='h4' align='left' className={classes.title}>
                 Featured
             </Typography>
@@ -199,45 +219,80 @@ function Home() {
             />
 
             <Typography variant='h4' align='left' className={classes.title}>
-                Top Seasonal Ongoing
+                Winter 2021 Ongoing
             </Typography>
             <Paper className={classes.topSeasonPaper}>
 
                 {/* <img className={classes.img} src='https://media.kitsu.io/anime/cover_images/7164/original.jpg?1597700936' alt='' /> */}
 
                 {/* <img src='https://media.kitsu.io/anime/poster_images/43545/original.jpg?1609224996' alt=''/>     */}
+                <Box className={classes.desktop}>
+                    <Carousel 
+                        mouseTracking
+                        items={page.map( i => (
+                            <div>
+                                {/* <img src={i.image_url} alt='' />
+                                <Typography>
+                                    {i.title}
+                                </Typography> */}
+                                <Grid align='center'>
+                                    <Card className={classes.seasonalList}>
+                                        <CardActionArea 
+                                            component={Link} 
+                                            to={'/search/' + i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')}
+                                            onClick={ () => dispatch(searchAnime(i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))}
+                                        >
+                                            <CardMedia 
+                                                image={i.image_url}
+                                                component='img'
+                                            />
+                                            <CardContent>
+                                                <Typography>
+                                                    {i.title}
+                                                </Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
+                                </Grid>
+                            </div>
+                        ))}
+                        responsive={res}
+                        height='300px'
+                        autoPlay
+                        disableButtonsControls
+                        autoPlayInterval='3000'
+                        infinite
+                        // touchTracking
+                        disableDotsControls={window.innerWidth < 600 ? true : false }
+                        animationType
+                    />
+                </Box>
 
-                {/* <Carousel 
-                    mouseTracking
-                    items={page.map( i => (
-                        <div>
-                            <img src={i.image_url} alt='' />
-                            <Typography>
-                                {i.title}
-                            </Typography>
-                        </div>
-                    ))}
-                    responsive={res}
-                    autoPlay
-                    disableButtonsControls
-                    autoPlayInterval='10000'
-                    infinite
-                    touchTracking
-                    disableDotsControls={window.innerWidth < 600 ? true : false }
-                    animationType
-                /> */}
-                <Grid container spacing={2} className={classes.gridContainer}>
-                    {page.map( (i,index) => (
-                        <Grid item xs={12} sm={3} key={index}>
-                        <img src={i.image_url} alt='' />
-                        <Typography>
-                            {i.title}
-                        </Typography>
-                    
-                        </Grid>
-                    ))}
-                </Grid>
-               
+                <Box className={classes.mobile}>
+                    <Grid container spacing={2} align='center' className={classes.gridContainer}>
+                        {page.map( (i,index) => (
+                            <Grid item xs={6} sm={3} key={index}>
+                                <Card className={classes.seasonalList}>
+                                    <CardActionArea
+                                        component={Link} 
+                                        to={'/search/' + i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')}
+                                        onClick={ () => dispatch(searchAnime(i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))}
+                                    >
+                                        <CardMedia 
+                                            image={i.image_url}
+                                            component='img'
+                                        />
+                                        <CardContent>
+                                            <Typography>
+                                                {i.title}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Box>
             </Paper>
         </Paper>
     )

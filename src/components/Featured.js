@@ -136,7 +136,7 @@ function Featured( {page, id, image, index} ) {
                     <Typography variant={ window.innerWidth < 600 ? 'h6' : 'h4'} className={classes.featuredTitle}>
                         {page[index].title}
                     </Typography>
-                    <Typography variant={ window.innerWidth < 600 ? 'subtitle' : 'h6'}>
+                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'}>
                         Japanese: {jap}
                     </Typography>
                     <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'} className={classes.status}>
