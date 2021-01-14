@@ -162,12 +162,10 @@ function Featured( {page, id, image, index} ) {
                 <Box className={classes.trailer}>
                     <ReactPlayer 
                         url={trailer.split('=').slice(0,3).join('=') + '=0'}
-                        // className={classes.trailer}
                         controls
                         // playing={ () => setPlay(!play)}
                         onPlay={handlePlay}
                         height='100%'
-                        origin={window.location.href}
                     />
                 </Box>
             </Box>

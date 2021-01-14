@@ -33,7 +33,7 @@ const useStyles = makeStyles( (theme) => ({
     },
     paper: {
         // backgroundColor: '#616161'
-        padding: '15px',
+        padding: '10px',
         [theme.breakpoints.up('sm')]: {
             margin: ' 20px',
         },
@@ -87,7 +87,7 @@ function Container( {page}) {
 
     useEffect( () => {
         state.loading === undefined ? setLoading(true) : setLoading(state.loading)
-
+        
         setImgLoad(true)
         axios.get(url)
         .then( res => {
@@ -100,7 +100,6 @@ function Container( {page}) {
         })
     }, [url, history, state.loading])
 
-    // console.log(location.pathname.split('/')[2])
     // jikan.loadStatus().then( res => console.log(res))
     // jikan.loadAnime(39617, 'news').then( res => console.log(res) )
     // jikan.loadSeason(2021, 'winter').then( res => console.log(res))
@@ -110,6 +109,7 @@ function Container( {page}) {
     // console.log(a.replace(/[^a-zA-Z0-9]/g, ' ').split('))
 
     const Pages = () => {
+
         let id = location.pathname.split('/')[2]
         return(
             <>
@@ -159,7 +159,8 @@ function Container( {page}) {
                                 <CardActionArea onClick={ () => page === 'recentlyadded' ? dispatch(watchEpisode(list.episodenumber,list.id,list.title)) : dispatch(checkDetails(list.id)) }>
                                     <CardMedia 
                                         title={list.id}
-                                        image={imgLoad ? 'https://thumbs.gfycat.com/ShadowyCourageousAztecant-size_restricted.gif' : list.image}
+                                        //https://thumbs.gfycat.com/ShadowyCourageousAztecant-size_restricted.gif
+                                        image={imgLoad ? 'https://media1.tenor.com/images/c184317a395883494f73b6fe8d2acf70/tenor.gif?itemid=18008963' : list.image}
                                         component='img'
                                         className={classes.image}
                                         onLoad={ () => setImgLoad(false)}

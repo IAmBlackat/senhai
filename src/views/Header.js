@@ -158,7 +158,7 @@ function Header() {
                       Home
                   </Button>
               </Link>
-              <Link to='/new' className={classes.link}>
+              <Link to='/new/1' className={classes.link}>
                   <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
                       New
                   </Button>

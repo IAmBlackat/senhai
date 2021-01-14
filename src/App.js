@@ -9,6 +9,7 @@ import Container from './views/Container';
 import Error from './components/Error';
 import { HashRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './views/Home';
+import MangadexApi from './manga/MangadexApi';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Header />
         <Switch>
           <Route exact path='/'>
+            {/* <MangadexApi /> */}
             <Home />
           </Route>
           <Route path='/new'>

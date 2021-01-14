@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 import Featured from '../components/Featured'
 import { useDispatch } from 'react-redux'
 import { searchAnime } from '../redux/action'
+import axios from 'axios'
+import Schedule from '../components/Schedule'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -62,6 +64,10 @@ const useStyles = makeStyles( (theme) => ({
     topSeasonPaper: {
         margin: '20px',
         padding: '20px',
+        [theme.breakpoints.down('xs')]: {
+            margin: '0px',
+            padding: '10px'
+        }
         
     },
     img: {
@@ -109,6 +115,7 @@ const useStyles = makeStyles( (theme) => ({
 function Home() {
     const classes = useStyles()
     const [lists, setLists] = useState([])
+    const [imgLoad, setImgLoad] = useState(true)
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState()
     
@@ -116,7 +123,7 @@ function Home() {
         jikan.loadSeason( 2021, 'winter')
         .then( res => {
             // console.log(res)
-            // setLists(res.anime)
+            setLists(res.anime)
             var pages = []
             for( var a = 0; a < 40; a++ ) {
                 pages.push(res.anime[a])
@@ -183,7 +190,9 @@ function Home() {
     // const state = useSelector( state => state.play)
     const dispatch = useDispatch()
     // console.log(lists)
-    
+    // jikan.loadAnime(40028).then( res => console.log(res))
+    // jikan.loadSchedule('wednesday').then( res => console.log(res))
+
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             {/* <Featured page={page} /> */}
@@ -193,6 +202,7 @@ function Home() {
             <Typography variant='h4' align='left' className={classes.title}>
                 Featured
             </Typography>
+        
             {/* <iframe src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4'/>  */}
             {/* <video src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4' autoPlay={false} controls /> */}
 
@@ -231,10 +241,6 @@ function Home() {
                         mouseTracking
                         items={page.map( i => (
                             <div>
-                                {/* <img src={i.image_url} alt='' />
-                                <Typography>
-                                    {i.title}
-                                </Typography> */}
                                 <Grid align='center'>
                                     <Card className={classes.seasonalList}>
                                         <CardActionArea 
@@ -243,8 +249,9 @@ function Home() {
                                             onClick={ () => dispatch(searchAnime(i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))}
                                         >
                                             <CardMedia 
-                                                image={i.image_url}
+                                                image={imgLoad ? 'https://media1.tenor.com/images/c184317a395883494f73b6fe8d2acf70/tenor.gif?itemid=18008963' : i.image_url}
                                                 component='img'
+                                                onLoad={ () => setImgLoad(false)}
                                             />
                                             <CardContent>
                                                 <Typography>
@@ -283,7 +290,7 @@ function Home() {
                                             component='img'
                                         />
                                         <CardContent>
-                                            <Typography>
+                                            <Typography style={{ textOverflow: 'ellipsis'}}>
                                                 {i.title}
                                             </Typography>
                                         </CardContent>
@@ -294,6 +301,10 @@ function Home() {
                     </Grid>
                 </Box>
             </Paper>
+            <Typography variant='h4' align='left' className={classes.title}>
+                Schedule
+            </Typography>
+            <Schedule />
         </Paper>
     )
 }
