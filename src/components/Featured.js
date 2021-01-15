@@ -7,7 +7,7 @@ import ReactPlayer from 'react-player'
 import { useDispatch } from 'react-redux'
 import { playing, searchAnime } from '../redux/action'
 
-function Featured( {page, id, image, index} ) {
+function Featured( { page, id, image, index } ) {
     const [trailer, setTrailer] = useState('')
     const [status, setStatus] = useState('')
     const [jap, setJap] = useState('')
@@ -107,13 +107,14 @@ function Featured( {page, id, image, index} ) {
 
     useEffect( () => {
         jikan.loadAnime(id)
-        .then( resu => {
+        .then( res => {
             // console.log(resu)
-            setTrailer(resu.trailer_url)
-            setStatus(resu.status)
-            setJap(resu.title_japanese)
+            setTrailer(res.trailer_url)
+            setStatus(res.status)
+            setJap(res.title_japanese)
             setLoading(false)
         })
+        .catch( res => console.log(res))
     }, [id])
 
     // console.log(trailer.split('=').slice(0,3).join('=') + '=0')
@@ -159,7 +160,7 @@ function Featured( {page, id, image, index} ) {
 
                 {/* <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'}  frameBorder='0' className={classes.trailer} onClick={ () => console.log('playing')}/> */}
                 
-                <Box className={classes.trailer}>
+                {/* <Box className={classes.trailer}>
                     <ReactPlayer 
                         url={trailer.split('=').slice(0,3).join('=') + '=0'}
                         controls
@@ -167,7 +168,7 @@ function Featured( {page, id, image, index} ) {
                         onPlay={handlePlay}
                         height='100%'
                     />
-                </Box>
+                </Box> */}
             </Box>
         </Box>
         </>

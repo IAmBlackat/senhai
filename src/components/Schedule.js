@@ -25,10 +25,19 @@ function Schedule() {
 
     const Monday = () => {
         const [list, setList] = useState([])
+
         useEffect( () => {
-            jikan.loadSchedule('monday').then( res => {
+            const abortController = new AbortController()
+            const signal = abortController.signal
+
+            jikan.loadSchedule('monday',{ signal: signal}).then( res => {
                 setList(res.monday)
             })
+            .catch( err => console.log(err, "eroor"))
+
+            return () => {
+                console.log('unmounted')
+            }
         }, [])
 
         return(
@@ -128,6 +137,7 @@ function Schedule() {
 
     const Sunday = () => {
         const [list, setList] = useState([])
+        //https://cors-anywhere.herokuapp.com/
         useEffect( () => {
             jikan.loadSchedule('sunday').then( res => {
                 setList(res.sunday)

@@ -97,7 +97,7 @@ const useStyles = makeStyles( (theme) => ({
     },
     seasonalList: {
         maxWidth: 200,
-        maxHeight: 500,
+        maxHeight: 400,
         boxShadow: '5px 5px 25px #212121',
     },
     mobile: {
@@ -109,7 +109,8 @@ const useStyles = makeStyles( (theme) => ({
         [theme.breakpoints.down('xs')]: {
             display: 'none'
         }
-    }
+    },
+
 }))
 
 function Home() {
@@ -122,13 +123,17 @@ function Home() {
     useEffect( () => {
         jikan.loadSeason( 2021, 'winter')
         .then( res => {
-            // console.log(res)
+            // console.log(res.anime)
             setLists(res.anime)
             var pages = []
             for( var a = 0; a < 40; a++ ) {
                 pages.push(res.anime[a])
             }
             setPage(pages)
+            // var items = []
+            // for( var a = 0; a < 10; a++ ) {
+            //     items.push(<Featured page={pages} id={pages[a].mal_id} image={pages[a].image_url} index={a} />)
+            // }
             var item = [
                 <Featured page={pages} id={pages[0].mal_id} image={pages[0].image_url} index={0} />,
                 <Featured page={pages} id={pages[1].mal_id} image={pages[1].image_url} index={1} />,
@@ -140,22 +145,17 @@ function Home() {
                 <Featured page={pages} id={pages[7].mal_id} image={pages[7].image_url} index={7} />,
                 <Featured page={pages} id={pages[8].mal_id} image={pages[8].image_url} index={8} />,
                 <Featured page={pages} id={pages[9].mal_id} image={pages[9].image_url} index={9} />,
+                
             ]
-            // pages.map( (i, index) => {
-            //     return <Featured page={i} id={i[index].mal_id} image={i[index].image_url} index={index} />
-            
-            // } )
 
             setLists(item)
             setLoading(false)
         })
         .catch( err => console.log(err))
     }, [])
-    // console.log(lists.length)
+    console.log(page)
     // let a = '5-toubun no Hanayome ∬'
     // console.log(a.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ') )
-    
-    // console.log(page.map( i => i.title))
 
     const res = {
         0: {
@@ -192,6 +192,11 @@ function Home() {
     // console.log(lists)
     // jikan.loadAnime(40028).then( res => console.log(res))
     // jikan.loadSchedule('wednesday').then( res => console.log(res))
+
+    useEffect( () => {
+        axios.get('https://api.jikan.moe/v3/schedule/thursday')
+        .then(res => console.log(res))
+    }, [])
 
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
@@ -254,7 +259,7 @@ function Home() {
                                                 onLoad={ () => setImgLoad(false)}
                                             />
                                             <CardContent>
-                                                <Typography>
+                                                <Typography variant='inherit'>
                                                     {i.title}
                                                 </Typography>
                                             </CardContent>
@@ -286,11 +291,12 @@ function Home() {
                                         onClick={ () => dispatch(searchAnime(i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))}
                                     >
                                         <CardMedia 
-                                            image={i.image_url}
+                                            image={imgLoad ? 'https://media1.tenor.com/images/c184317a395883494f73b6fe8d2acf70/tenor.gif?itemid=18008963' : i.image_url}
                                             component='img'
+                                            onLoad={ () => setImgLoad(false)}
                                         />
                                         <CardContent>
-                                            <Typography style={{ textOverflow: 'ellipsis'}}>
+                                            <Typography style={{ textOverflow: 'ellipsis'}} variant='body2'>
                                                 {i.title}
                                             </Typography>
                                         </CardContent>
@@ -301,10 +307,12 @@ function Home() {
                     </Grid>
                 </Box>
             </Paper>
+
             <Typography variant='h4' align='left' className={classes.title}>
                 Schedule
             </Typography>
             <Schedule />
+            
         </Paper>
     )
 }
