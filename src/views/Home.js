@@ -121,39 +121,43 @@ function Home() {
     const [page, setPage] = useState()
     
     useEffect( () => {
+        let unmount = false
+
         jikan.loadSeason( 2021, 'winter')
         .then( res => {
-            // console.log(res.anime)
-            setLists(res.anime)
-            var pages = []
-            for( var a = 0; a < 40; a++ ) {
-                pages.push(res.anime[a])
-            }
-            setPage(pages)
-            // var items = []
-            // for( var a = 0; a < 10; a++ ) {
-            //     items.push(<Featured page={pages} id={pages[a].mal_id} image={pages[a].image_url} index={a} />)
-            // }
-            var item = [
-                <Featured page={pages} id={pages[0].mal_id} image={pages[0].image_url} index={0} />,
-                <Featured page={pages} id={pages[1].mal_id} image={pages[1].image_url} index={1} />,
-                <Featured page={pages} id={pages[2].mal_id} image={pages[2].image_url} index={2} />,
-                <Featured page={pages} id={pages[3].mal_id} image={pages[3].image_url} index={3} />,
-                <Featured page={pages} id={pages[4].mal_id} image={pages[4].image_url} index={4} />,
-                <Featured page={pages} id={pages[5].mal_id} image={pages[5].image_url} index={5} />,
-                <Featured page={pages} id={pages[6].mal_id} image={pages[6].image_url} index={6} />,
-                <Featured page={pages} id={pages[7].mal_id} image={pages[7].image_url} index={7} />,
-                <Featured page={pages} id={pages[8].mal_id} image={pages[8].image_url} index={8} />,
-                <Featured page={pages} id={pages[9].mal_id} image={pages[9].image_url} index={9} />,
-                
-            ]
+            if(!unmount) {
+                console.log(res)
+                setLists(res.anime)
+                var pages = []
+                for( var a = 0; a < 40; a++ ) {
+                    pages.push(res.anime[a])
+                }
+                setPage(pages)
+                // var items = []
+                // for( var a = 0; a < 10; a++ ) {
+                //     items.push(<Featured page={pages} id={pages[a].mal_id} image={pages[a].image_url} index={a} />)
+                // }
+                var item = [
+                    <Featured page={pages} id={pages[0].mal_id} image={pages[0].image_url} index={0} />,
+                    <Featured page={pages} id={pages[1].mal_id} image={pages[1].image_url} index={1} />,
+                    <Featured page={pages} id={pages[2].mal_id} image={pages[2].image_url} index={2} />,
+                    <Featured page={pages} id={pages[3].mal_id} image={pages[3].image_url} index={3} />,
+                    <Featured page={pages} id={pages[4].mal_id} image={pages[4].image_url} index={4} />,
+                    <Featured page={pages} id={pages[5].mal_id} image={pages[5].image_url} index={5} />,
+                    <Featured page={pages} id={pages[6].mal_id} image={pages[6].image_url} index={6} />,
+                    <Featured page={pages} id={pages[7].mal_id} image={pages[7].image_url} index={7} />,
+                    <Featured page={pages} id={pages[8].mal_id} image={pages[8].image_url} index={8} />,
+                    <Featured page={pages} id={pages[9].mal_id} image={pages[9].image_url} index={9} />,
+                ]
 
-            setLists(item)
-            setLoading(false)
+                setLists(item)
+                setLoading(false)
+            }
         })
         .catch( err => console.log(err))
+        return () => unmount = true
     }, [])
-    console.log(page)
+    // console.log(page)
     // let a = '5-toubun no Hanayome ∬'
     // console.log(a.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ') )
 
@@ -161,10 +165,10 @@ function Home() {
         0: {
             items: 1
         },
-        450: {
+        500: {
             items: 2
         },
-        560: {
+        620: {
             items: 3
         },
         1024: {
@@ -192,11 +196,6 @@ function Home() {
     // console.log(lists)
     // jikan.loadAnime(40028).then( res => console.log(res))
     // jikan.loadSchedule('wednesday').then( res => console.log(res))
-
-    useEffect( () => {
-        axios.get('https://api.jikan.moe/v3/schedule/thursday')
-        .then(res => console.log(res))
-    }, [])
 
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>

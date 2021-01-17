@@ -1,7 +1,4 @@
 import './App.css';
-// import Popular from './components/Popular'
-// import Recent from './components/Recent';
-// import Search from './views/Search';
 import Header from './views/Header'
 import Details from './views/Details';
 import Watch from './views/Watch';
@@ -9,13 +6,10 @@ import Container from './views/Container';
 import Error from './components/Error';
 import { HashRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './views/Home';
-import MangadexApi from './manga/MangadexApi';
 
 function App() {
   return (
     <div className="App">
-      {/* <Recent /> */}
-      {/* <Popular /> */}
       <Router>
       <Header />
         <Switch>
@@ -23,7 +17,8 @@ function App() {
             {/* <MangadexApi /> */}
             <Home />
           </Route>
-          <Route path='/new'>
+
+          <Route path='/recentlyadded'>
             <Container page={'recentlyadded'} />
           </Route>
 

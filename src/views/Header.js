@@ -158,12 +158,12 @@ function Header() {
                       Home
                   </Button>
               </Link>
-              <Link to='/new/1' className={classes.link}>
+              <Link to='/recentlyadded/1' className={classes.link}>
                   <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
                       New
                   </Button>
               </Link>
-              <Link to='/popular' className={classes.link}>
+              <Link to='/popular/1' className={classes.link}>
                   <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
                       Popular
                   </Button>

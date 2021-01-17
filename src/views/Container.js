@@ -77,11 +77,14 @@ function Container( {page}) {
     const state = useSelector( state => state)
     const dispatch = useDispatch()  
     
+    const query = location.pathname.split('/')[2]
+    const currentPage = Number(location.pathname.split('/')[2])
+
     const rootUrl = 'https://anime-x.vercel.app/api'
     const getPage = page === 'search' ? 
-        '/' + page + '/' + state.search + '/' + 1 
+        '/' + page + '/' + query + '/' + 1 
         : 
-        '/' + page + '/' + pageUrl 
+        '/' + page + '/' + currentPage 
 
     const url = rootUrl + getPage
 
@@ -94,11 +97,13 @@ function Container( {page}) {
             // console.log(res)
             setLists(res.data)
             setLoading(false)
+            setPageUrl(currentPage)
         })
         .catch(err => {
+            console.log(err)
             if(err.response.status >= 400) history.push('/error')
         })
-    }, [url, history, state.loading])
+    }, [url, history, state.loading, currentPage])
 
     // jikan.loadStatus().then( res => console.log(res))
     // jikan.loadAnime(39617, 'news').then( res => console.log(res) )
@@ -115,7 +120,7 @@ function Container( {page}) {
             <>
             {location.pathname === '/search/' + id ? '' :
                 <Box className={classes.box}>
-                    <Button variant='outlined' className={classes.btn} onClick={ () => setPageUrl(pageUrl - 1 )} disabled={pageUrl === 1 ? true : false}>
+                    <Button component={Link} to={'/' + page + '/' + (currentPage - 1)} variant='outlined' className={classes.btn} disabled={currentPage === 1 ? true : false}>
                         <NavigateBeforeIcon /> Previous
                     </Button>
 
@@ -123,7 +128,9 @@ function Container( {page}) {
                     {pageUrl}
                     </b>
 
-                    <Button variant='outlined' className={classes.btn} onClick={ () => setPageUrl(pageUrl + 1 )}>
+                    <Button component={Link} to={'/' + page + '/' + (currentPage + 1)} variant='outlined' className={classes.btn} 
+                        // onClick={ () => setPageUrl(pageUrl + 1)} 
+                    >
                         Next <NavigateNextIcon /> 
                     </Button>
                 </Box>
@@ -137,7 +144,7 @@ function Container( {page}) {
             <Box>
             {page === 'search' ? 
                 <Typography variant='h4' className={classes.title}>
-                    Results for ' {state.search} '
+                    Results for ' {query} '
                 </Typography>
                 :             
                 <Typography variant='h4' className={classes.title} align='left'>
@@ -166,8 +173,8 @@ function Container( {page}) {
                                         onLoad={ () => setImgLoad(false)}
                                     />
                                     <CardContent>
-                                        <Typography>{list.title}</Typography>
-                                        {page === 'recentlyadded' ? <Typography >Episode: {list.episodenumber}</Typography> : ''}
+                                        <Typography variant={ window.innerWidth < 600 ? 'body2' : 'subtitle2'} >{list.title}</Typography>
+                                        {page === 'recentlyadded' ? <Typography variant={ window.innerWidth < 600 ? 'body2' : 'subtitle2'} >Episode: {list.episodenumber}</Typography> : ''}
                                     </CardContent>
                                 </CardActionArea>
                             </Link>

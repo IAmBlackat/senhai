@@ -21,14 +21,26 @@ const useStyles = makeStyles( (theme) => ({
         margin: '10px',
         padding: '10px'
     },
-    video: {
-        zIndex: '1',
-        outline: 'none',
-        // position: 'absolute',
-        height: 'auto',
-        width: '88%',
+    videoContainer: {
+        position: 'relative',
+        paddingBottom: '50%', 
+        height: '0', 
+        width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '55%'
+            paddingBottom: '35%'
+        }
+    },
+    video: {
+        position: 'absolute', 
+        top: '0', 
+        left: '50%', 
+        right: '50%', 
+        width: '80%', 
+        height: '100%',
+        transform: 'translate(-50%)', 
+        outline: 'none',
+        [theme.breakpoints.up('sm')]: {
+            width: '60%'
         }
     },
     link: {
@@ -73,6 +85,7 @@ function Watch() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
+            // console.log(res)
             setLinks(res.data.links)
             setQuality(res.data.links[0])
             setLoading(false)
@@ -94,6 +107,13 @@ function Watch() {
     let title = id.split('-').join(' ')
 
     // console.log(dl.epdl.length)
+    // useEffect( () => {
+    //     axios.get('https://cors-anywhere.herokuapp.com///gogo-play.net/streaming.php?id=MTUwNTIw&title=Hataraku+Saibou%21%21+Episode+2')
+    //     .then( res =>{ 
+    //         console.log(res.request.response)
+            
+    //     })
+    // }, [])
 
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
@@ -130,7 +150,22 @@ function Watch() {
 
                 <Paper square elevation={0} >     
 
-                    <video src={quality} controls className={classes.video}/>
+                    {/* <video src={quality} controls className={classes.video}/> */}
+
+                    <Box className={classes.videoContainer}>
+                        <video src={quality} controls className={classes.video} />
+                        {/* <iframe 
+                            src='//gogo-play.net/streaming.php?id=MTUwNTc3&title=Ore+dake+Haireru+Kakushi+Dungeon+Episode+2'
+                            frameBorder='0'
+                            marginWidth='0'
+                            marginHeight='0'
+                            scrolling='no'
+                            allowFullScreen
+                            style={{position: 'absolute', top: '0', left: '50%', right: '50%', width: '60%', height: '100%',
+                                    transform: 'translate(-50%)'
+                                }}
+                        /> */}
+                    </Box>
 
                     <Box className={classes.epnav}>
                         <span>

@@ -106,18 +106,22 @@ function Featured( { page, id, image, index } ) {
     const classes = useStyles()
 
     useEffect( () => {
+        let unmount = false
         jikan.loadAnime(id)
         .then( res => {
+            if (!unmount) {
             // console.log(resu)
             setTrailer(res.trailer_url)
             setStatus(res.status)
             setJap(res.title_japanese)
             setLoading(false)
+            }
         })
         .catch( res => console.log(res))
+        return () => unmount = true
     }, [id])
 
-    // console.log(trailer.split('=').slice(0,3).join('=') + '=0')
+    // console.log(trailer.split('=').slice(0,3).join('=') + '=0') to disable auto play when load
     // console.log(trailer)
     const dispatch = useDispatch()
 
@@ -150,7 +154,7 @@ function Featured( { page, id, image, index } ) {
                         {page[index].genres.map( (i,index) => (<span key={index}>{i.name} </span>))}
                     </Typography>
                     <Box className={classes.btnContainer}>
-                        <Link to={'/search/' + page[index].title}onClick={ () => dispatch(searchAnime(page[index].title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))} className={classes.link}>
+                        <Link to={'/search/' + page[index].title} onClick={ () => dispatch(searchAnime(page[index].title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))} className={classes.link}>
                             <Button variant='contained' className={classes.btnWatch}>
                                 Details
                             </Button>
