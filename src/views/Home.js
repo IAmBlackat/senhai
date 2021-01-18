@@ -309,6 +309,7 @@ function Home() {
             <Typography variant='h4' align='left' className={classes.title}>
                 Schedule (JST)
             </Typography>
+            
             <Schedule />
             
         </Paper>
