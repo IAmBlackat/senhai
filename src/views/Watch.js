@@ -85,7 +85,7 @@ function Watch() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            // console.log(res)
+            console.log(res)
             setLinks(res.data.links)
             setQuality(res.data.links[0])
             setLoading(false)
@@ -99,7 +99,7 @@ function Watch() {
             setDl({epdl: epLinks})
         })
         .catch(err => {
-            if(err.response.status >= 400) history.push('/details/' + id)
+            if(err.response.status !== 200) history.push('/details/' + id)
         })
     }, [url, history, currentEp, id])
 
@@ -191,7 +191,9 @@ function Watch() {
                     </Typography>
                     {links.map( (i,index) => (
                         <Button href={i} variant='outlined' download className={classes.btn} key={index}>
-                            {dl.epdl[index]}
+                            {/* {dl.epdl[index]} */}
+                            {/* {console.log(dl.epdl[index].split('.')[3])} */}
+                            {dl.epdl.length === undefined ? '' : dl.epdl[index].split('.')[2] === undefined ? 'original.mp4' : dl.epdl[index] }
                         </Button>
                     ))}
                 </Paper>

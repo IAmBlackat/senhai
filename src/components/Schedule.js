@@ -8,7 +8,7 @@ const useStyles = makeStyles( (theme) => ({
         margin: '20px',
         // margin: 'auto',
         padding: '10px',
-        width: '25%',
+        width: '27%',
         [theme.breakpoints.down('xs')]:{
             margin: 'auto',
             width: '90%',
@@ -25,24 +25,11 @@ function Schedule() {
 
     const Monday = () => {
         const [list, setList] = useState([])
-        const [time, setTime] = useState([])
         useEffect( () => {
             let unmount = false
-
-            jikan.loadSchedule('monday').then( res => {
-                if(!unmount){
-                    setList(res.monday)
-                    var time = []
-                    res.monday.map( i => {
-                        var d = new Date(i.airing_start)
-                        var a = d.toLocaleTimeString().split(' ')[0].split(':')
-                        a.pop() 
-                        time.push(a.join(':') + ' ' + d.toLocaleTimeString().split(' ')[1])
-                    })
-                    setTime(time)
-                }
-            })
-            .catch( err => console.log(err))
+            jikan.loadSchedule('monday')
+                .then( res => !unmount ? setList(res.monday) : null )
+                .catch( err => console.log(err))
 
             return () => unmount = true
         }, [])
@@ -52,31 +39,18 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Monday
                 </Typography>
-                <SchedList list={list} time={time} />
+                <SchedList list={list} />
             </div>
         )
     }
 
     const Tuesday = () => {
         const [list, setList] = useState([])
-        const [time, setTime] = useState([])
         useEffect( () => {
             let unmount = false
-
-            jikan.loadSchedule('tuesday').then( res => {
-                if(!unmount){
-                    setList(res.tuesday)
-                    var time = []
-                    res.tuesday.map( i => {
-                        var d = new Date(i.airing_start)
-                        var a = d.toLocaleTimeString().split(' ')[0].split(':')
-                        a.pop() 
-                        time.push(a.join(':') + ' ' + d.toLocaleTimeString().split(' ')[1])
-                    })
-                    setTime(time)
-                }
-            })
-            .catch( err => console.log(err))
+            jikan.loadSchedule('tuesday')
+                .then( res => !unmount ? setList(res.tuesday) : null )
+                .catch( err => console.log(err))
 
             return () => unmount = true
         }, [])
@@ -85,31 +59,18 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Tuesday
                 </Typography>
-                <SchedList list={list} time={time} />
+                <SchedList list={list} />
             </div>
         )
     }
 
     const Wednesday = () => {
         const [list, setList] = useState([])
-        const [time, setTime] = useState([])
         useEffect( () => {
             let unmount = false
-
-            jikan.loadSchedule('wednesday').then( res => {
-                if(!unmount){
-                    setList(res.wednesday)
-                    var time = []
-                    res.wednesday.map( i => {
-                        var d = new Date(i.airing_start)
-                        var a = d.toLocaleTimeString().split(' ')[0].split(':')
-                        a.pop() 
-                        time.push(a.join(':') + ' ' + d.toLocaleTimeString().split(' ')[1])
-                    })
-                    setTime(time)
-                }
-            })
-            .catch( err => console.log(err))
+            jikan.loadSchedule('wednesday')
+                .then( res => !unmount ? setList(res.wednesday) : null )
+                .catch( err => console.log(err))
 
             return () => unmount = true
         }, [])
@@ -118,31 +79,18 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Wednesday
                 </Typography>
-                <SchedList list={list} time={time} />
+                <SchedList list={list} />
             </div>
         )
     }
 
     const Thursday = () => {
         const [list, setList] = useState([])
-        const [time, setTime] = useState([])
         useEffect( () => {
             let unmount = false
-
-            jikan.loadSchedule('thursday').then( res => {
-                if(!unmount){
-                    setList(res.thursday)
-                    var time = []
-                    res.thursday.map( i => {
-                        var d = new Date(i.airing_start)
-                        var a = d.toLocaleTimeString().split(' ')[0].split(':')
-                        a.pop() 
-                        time.push(a.join(':') + ' ' + d.toLocaleTimeString().split(' ')[1])
-                    })
-                    setTime(time)
-                }
-            })
-            .catch( err => console.log(err))
+            jikan.loadSchedule('thursday')
+                .then( res => !unmount ? setList(res.thursday) : null )
+                .catch( err => console.log(err))
 
             return () => unmount = true
         }, [])
@@ -151,31 +99,18 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Thursday
                 </Typography>
-                <SchedList list={list} time={time} />
+                <SchedList list={list} />
             </div>
         )
     }
 
     const Friday = () => {
         const [list, setList] = useState([])
-        const [time, setTime] = useState([])
         useEffect( () => {
             let unmount = false
-
-            jikan.loadSchedule('friday').then( res => {
-                if(!unmount){
-                    setList(res.friday)
-                    var time = []
-                    res.friday.map( i => {
-                        var d = new Date(i.airing_start)
-                        var a = d.toLocaleTimeString().split(' ')[0].split(':')
-                        a.pop() 
-                        time.push(a.join(':') + ' ' + d.toLocaleTimeString().split(' ')[1])
-                    })
-                    setTime(time)
-                }
-            })
-            .catch( err => console.log(err))
+            jikan.loadSchedule('friday')
+                .then( res => !unmount ? setList(res.friday) : null )
+                .catch( err => console.log(err))
 
             return () => unmount = true
         }, [])
@@ -184,31 +119,18 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Friday
                 </Typography>
-                <SchedList list={list} time={time} />
+                <SchedList list={list} />
             </div>
         )
     }
 
     const Saturday = () => {
         const [list, setList] = useState([])
-        const [time, setTime] = useState([])
         useEffect( () => {
             let unmount = false
-
-            jikan.loadSchedule('saturday').then( res => {
-                if(!unmount){
-                    setList(res.saturday)
-                    var time = []
-                    res.saturday.map( i => {
-                        var d = new Date(i.airing_start)
-                        var a = d.toLocaleTimeString().split(' ')[0].split(':')
-                        a.pop() 
-                        time.push(a.join(':') + ' ' + d.toLocaleTimeString().split(' ')[1])
-                    })
-                    setTime(time)
-                }
-            })
-            .catch( err => console.log(err))
+            jikan.loadSchedule('saturday')
+                .then( res => !unmount ? setList(res.saturday) : null )
+                .catch( err => console.log(err))
 
             return () => unmount = true
         }, [])
@@ -217,32 +139,18 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Saturday
                 </Typography>
-                <SchedList list={list} time={time} />
+                <SchedList list={list} />
             </div>
         )
     }
 
     const Sunday = () => {
         const [list, setList] = useState([])
-        const [time, setTime] = useState([])
-
         useEffect( () => {
             let unmount = false
-
-            jikan.loadSchedule('sunday').then( res => {
-                if(!unmount){
-                    setList(res.sunday)
-                    var time = []
-                    res.sunday.map( i => {
-                        var d = new Date(i.airing_start)
-                        var a = d.toLocaleTimeString().split(' ')[0].split(':')
-                        a.pop() 
-                        time.push(a.join(':') + ' ' + d.toLocaleTimeString().split(' ')[1])
-                    })
-                    setTime(time)
-                }
-            })
-            .catch( err => console.log(err))
+            jikan.loadSchedule('sunday')
+                .then( res => !unmount ? setList(res.sunday) : null )
+                .catch( err => console.log(err))
 
             return () => unmount = true
         }, [])
@@ -251,7 +159,7 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Sunday
                 </Typography>
-                <SchedList list={list} time={time} />
+                <SchedList list={list} />
             </div>
         )
     }
@@ -263,7 +171,7 @@ function Schedule() {
             <Tuesday />
             <Wednesday />
             <Thursday />
-            <Friday />
+            <Friday />      
             <Saturday />
             <Sunday />
         </Paper>

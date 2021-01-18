@@ -126,7 +126,7 @@ function Home() {
         jikan.loadSeason( 2021, 'winter')
         .then( res => {
             if(!unmount) {
-                console.log(res)
+                // console.log(res)
                 setLists(res.anime)
                 var pages = []
                 for( var a = 0; a < 40; a++ ) {
@@ -206,8 +206,7 @@ function Home() {
             <Typography variant='h4' align='left' className={classes.title}>
                 Featured
             </Typography>
-        
-            {/* <iframe src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4'/>  */}
+            {/* <iframe src='https://animethemes.moe/video/ShingekiNoKyojinS4-OP1.webm' allowFullScreen />  */}
             {/* <video src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4' autoPlay={false} controls /> */}
 
             {/* <Featured page={page} id={page[0].mal_id} image={page[0].image_url} index={0} /> */}
@@ -308,7 +307,7 @@ function Home() {
             </Paper>
 
             <Typography variant='h4' align='left' className={classes.title}>
-                Schedule
+                Schedule (JST)
             </Typography>
             <Schedule />
             

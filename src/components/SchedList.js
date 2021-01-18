@@ -1,39 +1,41 @@
 import { Box, makeStyles, Typography } from "@material-ui/core"
+import { GetTime } from "./GetTime"
 
-export const SchedList = ( { list, time } ) => {
-    const useStyles = makeStyles( () => ({
-        title: {
-            textOverflow: 'ellipsis',
-            opacity: '80%',
-            float: 'left',
-            width:'80%'
-            // position: 'relative'
-        },
-        dayTitle: {
-            marginTop: '3px',
-            marginBottom: '3px'
-        },
-        time: {
-            opacity: '80%',
-            // position: 'absolute',
-            float:'right',
+const useStyles = makeStyles( () => ({
+    title: {
+        opacity: '80%',
+        width:'100%'
+    },
+    dayTitle: {
+        marginTop: '3px',
+        marginBottom: '3px'
+    },
+    time: {
+        opacity: '80%',
+        width: '100px'
+    },
+    container: {
+        display: 'flex',
+        justifyContent: 'space-betwween'
+    }
+}))
 
-        }
-    }))
+export const SchedList = ( { list } ) => {
     const classes = useStyles()
-
+    
     return(
         <>
             <Box width='100%'>
                 {list.map( (sched, index) => ( 
-                    <Box textOverflow='ellipsis' key={index} overflow='hidden' >
-                        <Box width='100%'>
+                    <Box key={index} >
+                        <Box width='100%' className={classes.container}>
                             <Typography variant='body2' noWrap align='left' className={classes.title} >
                                 {sched.title}
                             </Typography>
-                            <Typography  variant='body2'className={classes.time} noWrap >
+                            {/* <Typography align='right' variant='body2'className={classes.time} noWrap >
                                 {time[index]}
-                            </Typography>
+                            </Typography> */}
+                            <GetTime id={sched.mal_id} />
                         </Box>
                     </Box>
                 ))}

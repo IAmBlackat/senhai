@@ -6,6 +6,7 @@ import Loading from './Loading'
 import ReactPlayer from 'react-player'
 import { useDispatch } from 'react-redux'
 import { playing, searchAnime } from '../redux/action'
+import { OpSong } from './OpVideo'
 
 function Featured( { page, id, image, index } ) {
     const [trailer, setTrailer] = useState('')
@@ -110,7 +111,7 @@ function Featured( { page, id, image, index } ) {
         jikan.loadAnime(id)
         .then( res => {
             if (!unmount) {
-            // console.log(resu)
+            // console.log(res)
             setTrailer(res.trailer_url)
             setStatus(res.status)
             setJap(res.title_japanese)
@@ -164,15 +165,23 @@ function Featured( { page, id, image, index } ) {
 
                 {/* <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'}  frameBorder='0' className={classes.trailer} onClick={ () => console.log('playing')}/> */}
                 
-                {/* <Box className={classes.trailer}>
-                    <ReactPlayer 
+                <Box className={classes.trailer}>
+                    {/* <ReactPlayer 
                         url={trailer.split('=').slice(0,3).join('=') + '=0'}
                         controls
                         // playing={ () => setPlay(!play)}
                         onPlay={handlePlay}
                         height='100%'
-                    />
-                </Box> */}
+                    /> */}
+                    {/* <OpSong id={id} /> */}
+                    {/* <video 
+                        src='https://animethemes.moe/video/ShingekiNoKyojinS4-OP1.webm' 
+                        controls 
+                        width='100%'
+                        height='auto'
+                    /> */}
+
+                </Box>
             </Box>
         </Box>
         </>
