@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Box, Button, Container, FormControl, InputLabel, makeStyles, MenuItem, Paper, Select, Typography } from '@material-ui/core'
+import { Box, Button, Container, FormControl, FormControlLabel, InputLabel, makeStyles, MenuItem, Paper, Select, Switch, Typography } from '@material-ui/core'
 import Loading from '../components/Loading'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
@@ -30,6 +30,16 @@ const useStyles = makeStyles( (theme) => ({
             paddingBottom: '35%'
         }
     },
+    iframeContainer: {
+        position: 'relative',
+        // paddingBottom: '75%', 
+        minHeight: '260px', 
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            paddingBottom: '35%',
+            minHeight: '0'
+        }
+    },
     video: {
         position: 'absolute', 
         top: '0', 
@@ -53,8 +63,8 @@ const useStyles = makeStyles( (theme) => ({
     box: {
         // maxHeight: '100vh'
         display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'baseline'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     epnav: {
         marginBottom: theme.spacing(2)
@@ -66,8 +76,10 @@ function Watch() {
     const classes = useStyles()
     const [dl, setDl] = useState( { epdl: {}} )
     const [links, setLinks] = useState()
+    const [vdLink, setVdLink] = useState('')
     const [quality, setQuality] = useState('')
     const [loading, setLoading] = useState(true)
+    const [checked, setChecked] = useState(false)
 
     const location = useLocation()
     const history = useHistory()   
@@ -85,7 +97,8 @@ function Watch() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            console.log(res)
+            // console.log(res)
+            setVdLink(res.data.link)
             setLinks(res.data.links)
             setQuality(res.data.links[0])
             setLoading(false)
@@ -106,15 +119,6 @@ function Watch() {
     // console.log(id)
     let title = id.split('-').join(' ')
 
-    // console.log(dl.epdl.length)
-    // useEffect( () => {
-    //     axios.get('https://cors-anywhere.herokuapp.com///gogo-play.net/streaming.php?id=MTUwNTIw&title=Hataraku+Saibou%21%21+Episode+2')
-    //     .then( res =>{ 
-    //         console.log(res.request.response)
-            
-    //     })
-    // }, [])
-
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             <Paper className={classes.p} square elevation={0}>
@@ -127,6 +131,12 @@ function Watch() {
                 
                 <Paper square className={classes.p} elevation={0}>
                     <Container maxWidth='md' className={classes.box}>
+                        <FormControlLabel 
+                            control={<Switch checked={checked} onChange={ () => setChecked(!checked)} />}
+                            label='VidStream'
+                            labelPlacement='bottom'
+                        />
+            
                         <FormControl>
                             <InputLabel>Quality</InputLabel>
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
@@ -137,7 +147,7 @@ function Watch() {
                                 ))}
                             </Select>
                         </FormControl>
-                        
+
                         <Box>
                             <Link to={'/details/' + id} className={classes.link}>
                                 <Button className={classes.btn}>
@@ -152,8 +162,25 @@ function Watch() {
 
                     {/* <video src={quality} controls className={classes.video}/> */}
 
-                    <Box className={classes.videoContainer}>
-                        <video src={quality} controls className={classes.video} />
+                    <Box className={ !checked ? classes.videoContainer : classes.iframeContainer}>
+                        { !checked ? 
+                            <video src={quality} controls className={classes.video} /> 
+                            :  
+                            <iframe 
+                            src={vdLink}
+                            frameBorder='0'
+                            marginWidth='0'
+                            marginHeight='0'
+                            scrolling='no'
+                            allowFullScreen
+                            className={classes.video} 
+                            // style={{position: 'absolute', top: '0', left: '50%', right: '50%', width: '60%', height: '100%',
+                            //         transform: 'translate(-50%)'
+                            //     }}
+                            />    
+                        }
+
+                        {/* <video src={quality} controls className={classes.video} /> */}
                         {/* <iframe 
                             src='//gogo-play.net/streaming.php?id=MTUwNTc3&title=Ore+dake+Haireru+Kakushi+Dungeon+Episode+2'
                             frameBorder='0'
@@ -165,6 +192,7 @@ function Watch() {
                                     transform: 'translate(-50%)'
                                 }}
                         /> */}
+                        
                     </Box>
 
                     <Box className={classes.epnav}>
