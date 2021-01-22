@@ -101,7 +101,7 @@ const useStyles = makeStyles( (theme) => ({
         justifyContent: 'space-between'
     },
     scheduleContainer: {
-        width: '27%',
+        width: '25%',
         [theme.breakpoints.down('xs')]:{
             margin: 'auto',
             width: '100%',
@@ -280,7 +280,7 @@ function Home() {
                 </Box>
 
                 <Box className={classes.mobile}>
-                    <Grid container spacing={2} align='center' className={classes.gridContainer}>
+                    <Grid container spacing={1} align='center' className={classes.gridContainer}>
                         {page.map( (i,index) => (
                             <Grid item xs={6} sm={3} key={index}>
                                 <Card className={classes.seasonalList}>
@@ -315,12 +315,12 @@ function Home() {
                     
                     <Schedule />
                 </Box>
-                {/* <Box className={classes.upcomingSeasonContainer}>
+                <Box className={classes.upcomingSeasonContainer}>
                     <Typography variant='h4' align='left' className={classes.title}>
                         Upcoming Season
                     </Typography>
                     <Upcoming />
-                </Box> */}
+                </Box>
             </Box>
         </Paper>
     )
