@@ -108,7 +108,10 @@ const useStyles = makeStyles( (theme) => ({
         }
     },
     upcomingSeasonContainer:{
-        width: '65%'
+        width: '65%',
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+        }
     }
 
 }))
