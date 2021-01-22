@@ -115,6 +115,11 @@ function Container( {page}) {
 
     const Pages = () => {
 
+        // useEffect( () => {
+        //     axios.request('https://api.jikan.moe/v4-alpha/top/anime')
+        //     .then( res => console.log(res.data))
+        // },[])
+        
         let id = location.pathname.split('/')[2]
         return(
             <>

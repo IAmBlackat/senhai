@@ -49,7 +49,7 @@ function Featured( { page, id, image, index } ) {
         details: {
             float: 'left',
             textAlign: 'left',
-            width: '30%',
+            width: '40%',
             [theme.breakpoints.down('xs')]: {
                 float: 'none',
                 textAlign: 'center',

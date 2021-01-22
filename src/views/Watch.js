@@ -98,7 +98,7 @@ function Watch() {
         axios.get(url)
         .then( res => {
             // console.log(res)
-            setVdLink(res.data.link)
+            setVdLink(res.data.link)//vidstream url
             setLinks(res.data.links)
             setQuality(res.data.links[0])
             setLoading(false)
@@ -167,13 +167,14 @@ function Watch() {
                             <video src={quality} controls className={classes.video} /> 
                             :  
                             <iframe 
-                            src={vdLink}
-                            frameBorder='0'
-                            marginWidth='0'
-                            marginHeight='0'
-                            scrolling='no'
-                            allowFullScreen
-                            className={classes.video} 
+                                src={vdLink}
+                                title='vidstream'
+                                frameBorder='0'
+                                marginWidth='0'
+                                marginHeight='0'
+                                scrolling='no'
+                                allowFullScreen
+                                className={classes.video} 
                             // style={{position: 'absolute', top: '0', left: '50%', right: '50%', width: '60%', height: '100%',
                             //         transform: 'translate(-50%)'
                             //     }}

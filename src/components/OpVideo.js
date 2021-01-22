@@ -14,7 +14,7 @@ export const OpSong = ( { id }) =>{
             }
         })
         .catch( err => console.log(err))
-    }, [id])
+    }, [url])
     
     return(
         <div>

@@ -122,7 +122,6 @@ function Home() {
     
     useEffect( () => {
         let unmount = false
-
         jikan.loadSeason( 2021, 'winter')
         .then( res => {
             if(!unmount) {
@@ -193,7 +192,9 @@ function Home() {
 
     // const state = useSelector( state => state.play)
     const dispatch = useDispatch()
-    // console.log(lists)
+    // let d = new Date('2020-04-18T00:00:00+00:00').toLocaleString("en-US", "Asia/Tokyo")
+    // console.log(d.toLocaleTimeString('en-us', 'Asia/Tokyo'))
+    // console.log(d)
     // jikan.loadAnime(40028).then( res => console.log(res))
     // jikan.loadSchedule('wednesday').then( res => console.log(res))
 
@@ -307,7 +308,7 @@ function Home() {
             </Paper>
 
             <Typography variant='h4' align='left' className={classes.title}>
-                Schedule (JST)
+                Schedule
             </Typography>
             
             <Schedule />

@@ -18,7 +18,7 @@ export const GetTime = ( { id } ) => {
         jikan.loadAnime(id)
             .then( res => {
                 if(!unmount){
-                    // console.log(res.broadcast.split(' ')[2])
+                    // console.log(res)
                     // const timeString = res.broadcast.split(' ')[2] + ':00'
                     // const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
                     // .toLocaleTimeString({},
@@ -35,7 +35,7 @@ export const GetTime = ( { id } ) => {
                 }
             })
         return () => unmount = true
-    }, [])
+    }, [id])
 
     return(
         <>  

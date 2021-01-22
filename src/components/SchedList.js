@@ -35,7 +35,7 @@ export const SchedList = ( { list } ) => {
                             {/* <Typography align='right' variant='body2'className={classes.time} noWrap >
                                 {time[index]}
                             </Typography> */}
-                            <GetTime id={sched.mal_id} />
+                            {/* <GetTime id={sched.mal_id} /> */}
                         </Box>
                     </Box>
                 ))}

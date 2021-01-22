@@ -30,7 +30,7 @@ function Schedule() {
             jikan.loadSchedule('monday')
                 .then( res => !unmount ? setList(res.monday) : null )
                 .catch( err => console.log(err))
-
+            
             return () => unmount = true
         }, [])
 
