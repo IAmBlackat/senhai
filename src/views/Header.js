@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: `calc(1em + ${theme.spacing(0.2)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('xl')]: {
       width: '12ch',
       '&:focus': {
         width: '20ch',
@@ -75,18 +75,19 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: 'none',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: '20px'
     }
   }, 
   IconButton: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       display: 'none'
     }
   },
   navLinks: {
-    [theme.breakpoints.down('xs')]: {
-      display: 'block',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
       position: 'absolute',
       // top: '0',
       left: '-100%',
@@ -100,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     // display: 'flex'
   },
   open: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexDirection: 'column',
       position: 'absolute',
@@ -114,11 +115,17 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#212121',
       zIndex: 100,
     },
-    btnLink: {
-      [theme.breakpoints.down('xs')]: {
-        // margin: '500px'
-        padding: '20px'
-      }
+  },
+  btnLink: {
+    [theme.breakpoints.down('sm')]: {
+      // margin: '500px'
+      padding: '15px'
+    }
+  },
+  upcoming: {
+    padding: '20px',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
     }
   }
 }));
@@ -165,9 +172,16 @@ function Header() {
               </Link>
               <Link to='/popular/1' className={classes.link}>
                   <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
-                      Popular
+                      Popular 
                   </Button>
               </Link>
+              {/* <Box className={classes.upcoming}> */}
+                {/* <Link to='/upcoming' className={classes.link} className={classes.upcoming}>
+                  <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
+                    Upcoming Anime
+                  </Button>
+                </Link> */}
+              {/* </Box> */}
             </Box>
 
           </Box>

@@ -18,7 +18,7 @@ const useStyles = makeStyles( (theme) => ({
         backgroundColor: '#303030'
     },
     title: {
-        padding: '30px'
+        padding: '25px'
     },
     featureContainer: {
         height: '100%',
@@ -108,7 +108,7 @@ const useStyles = makeStyles( (theme) => ({
         }
     },
     upcomingSeasonContainer:{
-        width: '65%',
+        width: '72%',
         [theme.breakpoints.down('xs')]: {
             display: 'none'
         }
@@ -310,7 +310,7 @@ function Home() {
             <Box className={classes.sched_list_wrapper}>
                 <Box className={classes.scheduleContainer}>
                     <Typography variant='h4' align='left' className={classes.title}>
-                        Schedule (JST)
+                        Schedule
                     </Typography>
                     
                     <Schedule />
