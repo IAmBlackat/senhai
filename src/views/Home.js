@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
 import jikan from 'jikanjs'
 import Loading from '../components/Loading'
 import Carousel from 'react-alice-carousel'
@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom'
 import Featured from '../components/Featured'
 import { useDispatch } from 'react-redux'
 import { searchAnime } from '../redux/action'
-import axios from 'axios'
 import Schedule from '../components/Schedule'
+import Upcoming from '../components/Upcoming'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -70,20 +70,6 @@ const useStyles = makeStyles( (theme) => ({
         }
         
     },
-    img: {
-        width: '50%',
-        objectFit: 'cover',
-        height: '300%'
-    },
-    featuredImg: {
-        height: '400px',
-        width: '100%',
-        background: 'rgba(0, 0, 0, .65) url(https://media.kitsu.io/anime/poster_images/43545/original.jpg?1609224996)',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundBlendMode: 'darken'
-    },
     btnContainer: {
         width: '100%',
         textAlign: 'center'
@@ -110,6 +96,20 @@ const useStyles = makeStyles( (theme) => ({
             display: 'none'
         }
     },
+    sched_list_wrapper: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    },
+    scheduleContainer: {
+        width: '27%',
+        [theme.breakpoints.down('xs')]:{
+            margin: 'auto',
+            width: '100%',
+        }
+    },
+    upcomingSeasonContainer:{
+        width: '65%'
+    }
 
 }))
 
@@ -161,13 +161,10 @@ function Home() {
     // console.log(a.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ') )
 
     const res = {
-        0: {
-            items: 1
-        },
         500: {
             items: 2
         },
-        620: {
+        740: {
             items: 3
         },
         1024: {
@@ -306,13 +303,22 @@ function Home() {
                     </Grid>
                 </Box>
             </Paper>
-
-            <Typography variant='h4' align='left' className={classes.title}>
-                Schedule
-            </Typography>
             
-            <Schedule />
-            
+            <Box className={classes.sched_list_wrapper}>
+                <Box className={classes.scheduleContainer}>
+                    <Typography variant='h4' align='left' className={classes.title}>
+                        Schedule (JST)
+                    </Typography>
+                    
+                    <Schedule />
+                </Box>
+                {/* <Box className={classes.upcomingSeasonContainer}>
+                    <Typography variant='h4' align='left' className={classes.title}>
+                        Upcoming Season
+                    </Typography>
+                    <Upcoming />
+                </Box> */}
+            </Box>
         </Paper>
     )
 }

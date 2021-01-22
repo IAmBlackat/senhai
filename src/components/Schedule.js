@@ -8,7 +8,7 @@ const useStyles = makeStyles( (theme) => ({
         margin: '20px',
         // margin: 'auto',
         padding: '10px',
-        width: '27%',
+        width: '90%',
         [theme.breakpoints.down('xs')]:{
             margin: 'auto',
             width: '90%',

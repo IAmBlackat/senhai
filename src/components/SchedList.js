@@ -32,10 +32,7 @@ export const SchedList = ( { list } ) => {
                             <Typography variant='body2' noWrap align='left' className={classes.title} >
                                 {sched.title}
                             </Typography>
-                            {/* <Typography align='right' variant='body2'className={classes.time} noWrap >
-                                {time[index]}
-                            </Typography> */}
-                            {/* <GetTime id={sched.mal_id} /> */}
+                            <GetTime aired={sched.airing_start} />
                         </Box>
                     </Box>
                 ))}
