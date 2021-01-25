@@ -17,7 +17,12 @@ const useStyles = makeStyles( () => ({
     container: {
         display: 'flex',
         justifyContent: 'space-betwween'
-    }
+    },
+    time: {
+        opacity: '80%',
+        width: '100px',
+        textOverflow: 'clip'
+    },
 }))
 
 export const SchedList = ( { list } ) => {
@@ -32,7 +37,7 @@ export const SchedList = ( { list } ) => {
                             <Typography variant='body2' noWrap align='left' className={classes.title} >
                                 {sched.title}
                             </Typography>
-                            <GetTime aired={sched.airing_start} />
+                            <GetTime aired={sched.airing_start} style={classes.time} align={'right'} />
                         </Box>
                     </Box>
                 ))}

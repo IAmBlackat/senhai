@@ -57,22 +57,22 @@ const useStyles = makeStyles( (theme) => ({
 
     },
     synopsisContainer:{
-        '&::-webkit-scrollbar':{
-            // display: 'none'
+        '&:hover': {
+            overflowY: 'scroll',
         },
         '&::-webkit-scrollbar': {
             width: '0.3em',
-          },
-          '&::-webkit-scrollbar-track': {
+        },
+        '&::-webkit-scrollbar-track': {
             boxShadow: 'inset 0 0 6px rgba(0,0,0,0.2)',
             webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.5)'
-          },
-          '&::-webkit-scrollbar-thumb': {
-            backgroundColor: '#616161',
+        },
+        '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#bdbdbd',
             borderRadius: '5px'
-          },
+        },
         maxHeight: '90px',
-        overflowY: 'scroll',
+        overflowY: 'hidden',
         marginTop: '10px',
         // border: '1px solid grey'
     }
@@ -84,19 +84,19 @@ function Upcoming() {
     const [loading, setLoading] = useState(true)
 
     useEffect( () => {
-        // let unmount = false
+        let unmount = false
 
         jikan.loadSeason(2021, 'spring')
         .then( res => {
-            // if(!unmount){
+            if(!unmount){
                 let arr = []
                 res.anime.map( (tv,index) => tv.type === "TV" ? arr.push(res.anime[index]) : '')
                 setAnime(arr)
                 setLoading(false)
-            // }
+            }
         })
         
-        // return () => unmount = true
+        return () => unmount = true
     }, [])
     // console.log(anime)
 

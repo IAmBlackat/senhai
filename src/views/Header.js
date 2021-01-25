@@ -123,9 +123,12 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   upcoming: {
-    padding: '20px',
+    textDecoration: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: '20px'
     }
   }
 }));
@@ -176,11 +179,11 @@ function Header() {
                   </Button>
               </Link>
               {/* <Box className={classes.upcoming}> */}
-                {/* <Link to='/upcoming' className={classes.link} className={classes.upcoming}>
+                <Link to='/upcoming' className={classes.upcoming}>
                   <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
                     Upcoming Anime
                   </Button>
-                </Link> */}
+                </Link>
               {/* </Box> */}
             </Box>
 

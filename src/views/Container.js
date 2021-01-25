@@ -7,8 +7,7 @@ import Loading from '../components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
 import { checkDetails, watchEpisode } from '../redux/action'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import NoneFound from '../components/NoneFound';
-import jikan from 'jikanjs'
+import NoneFound from '../components/NoneFound'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -161,7 +160,7 @@ function Container( {page}) {
 
             <Pages />
 
-            <Grid container spacing={3} align='center'>
+            <Grid container spacing={1} align='center'>
                 {lists.results.length === 0 ? <NoneFound /> : ''}
 
                 {lists.results.map( list => (

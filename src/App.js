@@ -6,6 +6,7 @@ import Container from './views/Container';
 import Error from './components/Error';
 import { HashRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './views/Home';
+import UpcomingSeason from './views/mobile/UpcomingSeason';
 
 function App() {
   return (
@@ -37,10 +38,17 @@ function App() {
           <Route path="/search">
             <Container page={'search'} />
           </Route>
-          
+
           <Route path="/error">
             <Error />
           </Route>
+          
+          {/* Mobile Views */}
+          
+          <Route path='/upcoming'>
+            <UpcomingSeason />
+          </Route>
+          
         </Switch>
       </Router>
     </div>
