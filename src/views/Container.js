@@ -16,8 +16,11 @@ const useStyles = makeStyles( (theme) => ({
         boxShadow: '5px 5px 25px #212121'
     },
     image: {
-        maxWidth: 200,
-        maxHeight: 'auto',
+        maxWidth: 300,
+        height: 'auto',
+        [theme.breakpoints.down('sm')]: {
+            height: 195
+        }
     },
     title: {
         padding: '30px 30px 10px',
@@ -104,11 +107,6 @@ function Container( {page}) {
         })
     }, [url, history, state.loading, currentPage])
 
-    // jikan.loadStatus().then( res => console.log(res))
-    // jikan.loadAnime(39617, 'news').then( res => console.log(res) )
-    // jikan.loadSeason(2021, 'winter').then( res => console.log(res))
-    // jikan.loadTop('anime',1,'airing').then( res => console.log(res))
-    // jikan.loadSeasonLater().then( res => console.log(res))
     // let a = '5-toubun no Hanayome ∬'
     // console.log(a.replace(/[^a-zA-Z0-9]/g, ' ').split('))
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Box, Button, makeStyles, Paper, Typography } from '@material-ui/core'
 import jikan from 'jikanjs'
 import Loading from '../components/Loading'
 import Carousel from 'react-alice-carousel'
@@ -126,6 +126,8 @@ function Home() {
     //     <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />,
     // ]
 
+    // jikan.loadAnime(40028, 'videos').then( res => console.log(res))
+    
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             <Typography variant='h4' align='left' className={classes.title}>
@@ -138,13 +140,13 @@ function Home() {
                 mouseTracking
                 // items={page.map( (i,index) => <Featured page={page} id={i.mal_id} image={i.image_url} key={index} index={index} />)}
                 items={lists}
-                // autoPlayControls={state ? false: true}
-                // autoPlayStrategy
+                // autoPlayControls
+                // autoPlayStrategy={on ? 'action' : 'default'}
                 autoPlay
                 // renderPlayPauseButton={state === undefined ? 'PLAY' : state ? 'PAUSE' : 'PLAY'}
-                // renderPlayPauseButton
+                renderPlayPauseButton   
                 // autoHeight
-                // playButtonEnabled
+                // playButtonEnabled='true'
                 autoPlayInterval='10000'
                 infinite
                 disableButtonsControls

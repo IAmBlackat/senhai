@@ -9,7 +9,6 @@ const useStyles = makeStyles( () => ({
         boxShadow: '5px 5px 25px #212121',
     },
     img: {
-        // width: '200px',
         height: '190px',
         objectFit: 'cover'
     }

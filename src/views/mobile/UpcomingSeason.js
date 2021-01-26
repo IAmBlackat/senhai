@@ -13,6 +13,9 @@ const useStyles = makeStyles( () => ({
     gridList: {
         padding: '5px',
     },
+    genre: {
+        opacity: '85%'
+    }
 }))
 
 function UpcomingSeason() {
@@ -57,11 +60,11 @@ function UpcomingSeason() {
                      </GridListTile>
                      {list.map( (tv,index) => (
                          <GridListTile key={index} >
-                             <img src={tv.image_url} alt='' />
+                             <img src={tv.image_url} alt=''  />
                              <GridListTileBar 
                                  title={<Typography variant='body2' >{tv.title}</Typography>}
                                  subtitle={tv.genres.map( (genre,index) => (
-                                     <Typography variant='caption' component='span' key={index} >
+                                     <Typography variant='caption' className={classes.genre} component='span' key={index} >
                                          {genre.name}|
                                      </Typography>
                                      ))}

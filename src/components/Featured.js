@@ -3,17 +3,11 @@ import jikan from 'jikanjs'
 import { Box, Button, makeStyles, Typography } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
-import ReactPlayer from 'react-player'
 import { useDispatch } from 'react-redux'
 import { playing, searchAnime } from '../redux/action'
-import { OpSong } from './OpVideo'
+import { OpVideo } from './OpVideo'
 
 function Featured( { page, id, image, index } ) {
-    const [trailer, setTrailer] = useState('')
-    const [status, setStatus] = useState('')
-    const [jap, setJap] = useState('')
-    const [play, setPlay] = useState(false)
-    const [loading, setLoading] = useState(true)
 
     const useStyles = makeStyles( (theme) => ({
         root: {
@@ -36,16 +30,17 @@ function Featured( { page, id, image, index } ) {
         },
         status: {
             // marginBottom: '20px',
-            paddingTop: '30px',
+            paddingTop: '5px',
             // marginLeft: '30px'
         },
         genre: {
             // paddingLeft: '30px'
         },
-        genres: {
-    
+        mobileContainer: {
+            [theme.breakpoints.down('sm')]: {
+                display: 'none'
+            }
         },
-    
         details: {
             float: 'left',
             textAlign: 'left',
@@ -54,7 +49,6 @@ function Featured( { page, id, image, index } ) {
                 float: 'none',
                 textAlign: 'center',
                 width: '100%',
-                
             }
         },
         trailer: {
@@ -91,7 +85,9 @@ function Featured( { page, id, image, index } ) {
         },
         btnContainer: {
             width: '100%',
-            textAlign: 'center'
+            textAlign: 'center',
+            display: 'flex',
+            justifyContent: 'space-evenly'
         },
         btnWatch: {
             marginTop: '20px',
@@ -105,6 +101,13 @@ function Featured( { page, id, image, index } ) {
     //https://media.kitsu.io/anime/poster_images/43545/original.jpg?1609224996
     // console.log(window.innerWidth)
     const classes = useStyles()
+    const [trailer, setTrailer] = useState('')
+    const [status, setStatus] = useState('')
+    const [jap, setJap] = useState('')
+    const [play, setPlay] = useState(false)
+    const [op, setOp] = useState('')
+    const [ed, setEd] = useState('')
+    const [loading, setLoading] = useState(true)
 
     useEffect( () => {
         let unmount = false
@@ -115,6 +118,8 @@ function Featured( { page, id, image, index } ) {
             setTrailer(res.trailer_url)
             setStatus(res.status)
             setJap(res.title_japanese)
+            setOp(res.opening_themes)
+            setEd(res.ending_themes)
             setLoading(false)
             }
         })
@@ -126,46 +131,59 @@ function Featured( { page, id, image, index } ) {
     // console.log(trailer)
     const dispatch = useDispatch()
 
-    const handlePlay = () => {
-        setPlay(true)
-        dispatch(playing(play))
-    }
+    // const handlePlay = () => {
+    //     setPlay(true)
+    //     dispatch(playing(play))
+    // }
 
     return loading ? <Loading /> : (
-        <>
-        {/* <Typography variant='h4' align='left' className={classes.title}>
-            Featured
-        </Typography> */}
         <Box className={classes.featuredImg}>
             <Box className={classes.featureContainer}>
                 <Box className={classes.details}>
-                    <Typography variant={ window.innerWidth < 600 ? 'h6' : 'h4'} className={classes.featuredTitle}>
+                    <Typography variant={ window.innerWidth < 600 ? 'h5' : 'h4'} className={classes.featuredTitle}>
                         {page[index].title}
                     </Typography>
-                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'}>
-                        Japanese: {jap}
+
+                    <Box className={classes.mobileContainer}>
+                        <Typography variant='subtitle2'>
+                            Japanese: {jap}
+                        </Typography>
+                    </Box>
+
+                    <Typography component='span' variant={ window.innerWidth < 600 ? 'subtitle1' : 'body1'} className={classes.genre}>
+                        Genre: {page[index].genres.map( (i,index) => (<span key={index}>{i.name} </span>))}
                     </Typography>
-                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'} className={classes.status}>
+                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'body1'} className={classes.status}>
                         Status: {status}
                     </Typography>
-                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'} className={classes.genre}>
-                        Genre: 
-                    </Typography>
-                    <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'h6'} className={classes.genre}>
-                        {page[index].genres.map( (i,index) => (<span key={index}>{i.name} </span>))}
-                    </Typography>
+
+                    <Box className={classes.mobileContainer}>
+                        <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'body1'}>
+                            Opening Song: {op}
+                        </Typography>
+                        <Typography variant={ window.innerWidth < 600 ? 'subtitle1' : 'body1'}>
+                            Ending Song: {ed}
+                        </Typography>
+                    </Box>
+
                     <Box className={classes.btnContainer}>
-                        <Link to={'/search/' + page[index].title} onClick={ () => dispatch(searchAnime(page[index].title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))} className={classes.link}>
-                            <Button variant='contained' className={classes.btnWatch}>
-                                Details
+                        <Button variant='outlined' className={classes.btnWatch}>
+                            Trailer
+                        </Button>
+
+                        <Link to={'/search/' + page[index].title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')} onClick={ () => dispatch(searchAnime(page[index].title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')))} className={classes.link}>
+                            <Button variant='outlined' className={classes.btnWatch}>
+                                Watch Now
                             </Button>
                         </Link>
+        
                     </Box>
                 </Box>
 
-                {/* <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'}  frameBorder='0' className={classes.trailer} onClick={ () => console.log('playing')}/> */}
-                
                 <Box className={classes.trailer}>
+                    {/* <OpVideo id={id} /> */}
+                {/* <iframe src={trailer.split('=').slice(0,3).join('=') + '=0'}  frameBorder='0' className={classes.trailer} onClick={ () => console.log('playing')}/> */}
+
                     {/* <ReactPlayer 
                         url={trailer.split('=').slice(0,3).join('=') + '=0'}
                         controls
@@ -184,7 +202,7 @@ function Featured( { page, id, image, index } ) {
                 </Box>
             </Box>
         </Box>
-        </>
+        
     )
 }
 
