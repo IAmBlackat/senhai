@@ -93,7 +93,7 @@ function Upcoming() {
         let unmount = false
 
         // jikan.loadSeason(2021, 'spring')
-        axios.get('https://cors-anywhere.herokuapp.com/https://api.jikan.moe/v3/season/2021/spring')
+        axios.get('https://api.jikan.moe/v3/season/2021/spring')
         .then( res => {
             if(!unmount){
                 let arr = []

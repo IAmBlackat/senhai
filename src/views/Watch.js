@@ -97,14 +97,15 @@ function Watch() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            // console.log(res)
+            console.log(res)
             setVdLink(res.data.link)//vidstream url
             setLinks(res.data.links)
             setQuality(res.data.links[0])
             setLoading(false)
             var epLinks = []
+            
             for (var i = 0; i < res.data.links.length; i++){
-                let a = res.data.links[i].split('?')
+                let a = res.data.links[i].link.split('?')
                 let b = a[0].split('/')
                 b[5] === undefined ? epLinks.push('original') : epLinks.push(b[5])
                 // epLinks.push(b[5])
