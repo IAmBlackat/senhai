@@ -97,10 +97,10 @@ function Watch() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            console.log(res)
+            // console.log(res)
             setVdLink(res.data.link)//vidstream url
             setLinks(res.data.links)
-            setQuality(res.data.links[0])
+            setQuality(res.data.links[0].link)
             setLoading(false)
             var epLinks = []
             
@@ -117,7 +117,7 @@ function Watch() {
         })
     }, [url, history, currentEp, id])
 
-    // console.log(id)
+    // console.log(links.map( i => i.name))
     let title = id.split('-').join(' ')
 
     return loading ? <Loading /> : (
@@ -142,8 +142,8 @@ function Watch() {
                             <InputLabel>Quality</InputLabel>
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
                                 {links.map( (i,index) => (
-                                    <MenuItem value={i} href={i} variant='outlined' download className={classes.btn} key={index}>
-                                        {dl.epdl.length === undefined ? '' : dl.epdl[index].split('.')[2] === undefined ? 'original' : dl.epdl[index].split('.')[2] }
+                                    <MenuItem value={i.link} href={i.link} variant='outlined' download className={classes.btn} key={index}>
+                                        {i.name}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -220,10 +220,8 @@ function Watch() {
                         Download Links 
                     </Typography>
                     {links.map( (i,index) => (
-                        <Button href={i} variant='outlined' download className={classes.btn} key={index}>
-                            {/* {dl.epdl[index]} */}
-                            {/* {console.log(dl.epdl[index].split('.')[3])} */}
-                            {dl.epdl.length === undefined ? '' : dl.epdl[index].split('.')[2] === undefined ? 'original.mp4' : dl.epdl[index] }
+                        <Button href={i.link} variant='outlined' download className={classes.btn} key={index}>
+                            {i.name}
                         </Button>
                     ))}
                 </Paper>
