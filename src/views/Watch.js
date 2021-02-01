@@ -143,7 +143,7 @@ function Watch() {
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
                                 {links.map( (i,index) => (
                                     <MenuItem value={i.link} href={i.link} variant='outlined' download className={classes.btn} key={index}>
-                                        {i.name}
+                                        {i.name.replace("(","").replace(")","")}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -221,7 +221,7 @@ function Watch() {
                     </Typography>
                     {links.map( (i,index) => (
                         <Button href={i.link} variant='outlined' download className={classes.btn} key={index}>
-                            {i.name}
+                            {i.name.replace(/ ([^)]) */g, ".").replace("(","").replace(")","")}
                         </Button>
                     ))}
                 </Paper>
