@@ -166,6 +166,7 @@ function Home() {
                 <Box className={classes.desktop}>
                    <OngoingCarousel page={page} res={res} />
                 </Box>
+                
 
                 <Box className={classes.mobile}>
                   <OngoingGrid page={page} />

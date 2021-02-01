@@ -2,12 +2,16 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, IconButton, ma
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import 'react-alice-carousel/lib/alice-carousel.css'
+import './carousel.css'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel'
-import axios from 'axios'
 
 const useStyles= makeStyles( () => ({
+    root: {
+        position: 'relative', 
+        textAlign: 'right'
+    },
     seasonalList: {
         maxWidth: 200,
         maxHeight: 400,
@@ -19,32 +23,18 @@ const useStyles= makeStyles( () => ({
     },
     btnContainer: {
         textAlign: 'right',
-    },
-    iconButton: {
-        border: '1px solid grey',
-        margin: '10px'
-    },
-
+        height: '70px'
+    }
 }))
 
 function OngoingCarousel( { page, res } ) {
     const classes = useStyles()
     const [imgLoad, setImgLoad] = useState(true)
-    const [activeIndex, setActiveIndex] = useState(0)
-
-    const prev = () => setActiveIndex(activeIndex - 1)
-    const next = () => setActiveIndex(activeIndex + 1)
-    const slideChange = ({ item }) => setActiveIndex(item)
 
     return(
-        <Box>
-            <Box alignItems='center' className={classes.btnContainer}>
-                <IconButton onClick={prev} className={classes.iconButton} >
-                    <NavigateBeforeIcon fontSize='small' />
-                </IconButton>
-                <IconButton onClick={next} className={classes.iconButton}>
-                    <NavigateNextIcon fontSize='small' />
-                </IconButton>
+        <Box className={classes.root} >
+            <Box alignItems='center' className={classes.btnContainer} >
+                {/* this is container for carousel arrows overrided from carousel.css */}
             </Box>
             
             <AliceCarousel 
@@ -75,14 +65,13 @@ function OngoingCarousel( { page, res } ) {
                 responsive={res}
                 height='300px'  
                 // autoPlay
-                disableButtonsControls
+                // disableButtonsControls
                 disableDotsControls
                 // autoPlayInterval='5000'
                 infinite
                 // touchTracking
                 // disableDotsControls={window.innerWidth < 600 ? true : false }
-                activeIndex={activeIndex}
-                onSlideChanged={slideChange}
+               
             />
         </Box>
     )

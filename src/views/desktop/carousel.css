@@ -1,0 +1,59 @@
+.alice-carousel {
+    position: initial;
+}
+.alice-carousel__prev-btn, .alice-carousel__next-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+}
+.alice-carousel__prev-btn {
+    margin-right: 70px;
+}
+.alice-carousel__next-btn {
+    width: 10px;
+    margin-right: 50px;
+    
+}
+
+.alice-carousel__prev-btn-wrapper {
+    border-radius: 50px;
+}
+
+.alice-carousel__prev-btn-item {
+    background-color: #424242;
+    border-radius: 50%;
+    padding-right: 15px ;
+    padding-left: 15px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border: 1px solid whitesmoke;
+    color: white;
+}
+
+.alice-carousel__next-btn-item {
+    background-color: #424242;
+    border-radius: 50%;
+    padding-right: 15px ;
+    padding-left: 15px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border: 1px solid whitesmoke;
+    color: white;
+    /* color: aliceblue; */
+}
+
+.alice-carousel__next-btn-item:hover, 
+.alice-carousel__prev-btn-item:hover {
+    color: whitesmoke;
+}
+.alice-carousel__next-btn-item:active, 
+.alice-carousel__prev-btn-item:active {
+    /* color: violet; */
+    color: steelblue;
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+}
