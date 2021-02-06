@@ -16,7 +16,7 @@ function Logout() {
     useEffect( () => {
         axios.get('https://simplesenhaibookmark.herokuapp.com/logout')
         .then( res => {
-            console.log(res)
+            // console.log(res)
             localStorage.removeItem('token')
             localStorage.removeItem('_id')
             localStorage.removeItem('username')

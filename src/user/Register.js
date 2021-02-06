@@ -81,10 +81,10 @@ function Register() {
     const submit = (e) => {
         setLoad(true)
         e.preventDefault()
-        console.log(data)
+        // console.log(data)
         axios.post('https://simplesenhaibookmark.herokuapp.com/register',data)
         .then( res => {
-            console.log(res)
+            // console.log(res)
             console.log("registered")
             if(res.data.status) setHelper(res.data.status)
             if(res.data.success) {

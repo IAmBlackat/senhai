@@ -52,7 +52,7 @@ function Profile() {
 
         axios.request(options)
         .then( res => {
-            console.log(res)
+            // console.log(res)
             setUser(res.data.user)
             setBookmark(res.data.user.bookmark)
             setLoading(false)
@@ -64,8 +64,8 @@ function Profile() {
         e.preventDefault()
         axios.post('https://simplesenhaibookmark.herokuapp.com/changepicture', link)
         .then( res => {
-            console.log(res)
-            console.log(link)
+            // console.log(res)
+            // console.log(link)
             window.location.reload()
         })
         .catch( err => console.log(err))
