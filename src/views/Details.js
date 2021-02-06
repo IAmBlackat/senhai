@@ -106,13 +106,21 @@ function Details() {
         setLoad(true)
         e.preventDefault()
         console.log(details)
-        axios.put('https://simplesenhaibookmark.herokuapp.com/bookmark', details)
-        .then( res => {
-            console.log(res)
-            setSuccess(true)
-            setLoad(false)
-        })
-        .catch( err => console.log(err))
+        if(localStorage.getItem('token') === null) {
+            setTimeout( () => {
+                setLoad(false)
+                setSuccess(true)
+            }, 2000)
+        } else {
+            axios.put('https://simplesenhaibookmark.herokuapp.com/bookmark', details)
+            .then( res => {
+                console.log(res)
+                setSuccess(true)
+                setLoad(false)
+            })
+            .catch( err => console.log(err))
+        }
+        
     }
 
     return loading ? <Loading /> : (
@@ -161,9 +169,16 @@ function Details() {
             <CircularProgress color="primary" />
         </Backdrop>
         <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success" elevation={6} variant="filled" >
-                Added To Bookmark   
-            </Alert>
+            {localStorage.getItem('token') === null ?
+                <Alert onClose={handleClose} severity="error" elevation={6} variant="filled" >
+                    Please Login First 
+                </Alert>
+                : 
+                <Alert onClose={handleClose} severity="success" elevation={6} variant="filled" >
+                    Added To Bookmark   
+                </Alert>
+            }
+            
         </Snackbar>
         
         </Paper>

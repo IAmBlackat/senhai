@@ -249,7 +249,7 @@ function Header() {
                   Sign Up
                 </Button>
               </Box>
-
+            
             </Box>
 
           </Box>
@@ -307,7 +307,7 @@ function Header() {
               </IconButton>
             </Tooltip>
           </Box>
-
+  
         </Toolbar>
       </AppBar>
     </div>
