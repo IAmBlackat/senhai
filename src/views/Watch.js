@@ -150,11 +150,9 @@ function Watch() {
                         </FormControl>
 
                         <Box>
-                            <Link to={'/details/' + id} className={classes.link}>
-                                <Button className={classes.btn}>
-                                    Episode List
-                                </Button>
-                            </Link>
+                            <Button component={Link} to={`/details/${id}`} className={classes.btn}>
+                                Episode List
+                            </Button>
                         </Box>
                     </Container>
                 </Paper>
