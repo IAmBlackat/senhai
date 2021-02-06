@@ -7,6 +7,11 @@ import Error from './components/Error';
 import { HashRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './views/Home';
 import UpcomingSeason from './views/mobile/UpcomingSeason';
+import Profile from './user/Profile';
+import Register from './user/Register';
+import Login from './user/Login';
+import Logout from './user/Logout';
+import Report from './user/Report';
 
 function App() {
   return (
@@ -15,36 +20,45 @@ function App() {
       <Header />
         <Switch>
           <Route exact path='/'>
-            {/* <MangadexApi /> */}
             <Home />
           </Route>
-
           <Route path='/recentlyadded'>
             <Container page={'recentlyadded'} />
           </Route>
-
           <Route path='/popular'>
             <Container page={'popular'} />
           </Route>
-
           <Route path='/details'>
             <Details />
           </Route>
-
           <Route path="/watching/">
             <Watch />
           </Route>
-
           <Route path="/search">
             <Container page={'search'} />
           </Route>
-
           <Route path="/error">
             <Error />
           </Route>
           
+          {/* user Route */}
+          <Route path='/profile' >
+            <Profile />
+          </Route>
+          <Route path='/register'>
+            <Register />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/report'>
+            <Report />
+          </Route>
+          <Route path='/logout'>
+            <Logout />
+          </Route>
+
           {/* Mobile Views */}
-          
           <Route path='/upcoming'>
             <UpcomingSeason />
           </Route>

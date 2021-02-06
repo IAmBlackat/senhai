@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { Provider } from 'react-redux'
 import store from './redux/store';
 
@@ -10,8 +10,10 @@ const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#303030',
-      secondary: '#424242'
+      main: '#2196f3',
+    },
+    background: {
+      default: '#303030'
     }
   },
 });
@@ -19,6 +21,7 @@ const darkTheme = createMuiTheme({
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <App />
     </ThemeProvider>
   </Provider>

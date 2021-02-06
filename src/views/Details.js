@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Backdrop, Button, CircularProgress, Grid, makeStyles, Paper, Snackbar, Typography } from '@material-ui/core'
 import { watchEpisode } from '../redux/action'
 import Loading from '../components/Loading'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Alert } from '@material-ui/lab'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -31,18 +32,38 @@ const useStyles = makeStyles( (theme) => ({
     },
     link: {
         textDecoration: 'none'
-    }
+    },
+    bookmark: {
+        marginBottom: '20px'
+    },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
 }))
 
 function Details() {
     const classes = useStyles()
-    const [details, setDetails] = useState([])
-    const [loading, setLoading] =useState(true)
+    
+    const [loading, setLoading] = useState(true)
+    const [ep, setEp] = useState(0)
+
+    // this load is for back drop state
+    const [load, setLoad] = useState(false)
+    const [success, setSuccess] = useState(false)
 
     const location = useLocation()
     const history = useHistory()
 
     const id = location.pathname.split("/")[2]
+
+    // to get the anime id that's why its here
+    const [details, setDetails] = useState([
+        {
+            _id: localStorage.getItem('_id'),
+            animeid: id
+        }
+    ])
 
     const dispatch = useDispatch()
     const state = useSelector( state => state.title)
@@ -53,28 +74,50 @@ function Details() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            // console.log(res)
-            setDetails(res.data.results)
+            console.log(res)
+            setDetails({ ...details, anime: res.data.results})
             setLoading(false)
+            var eps = Number(res.data.results.map( ep => ep.totalepisode));
+            setEp(eps)
         })
         .catch( err => {
-            console.log(err.response.status)
+            // console.log(err.response.status)
             if(err.response.status >= 400) history.push('/error')
         })
     }, [url, history])
 
-    var ep = Number(details.map( ep => ep.totalepisode));
     const epList = () => {
-      let L = [];
-      for (var i = ep, k = 0; i >= 1; i--, k++) {
-        L[k] = i;
-      }
-      return L;
+        let L = [];
+        for (var i = ep, k = 0; i >= 1; i--, k++) {
+          L[k] = i;
+        }
+        return L;
+      };
+
+    //this handles the alert from snackbar
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSuccess(false);
     };
-    
+
+    const addToBookmark = (e) => {
+        setLoad(true)
+        e.preventDefault()
+        console.log(details)
+        axios.put('https://simplesenhaibookmark.herokuapp.com/bookmark', details)
+        .then( res => {
+            console.log(res)
+            setSuccess(true)
+            setLoad(false)
+        })
+        .catch( err => console.log(err))
+    }
+
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
-          {details.map( detail => (
+          {details.anime.map( detail => (
               <Grid container key={detail.title}>
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.eps}>
@@ -85,6 +128,9 @@ function Details() {
                             <Typography className={classes.title}>
                                 Status: {detail.status}
                             </Typography>
+                            <form method="POST" onSubmit={addToBookmark} >
+                                <Button type='submit' className={classes.bookmark} variant='contained' color='primary' >Add To Bookmark</Button>
+                            </form>
                             <Typography>
                                 {detail.summary}
                             </Typography>
@@ -111,6 +157,15 @@ function Details() {
 
               </Grid>
           ))}  
+        <Backdrop className={classes.backdrop} open={load}>
+            <CircularProgress color="primary" />
+        </Backdrop>
+        <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" elevation={6} variant="filled" >
+                Added To Bookmark   
+            </Alert>
+        </Snackbar>
+        
         </Paper>
     )
 }
