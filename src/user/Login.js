@@ -83,10 +83,10 @@ function Login() {
     const submit = (e) => {
         setLoad(true)
         e.preventDefault()
-        console.log(data)
+        // console.log(data)
         axios.post('https://simplesenhaibookmark.herokuapp.com/login', data)
         .then( res => {
-            console.log(res)
+            // console.log(res)
             if(res.data.error) setHelper(res.data.error)
             if(res.data.loggedIn) {
                 localStorage.setItem('_id', res.data.user._id)
