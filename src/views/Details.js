@@ -114,7 +114,7 @@ function Details() {
         } else {
             axios.put('https://simplesenhaibookmark.herokuapp.com/bookmark', details)
             .then( res => {
-                console.log(res)
+                // console.log(res)
                 setSuccess(true)
                 setLoad(false)
             })
@@ -170,7 +170,7 @@ function Details() {
         </Backdrop>
         <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
             {localStorage.getItem('token') === null ?
-                <Alert onClose={handleClose} severity="error"  elevation={6} variant="filled" >
+                <Alert onClose={handleClose} severity="error" elevation={6} variant="filled" >
                     Please Login First 
                 </Alert>
                 : 
