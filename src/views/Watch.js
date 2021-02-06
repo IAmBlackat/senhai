@@ -132,13 +132,13 @@ function Watch() {
                 
                 <Paper square className={classes.p} elevation={0}>
                     <Container maxWidth='md' className={classes.box}>
-                        <FormControlLabel 
+                        {/* <FormControlLabel 
                             control={<Switch checked={checked} onChange={ () => setChecked(!checked)} />}
                             label='VidStream'
                             labelPlacement='bottom'
-                        />
+                        /> */}
             
-                        <FormControl>
+                        <FormControl style={{marginLeft: '20px'}} >
                             <InputLabel>Quality</InputLabel>
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
                                 {links.map( (i,index) => (
