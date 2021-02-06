@@ -74,7 +74,7 @@ function Details() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            console.log(res)
+            // console.log(res)
             setDetails({ ...details, anime: res.data.results})
             setLoading(false)
             var eps = Number(res.data.results.map( ep => ep.totalepisode));
