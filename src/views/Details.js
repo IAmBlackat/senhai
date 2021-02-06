@@ -105,7 +105,7 @@ function Details() {
     const addToBookmark = (e) => {
         setLoad(true)
         e.preventDefault()
-        console.log(details)
+        // console.log(details)
         if(localStorage.getItem('token') === null) {
             setTimeout( () => {
                 setLoad(false)
@@ -170,7 +170,7 @@ function Details() {
         </Backdrop>
         <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
             {localStorage.getItem('token') === null ?
-                <Alert onClose={handleClose} severity="error" elevation={6} variant="filled" >
+                <Alert onClose={handleClose} severity="error"  elevation={6} variant="filled" >
                     Please Login First 
                 </Alert>
                 : 
