@@ -112,7 +112,7 @@ function Details() {
                 setSuccess(true)
             }, 2000)
         } else {
-            axios.put('https://simplesenhaibookmark.herokuapp.com/bookmark', details)
+            axios.put('https://senpaikouhai.github.io/bookmark', details)
             .then( res => {
                 // console.log(res)
                 setSuccess(true)

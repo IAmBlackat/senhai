@@ -12,11 +12,14 @@ const useStyles = makeStyles( (theme) => ({
 
 function Logout() {
     const [loading, setLoading] = useState(true)
+    const [userid, setId] = useState({
+        id: localStorage.getItem('_id')
+    })
     const history = useHistory()
     useEffect( () => {
-        axios.get('https://simplesenhaibookmark.herokuapp.com/logout')
+        axios.post('https://simplesenhaibookmark.herokuapp.com/logout', userid)
         .then( res => {
-            // console.log(res)
+            // console.log(res)    
             localStorage.removeItem('token')
             localStorage.removeItem('_id')
             localStorage.removeItem('username')

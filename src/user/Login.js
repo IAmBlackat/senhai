@@ -114,7 +114,7 @@ function Login() {
                     title={<Typography align='left' variant='h4' className={classes.cardTitle} >Log In</Typography>}
                     subheader={
                         <Typography align='left' variant='body2' className={classes.cardSubTitle} >
-                            Note: As this is site is on development your account might be deleted and don't forget your password.
+                            Note: As this is site is on development your account might be deleted.
                         </Typography>
                     }
                 />
