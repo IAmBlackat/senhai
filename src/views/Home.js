@@ -14,7 +14,7 @@ const useStyles = makeStyles( (theme) => ({
     root: {
         height: 'auto',
         paddingBottom: '10px',
-        backgroundColor: '#303030'
+        backgroundColor: '#121212'
     },
     title: {
         padding: '25px'

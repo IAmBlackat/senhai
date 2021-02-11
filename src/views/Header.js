@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, InputBase, Button, Box, IconButton, Tooltip, Zoom} from '@material-ui/core'
+import { AppBar, Toolbar, Typography, InputBase, Button, Box, IconButton, Tooltip, Zoom, Paper} from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuIcon from '@material-ui/icons/Menu'
@@ -202,14 +202,14 @@ function Header() {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static' style={{backgroundColor: '#303030'}} >
+      <AppBar position='static' style={{backgroundColor: '#121212'}} >
         <Toolbar className={classes.toolbar} >
           <Box>
             <IconButton onClick={ () => setOpen(!open)} className={classes.IconButton}>
               <MenuIcon className={classes.menuButton} />
             </IconButton>
 
-            <Box className={ open ? classes.open : classes.navLinks}>
+            <Paper className={ open ? classes.open : classes.navLinks}>
               <Link to='/' className={classes.link}>
                   <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
                       Home
@@ -250,7 +250,7 @@ function Header() {
                 </Button>
               </Box>
             
-            </Box>
+            </Paper>
 
           </Box>
           <Typography className={classes.title} variant="h6" noWrap>

@@ -34,17 +34,18 @@ const useStyles = makeStyles( (theme) => ({
         color: 'white'
     },
     paper: {
-        // backgroundColor: '#616161'
+        // backgroundColor: '#222222',
         padding: '10px',
         [theme.breakpoints.up('sm')]: {
             margin: ' 20px',
         },
 
         boxShadow: '5px 5px 25px rgba(0,0,0,1)'
+
     },
     ptitle: {
         paddingBottom: '10px',
-        backgroundColor: '#303030'
+        backgroundColor: '#121212'
     },
     box: {
         textAlign: 'right',
@@ -142,7 +143,7 @@ function Container( {page}) {
     }
 
     return loading ? <Loading /> : (
-        <Paper elevation={2} square className={classes.ptitle}>
+        <Paper elevation={0} square className={classes.ptitle}>
             <Box>
             {page === 'search' ? 
                 <Typography variant='h4' className={classes.title}>
@@ -154,15 +155,15 @@ function Container( {page}) {
                 </Typography>
             }
             </Box>
-            <Paper elevation={1} variant='outlined' className={classes.paper}>
+            <Paper elevation={0} className={classes.paper}>
 
             <Pages />
-
+            
             <Grid container spacing={1} align='center'>
                 {lists.results.length === 0 ? <NoneFound /> : ''}
 
                 {lists.results.map( list => (
-                    <Grid item xs={6} sm={3} key={list.id}>
+                    <Grid item xs={6} sm={3} md={3} key={list.id}>
                         <Card className={classes.root} >
                             <Link to={page === 'recentlyadded' ? '/watching/'+list.id+'/'+list.episodenumber+'' : '/details/'+list.id+'/' } className={classes.decor}>
                                 <CardActionArea onClick={ () => page === 'recentlyadded' ? dispatch(watchEpisode(list.episodenumber,list.id,list.title)) : dispatch(checkDetails(list.id)) }>

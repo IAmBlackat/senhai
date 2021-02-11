@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
-        backgroundColor: '#303030',  
+        // backgroundColor: '#303030',  
         height: '100vh',
         position: 'relative'
     },
@@ -16,7 +16,7 @@ const useStyles = makeStyles( (theme) => ({
         top: '5%',
         left: '50%',
         transform: 'translateX(-50%)',
-        backgroundColor: '#303030',  
+        backgroundColor: '#212121',  
         [theme.breakpoints.up('sm')]: {
             width: '50%'
         }

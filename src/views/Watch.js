@@ -97,7 +97,7 @@ function Watch() {
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            console.log(res)
+            // console.log(res)
             setVdLink(res.data.link)//vidstream url
             setLinks(res.data.links)
             setQuality(res.data.links[0].link)
