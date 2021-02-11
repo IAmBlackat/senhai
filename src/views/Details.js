@@ -61,14 +61,15 @@ function Details() {
     const [details, setDetails] = useState([
         {
             _id: localStorage.getItem('_id'),
-            animeid: id
+            animeid: id,
+            anime: {}
         }
     ])
 
     const dispatch = useDispatch()
     const state = useSelector( state => state.title)
     
-    let rooturl = "https://anime-x.vercel.app/api/details/"
+    let rooturl = "https://simplesenhaibookmark.herokuapp.com/api/details/"
     let url = rooturl + id
 
     useEffect( () => {
@@ -114,7 +115,7 @@ function Details() {
         } else {
             axios.put('https://simplesenhaibookmark.herokuapp.com/bookmark', details)
             .then( res => {
-                // console.log(res)
+                console.log(res)
                 setSuccess(true)
                 setLoad(false)
             })

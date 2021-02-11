@@ -38,7 +38,15 @@ const useStyles = makeStyles( () => ({
 function Profile() {
     const classes = useStyles()
     const [user, setUser] = useState()
+    // gets the user's bookmark from fetched data
     const [bookmark, setBookmark] = useState()
+
+    // the sorted bookmark that will be passed on bookmark component
+    const [sorted, setSorted] = useState(bookmark)
+
+    // this sets of what type of sort the user wants
+    const [sortBy, setSortBy] = useState('All')
+
     const [link, setLink] = useState({
         _id: localStorage.getItem('_id'),
         imgLink: ''
@@ -64,6 +72,7 @@ function Profile() {
             // console.log(res.data.user.bookmark)
             setUser(res.data.user)
             setBookmark(res.data.user.bookmark)
+            setSorted(res.data.user.bookmark)
             setLoading(false)
         })
         .catch( err => console.log(err))
@@ -82,27 +91,49 @@ function Profile() {
         })
         .catch( err => console.log(err))
     }
-    const [sorter, setSorter] = useState('a-z')
 
-    if(!loading) {
-        if(sorter === 'z-a' ) {
-            bookmark.sort((a, b) => (a.title > b.title) ? 1 : -1).reverse()
+    const handleChange = (e) => {
+        setSortBy(e.target.value)
+        let ongoing = bookmark.filter( a => a.status === "Ongoing" )
+        setSorted(ongoing)
+        // if(sortBy === 'Ongoing' ) {
+        //     // bookmark.sort((a, b) => (a.title > b.title) ? 1 : -1).reverse()
+        //     let ongoing = bookmark.filter( a => a.status === "Ongoing" )
+        //     setSorted(ongoing)
+        //     console.log(ongoing)
+        // }
+        // else if (sortBy === 'Completed') {
+        //     let completed = bookmark.filter( a => a.status === "Completed" )
+        //     setSorted(completed)
+        //     // console.log( bookmark.sort((a, b) => (a.status > b.status) ? 1 : -1).filter( a => a.status === "Completed" ))
+        // } else {
+        //     // bookmark.filter( a => a.status === "Ongoing")
+        //     let all = bookmark.sort((a, b) => (a.title > b.title) ? 1 : -1)
+        //     setSorted(all)
+        // }
+    }
+
+    const handleClick = (e) => {
+         setSortBy(e.target.value)
+        if(sortBy === 'Ongoing' ) {
+            // bookmark.sort((a, b) => (a.title > b.title) ? 1 : -1).reverse()
+            let ongoing = bookmark.filter( a => a.status === "Ongoing" )
+            setSorted(ongoing)
+            console.log(ongoing)
         }
-
-        else if (sorter === 'status') {
-            bookmark.sort((a, b) => (a.status > b.status) ? 1 : -1)
+        else if (sortBy === 'Completed') {
+            let completed = bookmark.filter( a => a.status === "Completed" )
+            setSorted(completed)
+            // console.log( bookmark.sort((a, b) => (a.status > b.status) ? 1 : -1).filter( a => a.status === "Completed" ))
         } else {
             // bookmark.filter( a => a.status === "Ongoing")
-
-            bookmark.sort((a, b) => (a.title > b.title) ? 1 : -1)
+            let all = bookmark
+            setSorted(all)
         }
         
     }
-
-    const handleChange = (event) => {
-        setSorter(event.target.value);
-    };
-    
+    console.log(sorted)
+    console.log(sortBy)
     // const [image, setImage] = useState()
 
     // const imagePrev = e => {
@@ -147,19 +178,22 @@ function Profile() {
                 <Box style={{display: 'flex', alignItems: 'center'}} >
                     <Typography align='right' style={{marginRight: '5px'}} >Sort By </Typography>
                     <Select 
-                        value={sorter} 
-                        onChange={handleChange} 
-                        
+                        value={sortBy} 
+                        // onChange={handleChange} 
+                        onClick={handleClick}
                     >
-                        <MenuItem value='a-z' > A-Z</MenuItem>
+                        {['All', 'Ongoing', 'Completed'].map( (sort, index) => (
+                            <MenuItem value={sort} key={index} >{sort}</MenuItem>
+                        ) )}
+                        {/* <MenuItem value='a-z' > A-Z</MenuItem>
                         <MenuItem value='z-a'> Z-A</MenuItem>
-                        <MenuItem value='status'> Status</MenuItem>
+                        <MenuItem value='status'> Status</MenuItem> */}
                     </Select>
                 </Box>
             </Box>
 
             {/* checking if the bookmark is empty then set an instructions on how to add a bookmark */}
-            {user.bookmark.length === 0 ? <EmptyBookmark /> : <BookmarkM bookmark={bookmark} /> }
+            {user.bookmark.length === 0 ? <EmptyBookmark /> : <BookmarkM bookmark={sorted} /> }
 
             {/* this section is only made for dialog */}
             <Dialog maxWidth='md' open={open} >

@@ -91,13 +91,13 @@ function Watch() {
     // const state = useSelector( state => state)
     // const dispatch = useDispatch()
     
-    const rootUrl = "https://anime-x.vercel.app/api/watching/"
+    const rootUrl = "https://simplesenhaibookmark.herokuapp.com/api/watching/"
     var url = rootUrl + id +"/" + currentEp
     
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            // console.log(res)
+            console.log(res)
             setVdLink(res.data.link)//vidstream url
             setLinks(res.data.links)
             setQuality(res.data.links[0].link)
@@ -117,7 +117,7 @@ function Watch() {
         })
     }, [url, history, currentEp, id])
 
-    // console.log(links.map( i => i.name))
+    // console.log(quality)
     let title = id.split('-').join(' ')
 
     return loading ? <Loading /> : (
@@ -132,11 +132,11 @@ function Watch() {
                 
                 <Paper square className={classes.p} elevation={0}>
                     <Container maxWidth='md' className={classes.box}>
-                        {/* <FormControlLabel 
+                        <FormControlLabel 
                             control={<Switch checked={checked} onChange={ () => setChecked(!checked)} />}
                             label='VidStream'
                             labelPlacement='bottom'
-                        /> */}
+                        />
             
                         <FormControl style={{marginLeft: '20px'}} >
                             <InputLabel>Quality</InputLabel>

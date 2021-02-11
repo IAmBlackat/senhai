@@ -202,7 +202,7 @@ function Header() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{backgroundColor: '#303030'}} >
+      <AppBar position='static' style={{backgroundColor: '#303030'}} >
         <Toolbar className={classes.toolbar} >
           <Box>
             <IconButton onClick={ () => setOpen(!open)} className={classes.IconButton}>

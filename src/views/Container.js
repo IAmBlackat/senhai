@@ -82,7 +82,7 @@ function Container( {page}) {
     const query = location.pathname.split('/')[2]
     const currentPage = Number(location.pathname.split('/')[2])
 
-    const rootUrl = 'https://anime-x.vercel.app/api'
+    const rootUrl = 'https://simplesenhaibookmark.herokuapp.com/api'
     const getPage = page === 'search' ? 
         '/' + page + '/' + query + '/' + 1 
         : 

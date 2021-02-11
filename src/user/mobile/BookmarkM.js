@@ -56,6 +56,7 @@ function BookmarkM({ bookmark }) {
                                     <Typography variant='body2' >{anime.season}</Typography>
                                     <Typography variant='body2' >{anime.status} </Typography>
                                     <Typography variant='body2' >Genre: {anime.genres}</Typography>
+                                    {/* <Button variant='contained' color='primary' size='small' >Continue</Button> */}
                                     <Button variant='contained' size='small' color='secondary' type='submit' onClick={() => setDeleteBookmark({...deleteBookmark, title: anime.title})} >delete</Button>
                                 </Box>
                             }
