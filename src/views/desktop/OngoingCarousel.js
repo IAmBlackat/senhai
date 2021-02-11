@@ -19,6 +19,7 @@ const useStyles= makeStyles( () => ({
     },
     seasonalListImg: {
         height: '270px',
+        backgroundColor: '#121212'
 
     },
     btnContainer: {

@@ -119,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       // width: '100%',
       height: '100vh',
-      backgroundColor: '#212121',
+      backgroundColor: '#121212',
       zIndex: 100,
     },
   },
@@ -209,7 +209,7 @@ function Header() {
               <MenuIcon className={classes.menuButton} />
             </IconButton>
 
-            <Paper className={ open ? classes.open : classes.navLinks}>
+            <Box className={ open ? classes.open : classes.navLinks}>
               <Link to='/' className={classes.link}>
                   <Button fullWidth={ open ? true : false} className={classes.btnLink} onClick={handleClick}>
                       Home
@@ -250,7 +250,7 @@ function Header() {
                 </Button>
               </Box>
             
-            </Paper>
+            </Box>
 
           </Box>
           <Typography className={classes.title} variant="h6" noWrap>

@@ -224,8 +224,8 @@ function Profile() {
                         <input accept="image/*" className={classes.input} id="contained-button-file" type="file" onChange={imagePrev} /> */}
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={() => setOpen(false)} color='primary' >Cancel</Button>
-                        <Button onClick={() => setOpen(false)} color='primary' type='submit' >Change</Button>
+                        <Button onClick={() => setOpen(false)} color='default' >Cancel</Button>
+                        <Button onClick={() => setOpen(false)} color='default' type='submit' >Change</Button>
                     </DialogActions>
                 </form>
             </Dialog>

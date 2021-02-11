@@ -34,13 +34,13 @@ const useStyles = makeStyles( (theme) => ({
         color: 'white'
     },
     paper: {
-        // backgroundColor: '#222222',
+        // backgroundColor: '#212121',
         padding: '10px',
         [theme.breakpoints.up('sm')]: {
             margin: ' 20px',
         },
 
-        boxShadow: '5px 5px 25px rgba(0,0,0,1)'
+        boxShadow: '5px 5px 25px rgba(0,0,0,0.2)'
 
     },
     ptitle: {
