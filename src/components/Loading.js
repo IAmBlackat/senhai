@@ -7,7 +7,7 @@ function Loading() {
     return(
         <Box>
             <h1>Loading...</h1>
-            <img style={{height: '300px', width: 'auto'}} src='https://i.imgur.com/pMXIhUb.gif' alt='' />
+            {/* <img style={{height: '300px', width: 'auto'}} src='https://i.imgur.com/pMXIhUb.gif' alt='' /> */}
         </Box>
     )
 }

@@ -81,6 +81,7 @@ function Watch() {
     const [quality, setQuality] = useState('')
     const [loading, setLoading] = useState(true)
     const [checked, setChecked] = useState(false)
+    // const [xtream, setXtream] = useState()
 
     const location = useLocation()
     const history = useHistory()   
@@ -97,36 +98,41 @@ function Watch() {
     var url = rootUrl + id +"/" + currentEp
     
     useEffect( () => {
+        let unmount = false
         axios.get(url)
         .then( res => {
-            console.log(res)
-            setVdLink(res.data.link)//vidstream url
-            setLinks(res.data.links)
-            setCdn(res.data.cdn)
-            setQuality(res.data.links[0].link)
-            setLoading(false)
-            var epLinks = []
-            
-            for (var i = 0; i < res.data.links.length; i++){
-                let a = res.data.links[i].link.split('?')
-                let b = a[0].split('/')
-                b[5] === undefined ? epLinks.push('original') : epLinks.push(b[5])
-                // epLinks.push(b[5])
+            if(!unmount) {
+                console.log(res)
+                setVdLink(res.data.link)//vidstream url
+                setLinks(res.data.links)
+                setCdn(res.data.cdn)
+                setQuality(res.data.links[0].link)
+                setLoading(false)
+                var epLinks = []
+                
+                for (var i = 0; i < res.data.links.length; i++){
+                    let a = res.data.links[i].link.split('?')
+                    let b = a[0].split('/')
+                    b[5] === undefined ? epLinks.push('original') : epLinks.push(b[5])
+                    // epLinks.push(b[5])
+                }
+                setDl({epdl: epLinks})
             }
-            setDl({epdl: epLinks})
         })
         .catch(err => {
             if(err.response.status !== 200) history.push('/details/' + id)
         })
         
+        return () => unmount = true
         // axios.post('https://cors-anywhere.herokuapp.com/https://fcdn.stream/api/source/gqj0db-e41x7q8-')
         // .then(res => {
-        //     console.log(res)
+        //     // console.log(res)
+        //     setXtream(res.data.data)
         // })
         // .catch(err => console.log(err))
     }, [url, history, currentEp, id])
 
-    // console.log(quality)
+    // console.log(xtream)
     let title = id.split('-').join(' ')
 
     return loading ? <Loading /> : (
@@ -226,7 +232,7 @@ function Watch() {
                     <Typography>
                         Download Links 
                     </Typography>
-                    <Button href={cdn} variant='outlined' download className={classes.btn} >Xtreamcdn</Button>
+                    <Button href={cdn} variant='contained' download className={classes.btn} >Xtreamcdn</Button>
                     {links.map( (i,index) => (
                         <Button href={i.link} variant='outlined' download className={classes.btn} key={index}>
                             {i.name.replace(/ ([^)]) */g, ".").replace("(","").replace(")","")}
