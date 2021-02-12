@@ -76,6 +76,7 @@ function Watch() {
     const classes = useStyles()
     const [dl, setDl] = useState( { epdl: {}} )
     const [links, setLinks] = useState()
+    const [cdn, setCdn] = useState('')
     const [vdLink, setVdLink] = useState('')
     const [quality, setQuality] = useState('')
     const [loading, setLoading] = useState(true)
@@ -90,16 +91,18 @@ function Watch() {
 
     // const state = useSelector( state => state)
     // const dispatch = useDispatch()
-    
+    // url for getting xtreamcdn get id from params https://fcdn.stream/api/source/gqj0db-e41x7q8-
+
     const rootUrl = "https://simplesenhaibookmark.herokuapp.com/api/watching/"
     var url = rootUrl + id +"/" + currentEp
     
     useEffect( () => {
         axios.get(url)
         .then( res => {
-            // console.log(res)
+            console.log(res)
             setVdLink(res.data.link)//vidstream url
             setLinks(res.data.links)
+            setCdn(res.data.cdn)
             setQuality(res.data.links[0].link)
             setLoading(false)
             var epLinks = []
@@ -115,6 +118,12 @@ function Watch() {
         .catch(err => {
             if(err.response.status !== 200) history.push('/details/' + id)
         })
+        
+        // axios.post('https://cors-anywhere.herokuapp.com/https://fcdn.stream/api/source/gqj0db-e41x7q8-')
+        // .then(res => {
+        //     console.log(res)
+        // })
+        // .catch(err => console.log(err))
     }, [url, history, currentEp, id])
 
     // console.log(quality)
@@ -132,12 +141,12 @@ function Watch() {
                 
                 <Paper square className={classes.p} elevation={0}>
                     <Container maxWidth='md' className={classes.box}>
-                        <FormControlLabel 
+                        {/* <FormControlLabel 
                             control={<Switch checked={checked} onChange={ () => setChecked(!checked)} />}
                             label='VidStream'
                             labelPlacement='bottom'
                         />
-            
+             */}
                         <FormControl style={{marginLeft: '20px'}} >
                             <InputLabel>Quality</InputLabel>
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
@@ -217,6 +226,7 @@ function Watch() {
                     <Typography>
                         Download Links 
                     </Typography>
+                    <Button href={cdn} variant='outlined' download className={classes.btn} >Xtreamcdn</Button>
                     {links.map( (i,index) => (
                         <Button href={i.link} variant='outlined' download className={classes.btn} key={index}>
                             {i.name.replace(/ ([^)]) */g, ".").replace("(","").replace(")","")}
