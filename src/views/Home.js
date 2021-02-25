@@ -9,6 +9,7 @@ import Schedule from '../components/Schedule'
 import Upcoming from './desktop/Upcoming'
 import OngoingCarousel from './desktop/OngoingCarousel'
 import OngoingGrid from './mobile/OngoingGrid'
+import Download from './Download'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -130,13 +131,14 @@ function Home() {
     
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
-            <Typography variant='h4' align='left' className={classes.title}>
+            <Download />
+            {/* <Typography variant='h4' align='left' className={classes.title}>
                 Featured
-            </Typography>
+            </Typography> */}
             {/* <iframe src='https://animethemes.moe/video/ShingekiNoKyojinS4-OP1.webm' allowFullScreen />  */}
             {/* <video src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4' autoPlay={false} controls /> */}
 
-            <Carousel 
+            {/* <Carousel 
                 mouseTracking
                 // items={page.map( (i,index) => <Featured page={page} id={i.mal_id} image={i.image_url} key={index} index={index} />)}
                 items={lists}
@@ -155,7 +157,7 @@ function Home() {
                 touchTracking
                 autoPlayActionDisabled
                 height='500px'
-            />
+            /> */}
 
             <Typography variant='h4' align='left' className={classes.title}>
                 Winter 2021 Ongoing

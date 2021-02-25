@@ -10,7 +10,7 @@ const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#303f9f',
+      main: '#79C7F5',
       contrastText: '#fff'
     },
     background: {

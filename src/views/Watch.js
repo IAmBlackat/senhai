@@ -122,21 +122,26 @@ function Watch() {
         .catch(err => {
             if(err.response.status !== 200) history.push('/details/' + id)
         })
-        
-        return () => unmount = true
-        // axios.post('https://cors-anywhere.herokuapp.com/https://fcdn.stream/api/source/gqj0db-e41x7q8-')
+        // axios.post('https://senhai-cors.herokuapp.com/https://fcdn.stream/api/source/gqj0db-e41x7q8-')
         // .then(res => {
         //     // console.log(res)
         //     setXtream(res.data.data)
         // })
         // .catch(err => console.log(err))
+
+        return () => unmount = true
+
     }, [url, history, currentEp, id])
 
-    // console.log(xtream)
+    // console.log(cdn)
     let title = id.split('-').join(' ')
-
+    let a = 'https://fcdn.stream/f/qy6j0se8e0-x1re'.split('.')
+    let b = a[1].replace('f','v')
+    let c = a + b
+    console.log('https://fcdn.'+b)
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
+            {/* {console.log(xtream.map( i => i.file)[0])} */}
             <Paper className={classes.p} square elevation={0}>
                 <Container maxWidth='sm'>
                     <Typography className={classes.title} variant='h5'>{title}</Typography>
@@ -232,7 +237,7 @@ function Watch() {
                     <Typography>
                         Download Links 
                     </Typography>
-                    <Button href={cdn} variant='contained' download className={classes.btn} >Xtreamcdn</Button>
+                    {/* <Button href='https://fvs.io/redirector?token=U3p3eXVkZWRadHBRKzRqRTNBWk4veHpmejkyZVlCbjluZzdBZnc5WUJmNVJWMkUwRWx1UC8wblY0UVpIclYzWW45L1ZQd3lBMTZNL3BRZVhIUThzbllrWkVIdXNSTzZ6REtMU09WNTFUbTFobTUzQ0J2R0FiYnNYUWxQSCs0dXFQUmNDbTZEVVc1aU5wWmdta0NWdERUWGJpeHJCQVlwZWhYbz06c2lXREFSbFJmTkU3ZlRaMitSVGxNQT09' variant='contained' download className={classes.btn} >Xtreamcdn</Button> */}
                     {links.map( (i,index) => (
                         <Button href={i.link} variant='outlined' download className={classes.btn} key={index}>
                             {i.name.replace(/ ([^)]) */g, ".").replace("(","").replace(")","")}
