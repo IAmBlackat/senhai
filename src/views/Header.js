@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, InputBase, Button, Box, IconButton, Tooltip, Zoom, Paper} from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import MenuIcon from '@material-ui/icons/Menu'
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loading, searchAnime } from '../redux/action';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    display: 'block'
+    display: 'block',
+
   },
   search: {
     position: 'relative',
@@ -199,14 +202,31 @@ function Header() {
   // if the _id on storage is null then there's no user
   let idNull = localStorage.getItem('_id') === null ? true : false
   // console.log(idNull, localStorage.getItem('_id'))
-
+  const Close = () => {
+    return(
+      <div>
+        <Fade in={open} >
+          <CloseIcon className={classes.menuButton} />
+        </Fade>
+      </div>
+    )
+  }
+  const Open = () => {
+    return(
+      <div >
+        <Fade in={!open} >
+          <MenuIcon className={classes.menuButton} />
+        </Fade>
+      </div>
+    )
+  }
   return (
     <div className={classes.root}>
-      <AppBar position='static' style={{backgroundColor: '#121212'}} >
+      <AppBar position='static' style={{backgroundColor: '#121212', alignContent: 'center'}} >
         <Toolbar className={classes.toolbar} >
           <Box>
             <IconButton onClick={ () => setOpen(!open)} className={classes.IconButton}>
-              <MenuIcon className={classes.menuButton} />
+              { open ? <Close /> : <Open /> }
             </IconButton>
 
             <Box className={ open ? classes.open : classes.navLinks}>

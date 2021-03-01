@@ -8,7 +8,7 @@ const styles = makeStyles( (theme) => ({
         position: 'relative',
         height: '700px',
         width: '100%',
-        background: 'rgba(0, 0, 0, .55) url(' + bg + ')',
+        background: 'rgba(0, 0, 0, .45) url(' + bg + ')',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: 'cover',

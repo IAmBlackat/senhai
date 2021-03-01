@@ -102,7 +102,7 @@ function Watch() {
         axios.get(url)
         .then( res => {
             if(!unmount) {
-                console.log(res)
+                // console.log(res)
                 setVdLink(res.data.link)//vidstream url
                 setLinks(res.data.links)
                 setCdn(res.data.cdn)
@@ -135,10 +135,7 @@ function Watch() {
 
     // console.log(cdn)
     let title = id.split('-').join(' ')
-    let a = 'https://fcdn.stream/f/qy6j0se8e0-x1re'.split('.')
-    let b = a[1].replace('f','v')
-    let c = a + b
-    console.log('https://fcdn.'+b)
+
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             {/* {console.log(xtream.map( i => i.file)[0])} */}

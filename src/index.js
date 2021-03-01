@@ -17,11 +17,14 @@ const darkTheme = createMuiTheme({
       default: '#121212',
       paper: '#212121',
       
-    }
+    },
     // text: {
     //   // primary: '#eceff1'
     // }
   },
+  typography: {
+    fontFamily: 'Open Sans'
+  }
 });
 
 ReactDOM.render(

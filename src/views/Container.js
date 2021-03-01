@@ -1,32 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Divider, Grid, makeStyles, Paper, Typography } from '@material-ui/core'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Loading from '../components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkDetails, watchEpisode } from '../redux/action'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import NoneFound from '../components/NoneFound'
 
 const useStyles = makeStyles( (theme) => ({
-    root: {
+    card: {
         maxWidth: 200,
         maxHeight: 500,
-        boxShadow: '5px 5px 25px #212121'
+        backgroundColor: '#303030'
+        // boxShadow: '5px 5px 25px #212121'
     },
     image: {
         maxWidth: 300,
         height: 'auto',
         [theme.breakpoints.down('sm')]: {
-            height: 195
+            height: 200
         }
     },
     title: {
-        padding: '30px 30px 10px',
-        marginLeft: '10px',
+        padding: '20px',
+        marginLeft: '5px',
         [theme.breakpoints.down('sm')]: {
-            paddingBottom: '40px'
+            paddingBottom: '20px',
+            margin: 0,
+            padding: '10px'
         }
     },
     decor: {
@@ -37,33 +39,41 @@ const useStyles = makeStyles( (theme) => ({
         // backgroundColor: '#212121',
         padding: '10px',
         [theme.breakpoints.up('sm')]: {
-            margin: ' 20px',
+            margin: ' 10px',
+            padding: '5px'
         },
-
-        boxShadow: '5px 5px 25px rgba(0,0,0,0.2)'
-
     },
     ptitle: {
         paddingBottom: '10px',
+        paddingTop: '10px',
         backgroundColor: '#121212'
     },
-    box: {
+    btnContainer: {
         textAlign: 'right',
         padding: '20px',
-        marginTop: '10px',
         [theme.breakpoints.down('sm')]: {
-            width: 'auto',
-            paddingBottom: '20px',
-            paddingTop: '20px',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: '10px1'
+            // paddingBottom: '20px',
+            // paddingTop: '20px',
         },
     },
     btn: {
-        marginRight: '8px',
-        padding: '5px',
+        marginRight: '10px',
+        padding: '10px',
         [theme.breakpoints.up('sm')]: {
-            marginRight: '10px',
+            // marginRight: '10px',
             padding: '10px',
         },
+    },
+    animetitle: {
+        fontSize: '0.9rem'
+    },
+    animeepisode: {
+        fontSize: '0.8rem',
+        marginTop: '5px'
     }
 }))
 
@@ -78,7 +88,6 @@ function Container( {page}) {
     const history = useHistory()
     
     const state = useSelector( state => state)
-    const dispatch = useDispatch()  
     
     const query = location.pathname.split('/')[2]
     const currentPage = Number(location.pathname.split('/')[2])
@@ -122,16 +131,16 @@ function Container( {page}) {
         return(
             <>
             {location.pathname === '/search/' + id ? '' :
-                <Box className={classes.box}>
-                    <Button component={Link} to={'/' + page + '/' + (currentPage - 1)} variant='outlined' className={classes.btn} disabled={currentPage === 1 ? true : false}>
-                        <NavigateBeforeIcon /> Previous
+                <Box className={classes.btnContainer}>
+                    <Button component={Link} to={'/' + page + '/' + (currentPage - 1)} variant='text' className={classes.btn} disabled={currentPage === 1 ? true : false}>
+                        <NavigateBeforeIcon /> Prev
                     </Button>
 
                     <b className={classes.btn}>
                     {pageUrl}
                     </b>
 
-                    <Button component={Link} to={'/' + page + '/' + (currentPage + 1)} variant='outlined' className={classes.btn} 
+                    <Button component={Link} to={'/' + page + '/' + (currentPage + 1)} variant='text' className={classes.btn} 
                         // onClick={ () => setPageUrl(pageUrl + 1)} 
                     >
                         Next <NavigateNextIcon /> 
@@ -144,29 +153,30 @@ function Container( {page}) {
 
     return loading ? <Loading /> : (
         <Paper elevation={0} square className={classes.ptitle}>
-            <Box>
-            {page === 'search' ? 
-                <Typography variant='h4' className={classes.title}>
-                    Results for ' {query} '
-                </Typography>
-                :             
-                <Typography variant='h4' className={classes.title} align='left'>
-                    {page === 'popular' ? "Popular" : "Newest Episode"}   
-                </Typography>
-            }
-            </Box>
+           
             <Paper elevation={0} className={classes.paper}>
-
-            <Pages />
+            <Box>
+                {page === 'search' ? 
+                    <Typography variant='h4' className={classes.title}>
+                        Results for ' {query} '
+                    </Typography>
+                    :             
+                    <Typography variant='h4' className={classes.title} align='left'>
+                        {page === 'popular' ? "Popular" : "Newest Episode"}   
+                    </Typography>
+                }
+            </Box>
+            <Divider style={{ marginBottom: '10px' }} />
+            {/* <Pages /> */}
             
-            <Grid container spacing={1} align='center'>
+            <Grid container spacing={1} align='center' >
                 {lists.results.length === 0 ? <NoneFound /> : ''}
 
                 {lists.results.map( list => (
                     <Grid item xs={6} sm={3} md={3} key={list.id}>
-                        <Card className={classes.root} >
-                            <Link to={page === 'recentlyadded' ? '/watching/'+list.id+'/'+list.episodenumber+'' : '/details/'+list.id+'/' } className={classes.decor}>
-                                <CardActionArea onClick={ () => page === 'recentlyadded' ? dispatch(watchEpisode(list.episodenumber,list.id,list.title)) : dispatch(checkDetails(list.id)) }>
+                        <Card className={classes.card} >
+                            {/* <Link to={page === 'recentlyadded' ? '/watching/'+list.id+'/'+list.episodenumber+'' : '/details/'+list.id+'/' } className={classes.decor}> */}
+                                <CardActionArea component={Link} to={page === 'recentlyadded' ? '/watching/'+list.id+'/'+list.episodenumber+'' : '/details/'+list.id+'/' } >
                                     <CardMedia 
                                         title={list.id}
                                         //https://thumbs.gfycat.com/ShadowyCourageousAztecant-size_restricted.gif
@@ -176,15 +186,17 @@ function Container( {page}) {
                                         onLoad={ () => setImgLoad(false)}
                                     />
                                     <CardContent>
-                                        <Typography variant={ window.innerWidth < 600 ? 'body2' : 'subtitle2'} >{list.title}</Typography>
-                                        {page === 'recentlyadded' ? <Typography variant={ window.innerWidth < 600 ? 'body2' : 'subtitle2'} >Episode: {list.episodenumber}</Typography> : ''}
+                                        <Typography className={classes.animetitle} >{list.title}</Typography>
+                                        {page === 'recentlyadded' ? <Typography className={classes.animeepisode} variant={ window.innerWidth < 600 ? 'body2' : 'subtitle2'} >Episode: {list.episodenumber}</Typography> : ''}
                                     </CardContent>
                                 </CardActionArea>
-                            </Link>
+                            {/* </Link> */}
                         </Card>
                     </Grid>
                 ))}   
             </Grid>
+
+            <Divider style={{ marginTop: '10px' }} />
 
             <Pages />
 

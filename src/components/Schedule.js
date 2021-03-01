@@ -1,4 +1,4 @@
-import { Box, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Box, Divider, makeStyles, Paper, Typography } from '@material-ui/core'
 import jikan from 'jikanjs'
 import React, { useEffect, useState } from 'react'
 import { SchedList } from './SchedList'
@@ -11,7 +11,7 @@ const useStyles = makeStyles( (theme) => ({
         width: '90%',
         [theme.breakpoints.down('xs')]:{
             margin: 'auto',
-            width: '90%',
+            width: '95%',
         }
     },
     title: {
@@ -39,6 +39,7 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Monday
                 </Typography>
+                <Divider />
                 <SchedList list={list} />
             </div>
         )
@@ -59,6 +60,7 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Tuesday
                 </Typography>
+                <Divider />
                 <SchedList list={list} />
             </div>
         )
@@ -79,6 +81,7 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Wednesday
                 </Typography>
+                <Divider />
                 <SchedList list={list} />
             </div>
         )
@@ -99,6 +102,7 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Thursday
                 </Typography>
+                <Divider />
                 <SchedList list={list} />
             </div>
         )
@@ -119,6 +123,7 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Friday
                 </Typography>
+                <Divider />
                 <SchedList list={list} />
             </div>
         )
@@ -139,6 +144,7 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Saturday
                 </Typography>
+                <Divider />
                 <SchedList list={list} />
             </div>
         )
@@ -159,6 +165,7 @@ function Schedule() {
                 <Typography variant='h6' align='left' className={classes.title}>
                     Sunday
                 </Typography>
+                <Divider />
                 <SchedList list={list} />
             </div>
         )

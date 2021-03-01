@@ -1,4 +1,4 @@
-import { Box, makeStyles, Typography } from "@material-ui/core"
+import { Box, Divider, makeStyles, Typography } from "@material-ui/core"
 import { GetTime } from "./GetTime"
 
 const useStyles = makeStyles( () => ({
@@ -38,6 +38,7 @@ export const SchedList = ( { list } ) => {
                                 {sched.title}
                             </Typography>
                             <GetTime aired={sched.airing_start} style={classes.time} align={'right'} />
+                        
                         </Box>
                     </Box>
                 ))}

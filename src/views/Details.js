@@ -85,7 +85,7 @@ function Details() {
             // console.log(err.response.status)
             if(err.response.status >= 400) history.push('/error')
         })
-    }, [url, history])
+    }, [url, history, details])
 
     const epList = () => {
         let L = [];
