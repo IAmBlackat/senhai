@@ -5,7 +5,7 @@ import Loading from '../components/Loading'
 import Collapse from '@material-ui/core/Collapse';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { Alert } from '@material-ui/lab'
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 export default function DetailsDesktop() {
     const [loading, setLoading] = useState(true)
@@ -101,6 +101,9 @@ export default function DetailsDesktop() {
             zIndex: theme.zIndex.drawer + 1,
             color: '#fff',
         },
+        link:{
+            textDecoration:'none'
+        }
     }))
 
     const classes = useStyles()
@@ -200,7 +203,7 @@ export default function DetailsDesktop() {
                         <Box style={{ textAlign: 'center' }} >
                             <Typography variant='h5' align='left' >Episode</Typography>
                             {epList().map( (ep,index) => (
-                                // <Link to={"/watching/" + location.pathname.split("/")[2] + "/" + ep} className={classes.link} key={index}>
+                                <Link to={"/watching/" + location.pathname.split("/")[2] + "/" + ep} className={classes.link} key={index}>
                                     <Button 
                                         className={classes.btn} 
                                         variant='outlined' 
@@ -208,7 +211,7 @@ export default function DetailsDesktop() {
                                     >
                                         Episode: {ep}
                                     </Button>
-                                // </Link>
+                                </Link>
                             ))}
                         </Box>
                     </Box>

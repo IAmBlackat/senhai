@@ -4,7 +4,7 @@ import axios from 'axios'
 import Loading from '../components/Loading'
 import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Alert } from '@material-ui/lab'
 import Bg from '../utils/Bg';
 
@@ -37,6 +37,9 @@ const useStyles = makeStyles( (theme) => ({
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
     },
+    link: {
+        textDecoration: 'none'
+    }
 }))
 
 export default function DetailsMobile() {
@@ -186,7 +189,7 @@ export default function DetailsMobile() {
                                 <Box style={{ textAlign: 'center' }} >
                                     <Typography variant='h5' align='left' >Episode</Typography>
                                     {epList().map( (ep,index) => (
-                                        // <Link to={"/watching/" + location.pathname.split("/")[2] + "/" + ep} className={classes.link} key={index}>
+                                        <Link to={"/watching/" + location.pathname.split("/")[2] + "/" + ep} className={classes.link} key={index}>
                                             <Button 
                                                 className={classes.btn} 
                                                 variant='outlined' 
@@ -194,7 +197,7 @@ export default function DetailsMobile() {
                                             >
                                                 Episode: {ep}
                                             </Button>
-                                        // </Link>
+                                        </Link>
                                     ))}
                                 </Box>
                             </Box>

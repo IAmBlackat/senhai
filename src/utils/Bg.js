@@ -25,6 +25,7 @@ const Bg = ({ image, title, genre }) => {
         },
         title: {
             fontSize: 25,
+            fontWeight: 'bold',
             [theme.breakpoints.down('xs')]:{
                 fontSize: 18
             }
