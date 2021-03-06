@@ -174,10 +174,12 @@ export default function DetailsMobile() {
                                             <Collapse in={more} collapsedHeight={50} >
                                                 <Typography className={classes.summary} >{anime.summary}</Typography>
                                             </Collapse>
-                                            <Box style={{textAlign: 'right'}}>
-                                                <IconButton onClick={ () => setMore(!more) } >
-                                                    <ExpandMoreIcon className={ !more ? null : classes.more} />
-                                                </IconButton>
+                                            <Box style={{ textAlign: 'right', padding: '5px' }}>
+                                                <Button onClick={ () => setMore(!more)} size='small' endIcon={<ExpandMoreIcon className={ !more ? null : classes.more} />} >Read More</Button>
+                                                {/* <Typography>Read More</Typography> */}
+                                                {/* <IconButton onClick={ () => setMore(!more) } > */}
+                                                    {/* <ExpandMoreIcon className={ !more ? null : classes.more} /> */}
+                                                {/* </IconButton> */}
                                             </Box>
                                         </>
                                     }

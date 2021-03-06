@@ -216,7 +216,7 @@ function Watch() {
                         <span>
                             <Link to={'/watching/' + id + '/' + (currentEp-1)} className={currentEp === 1 ? classes.linkDisabled : classes.link}>
                                 <Button variant='outlined' className={classes.btn} disabled={currentEp === 1 ? true : false}>
-                                    Previous
+                                    Prev
                                 </Button>
                             </Link>
                         </span>

@@ -55,7 +55,7 @@ const useStyles = makeStyles( (theme) => ({
             width: '100%',
             display: 'flex',
             justifyContent: 'space-between',
-            padding: '10px1'
+            padding: '10px'
             // paddingBottom: '20px',
             // paddingTop: '20px',
         },

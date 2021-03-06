@@ -4,7 +4,7 @@ import React from 'react'
 const Bg = ({ image, title, genre }) => {
     const style = makeStyles( (theme) => ({
         backgroundImgContainer: {
-            height: '330px',
+            height: '350px',
             width: '100%',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
@@ -14,7 +14,7 @@ const Bg = ({ image, title, genre }) => {
             position: 'relative',
             mozBoxShadow:    '4px -114px 164px -66px rgba(0,0,0,0.88) inset',
             webkitBoxShadow: '4px -114px 164px -66px rgba(0,0,0,0.88) inset',
-            boxShadow:         '4px -83px 134px -34px rgba(0,0,0,0.75) inset',
+            boxShadow:         '4px -83px 134px -34px rgba(0,0,0,1.95) inset',
         },
         titleContainer: {
             position: 'absolute',
@@ -35,7 +35,7 @@ const Bg = ({ image, title, genre }) => {
         <Box className={style().backgroundImgContainer} >
             <Box className={style().titleContainer} >     
                 <Typography className={style().title} >{title}</Typography>
-                <Typography variant='subtitle2' >Genre: {genre}</Typography>
+                <Typography variant='subtitle2' >{genre}</Typography>
             </Box>
         </Box>
     )
