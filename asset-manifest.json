@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/senhai/static/css/main.472ce105.chunk.css",
-    "main.js": "/senhai/static/js/main.6843a20b.chunk.js",
-    "main.js.map": "/senhai/static/js/main.6843a20b.chunk.js.map",
+    "main.js": "/senhai/static/js/main.27943dbd.chunk.js",
+    "main.js.map": "/senhai/static/js/main.27943dbd.chunk.js.map",
     "runtime-main.js": "/senhai/static/js/runtime-main.c8e04a80.js",
     "runtime-main.js.map": "/senhai/static/js/runtime-main.c8e04a80.js.map",
     "static/css/2.01bdca31.chunk.css": "/senhai/static/css/2.01bdca31.chunk.css",
@@ -13,13 +13,13 @@
     "static/css/main.472ce105.chunk.css.map": "/senhai/static/css/main.472ce105.chunk.css.map",
     "static/js/2.d12a5db9.chunk.js.LICENSE.txt": "/senhai/static/js/2.d12a5db9.chunk.js.LICENSE.txt",
     "static/media/download1.b3356e99.png": "/senhai/static/media/download1.b3356e99.png",
-    "static/media/senhai.7f921d6f.apk": "/senhai/static/media/senhai.7f921d6f.apk"
+    "static/media/senhai.f263ad87.apk": "/senhai/static/media/senhai.f263ad87.apk"
   },
   "entrypoints": [
     "static/js/runtime-main.c8e04a80.js",
     "static/css/2.01bdca31.chunk.css",
     "static/js/2.d12a5db9.chunk.js",
     "static/css/main.472ce105.chunk.css",
-    "static/js/main.6843a20b.chunk.js"
+    "static/js/main.27943dbd.chunk.js"
   ]
 }
