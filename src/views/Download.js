@@ -67,6 +67,12 @@ const styles = makeStyles( (theme) => ({
         [theme.breakpoints.down('xs')]: {
             
         }
+    },
+    version: {
+        color: '#79C7F5',
+        fontFamily: 'Nunito',
+        fontSize: '15px',
+        padding: 2
     }
 }))
 
@@ -79,6 +85,7 @@ export default function Download() {
                 <Typography className={classes.beta} >We Are Now On Beta</Typography>
                 <Typography className={classes.subtext} >Now Available On Android</Typography>
                 <Button href={apk} size='large' download='senhai' color='primary' variant='outlined' className={classes.btn} >Dowload Now!</Button>
+                <Typography className={classes.version} id='version' >v1.1</Typography>
             </Box>
         </Paper>
     )
