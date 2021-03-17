@@ -85,7 +85,7 @@ export default function Download() {
                 <Typography className={classes.beta} >We Are Now On Beta</Typography>
                 <Typography className={classes.subtext} >Now Available On Android</Typography>
                 <Button href={apk} size='large' download='senhai' color='primary' variant='outlined' className={classes.btn} >Dowload Now!</Button>
-                <Typography className={classes.version} id='version' >v1.1</Typography>
+                <Typography className={classes.version} id='version' >v1.12</Typography>
             </Box>
         </Paper>
     )
