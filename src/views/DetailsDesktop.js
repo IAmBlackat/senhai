@@ -6,6 +6,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { Alert } from '@material-ui/lab'
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
 
 export default function DetailsDesktop() {
     const [loading, setLoading] = useState(true)
@@ -63,8 +64,9 @@ export default function DetailsDesktop() {
         },
         contentContainer: {
             position: 'absolute',
-            width: '80%',
-            left: '10%',    
+            margin: 'auto',
+            width: '70%',
+            left: '15%',    
             bottom: -180,
             display: 'flex'
         },
@@ -166,14 +168,14 @@ export default function DetailsDesktop() {
                                     </Box>
 
                                     <form method="POST" onSubmit={addToBookmark} >
-                                        <Button type='submit' style={{ alignSelf: 'end' }} variant='contained' color='primary' >Bookmark</Button>
+                                        <Button type='submit' startIcon={<BookmarksIcon />} style={{ alignSelf: 'end' }} variant='contained' color='primary' >Bookmark</Button>
                                     </form>
                                 </Box>
                             </Box>
                         </Box>
                     </Box>
                     {/* anime summary */}
-                    <Box style={{width: '80%', margin: 'auto', textAlign: 'left', height: '80vh'}} > 
+                    <Box style={{width: '70%', margin: 'auto', textAlign: 'left', height: '80vh'}} > 
                         {/* anime summary */}
                         <Box>
                             <Typography variant='h6' >Summary:</Typography>

@@ -3,6 +3,8 @@ import axios from 'axios'
 import { Box, Button, Container, FormControl, FormControlLabel, InputLabel, makeStyles, MenuItem, Paper, Select, Switch, Typography } from '@material-ui/core'
 import Loading from '../components/Loading'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -215,14 +217,14 @@ function Watch() {
                     <Box className={classes.epnav}>
                         <span>
                             <Link to={'/watching/' + id + '/' + (currentEp-1)} className={currentEp === 1 ? classes.linkDisabled : classes.link}>
-                                <Button variant='outlined' className={classes.btn} disabled={currentEp === 1 ? true : false}>
+                                <Button variant='outlined' className={classes.btn} startIcon={<NavigateBeforeIcon />} disabled={currentEp === 1 ? true : false}>
                                     Prev
                                 </Button>
                             </Link>
                         </span>
                         <span>
                             <Link to={'/watching/' + id + '/' + (currentEp+1)} className={classes.link}>
-                                <Button variant='outlined' className={classes.btn}>
+                                <Button variant='outlined' className={classes.btn} endIcon={<NavigateNextIcon /> } >
                                     Next
                                 </Button>
                             </Link>

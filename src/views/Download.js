@@ -63,7 +63,7 @@ const styles = makeStyles( (theme) => ({
         borderRadius: '20px',
         fontFamily: 'Nunito',
         // padding: '20px',
-        // backgroundColor: '#79C7F5',
+        color: '#79C7F5',
         [theme.breakpoints.down('xs')]: {
             
         }
@@ -84,7 +84,7 @@ export default function Download() {
                 {/* <Typography className={classes.announcement} align='left' >Announcement</Typography> */}
                 <Typography className={classes.beta} >We Are Now On Beta</Typography>
                 <Typography className={classes.subtext} >Now Available On Android</Typography>
-                <Button href={apk} size='large' download='senhai' color='primary' variant='outlined' className={classes.btn} >Dowload Now!</Button>
+                <Button href={apk} size='large' download='senhai' variant='outlined' className={classes.btn} >Dowload Now!</Button>
                 <Typography className={classes.version} id='version' >v1.12</Typography>
             </Box>
         </Paper>

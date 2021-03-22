@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     display: 'block',
-
+    color: '#88cdf6'
   },
   search: {
     position: 'relative',
@@ -204,20 +204,20 @@ function Header() {
   // console.log(idNull, localStorage.getItem('_id'))
   const Close = () => {
     return(
-      <div>
+      // <div>
         <Fade in={open} >
           <CloseIcon className={classes.menuButton} />
         </Fade>
-      </div>
+      // </div>
     )
   }
   const Open = () => {
     return(
-      <div >
+      // <div >
         <Fade in={!open} >
           <MenuIcon className={classes.menuButton} />
         </Fade>
-      </div>
+      // </div> 
     )
   }
   return (

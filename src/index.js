@@ -10,7 +10,7 @@ const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#79C7F5',
+      main: '#015c92',
       contrastText: '#fff'
     },
     background: {
@@ -18,13 +18,11 @@ const darkTheme = createMuiTheme({
       paper: '#212121',
       
     },
-    // text: {
-    //   // primary: '#eceff1'
-    // }
   },
   typography: {
     fontFamily: 'Open Sans'
-  }
+  },
+  
 });
 
 ReactDOM.render(

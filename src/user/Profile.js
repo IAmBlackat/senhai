@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, makeStyles, MenuItem, Select, TextField, Typography } from '@material-ui/core'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Loading from '../components/Loading'
 import { EmptyBookmark } from './instructions/EmptyBookmark'
 import BookmarkM from './mobile/BookmarkM'
@@ -49,21 +49,26 @@ function Profile() {
     //     _id: localStorage.getItem('_id'),
     //     imageP: ''
     // })
-
+    const history = useHistory()
     const [loading, setLoading] = useState(true)
     const [open, setOpen] = useState(false)
-
     useEffect( () => {
         let token = localStorage.getItem('token')
+        // redirect to login if token is null
+        token == null || undefined && history.push("/login")
         var options = {
             method: 'GET',
             url: 'https://simplesenhaibookmark.herokuapp.com/bookmark',
             headers: {'content-type': 'application/json', authorization: `Bearer ${token}`}
           };
-
         axios.request(options)
         .then( res => {
-            // console.log(res.data.user.bookmark)
+            if(!res.data.loggedIn) {
+                // clean up localstorage if logged in is false
+                localStorage.removeItem('token')
+                localStorage.removeItem('_id')
+                history.push("/login") 
+            }
             setUser(res.data.user)
             setBookmark(res.data.user.bookmark)
             setLoading(false)

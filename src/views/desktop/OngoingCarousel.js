@@ -16,11 +16,20 @@ const useStyles= makeStyles( () => ({
         maxWidth: 200,
         maxHeight: 400,
         boxShadow: '5px 5px 25px #212121',
+        transition: 'all .5s ease',
+        "&:hover": {
+            transform: "scale(1.03)",
+            transition: 'all .5s ease'
+        }
     },
     seasonalListImg: {
         height: '270px',
-        backgroundColor: '#121212'
-
+        backgroundColor: '#121212',
+        transition: 'all .5s ease',
+        "&:hover": {
+            transform: "scale(1.03)",
+            transition: 'all .5s ease'
+        }
     },
     btnContainer: {
         textAlign: 'right',

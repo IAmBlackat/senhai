@@ -47,10 +47,12 @@
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
+    transition: 'all .5s ease';
 }
 .alice-carousel__next-btn-item:active, 
 .alice-carousel__prev-btn-item:active {
     transform: scale(1);
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
+    transition: 'all .5s ease';
 }

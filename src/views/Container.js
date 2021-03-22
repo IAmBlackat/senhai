@@ -9,21 +9,39 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import NoneFound from '../components/NoneFound'
 
 const useStyles = makeStyles( (theme) => ({
+    container: {
+        paddingBottom: '10px',
+        paddingTop: '10px',
+        backgroundColor: '#121212',
+        flexGrow: 1
+    },
     card: {
-        maxWidth: 200,
+        maxWidth: 240,
         maxHeight: 500,
-        backgroundColor: '#303030'
-        // boxShadow: '5px 5px 25px #212121'
+        opacity: 0.9,
+        transition: 'all .5s ease',
+        "&:hover": {
+            transform: "scale(1.05)",
+            transition: 'all .5s ease',
+            opacity: 1
+        },
+        // backgroundColor: '#303030'
+        // boxShadow: '5px 5px 5px whitesmoke'
     },
     image: {
         maxWidth: 300,
         height: 'auto',
         [theme.breakpoints.down('sm')]: {
             height: 200
+        },
+        transition: 'all .5s ease',
+        "&:hover": {
+            transform: "scale(1.03)",
+            transition: 'all .5s ease'
         }
     },
     title: {
-        padding: '20px',
+        padding: '30px',
         marginLeft: '5px',
         [theme.breakpoints.down('sm')]: {
             paddingBottom: '20px',
@@ -43,11 +61,7 @@ const useStyles = makeStyles( (theme) => ({
             padding: '5px'
         },
     },
-    ptitle: {
-        paddingBottom: '10px',
-        paddingTop: '10px',
-        backgroundColor: '#121212'
-    },
+    
     btnContainer: {
         textAlign: 'right',
         padding: '20px',
@@ -57,7 +71,7 @@ const useStyles = makeStyles( (theme) => ({
             justifyContent: 'space-between',
             padding: '10px'
             // paddingBottom: '20px',
-            // paddingTop: '20px',
+            // paddingTop: '20px', 
         },
     },
     btn: {
@@ -69,7 +83,8 @@ const useStyles = makeStyles( (theme) => ({
         },
     },
     animetitle: {
-        fontSize: '0.9rem'
+        fontSize: '0.9rem',
+        color: "#a8dee0"
     },
     animeepisode: {
         fontSize: '0.8rem',
@@ -152,7 +167,7 @@ function Container( {page}) {
     }
 
     return loading ? <Loading /> : (
-        <Paper elevation={0} square className={classes.ptitle}>
+        <Paper elevation={0} square className={classes.container}>
            
             <Paper elevation={0} className={classes.paper}>
             <Box>
@@ -169,11 +184,11 @@ function Container( {page}) {
             <Divider style={{ marginBottom: '10px' }} />
             {/* <Pages /> */}
             
-            <Grid container spacing={1} align='center' >
+            <Grid container spacing={1} align="center" >
                 {lists.results.length === 0 ? <NoneFound /> : ''}
 
                 {lists.results.map( list => (
-                    <Grid item xs={6} sm={3} md={3} key={list.id}>
+                    <Grid item xs={6} sm={3} key={list.id}>
                         <Card className={classes.card} >
                             {/* <Link to={page === 'recentlyadded' ? '/watching/'+list.id+'/'+list.episodenumber+'' : '/details/'+list.id+'/' } className={classes.decor}> */}
                                 <CardActionArea component={Link} to={page === 'recentlyadded' ? '/watching/'+list.id+'/'+list.episodenumber+'' : '/details/'+list.id+'/' } >
