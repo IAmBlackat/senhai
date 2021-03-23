@@ -159,9 +159,6 @@ function Watch() {
 
     let title = id.split('-').join(' ')
 
-    // video player controls
-
-    console.log(quality)
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             {/* {console.log(xtream.map( i => i.file)[0])} */}
@@ -206,8 +203,9 @@ function Watch() {
                     </Box> */}
 
                     <Box className={classes.newVideoContainer} >
-                        <Player className src={quality} >
+                        <Player src={quality} >
                             {/* <source src={quality} /> */}
+                            <preference name="orientation" value="landscape"/>
                             <BigPlayButton position="center" />
                             <ControlBar>
                                 <VolumeMenuButton disabled />
