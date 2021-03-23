@@ -215,7 +215,6 @@ function Watch() {
                                 <CurrentTimeDisplay order={4.1} />
                                 <TimeDivider order={4.2} />
                             </ControlBar>
-                    
                         </Player>
                         {/* <VideoPlayer 
                             src={quality}
