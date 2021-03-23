@@ -88,14 +88,14 @@ const useStyles = makeStyles( (theme) => ({
     },
     newVideoContainer: {
         width: '70%',
-        height: 600,
+        // height: 600,
         margin: 'auto',
         [theme.breakpoints.down('sm')]: {
             width: "90%"
         },
         [theme.breakpoints.down('xs')]: {
             width: "95%",
-            height: 220
+            // height: 220
         },
         outline: 'none'
     }
@@ -205,7 +205,7 @@ function Watch() {
                     </Box> */}
 
                     <Box className={classes.newVideoContainer} >
-                        {/* <Player src={quality} playsInline >
+                        <Player src={quality} playsInline >
                             <preference name="orientation" value="landscape"/>
                             <BigPlayButton position="center" />
                             <ControlBar>
@@ -216,16 +216,16 @@ function Watch() {
                                 <TimeDivider order={4.2} />
                             </ControlBar>
                     
-                        </Player> */}
-                        <VideoPlayer 
+                        </Player>
+                        {/* <VideoPlayer 
                             src={quality}
                             className={classes.newVideo}
-                            height="200"
+                            // height="200"
                             // onReady={onVideoReady}
                             hideControls={['volume', 'playbackrates']}
                             responsive={true}
                             
-                        />
+                        /> */}
                     </Box>
 
                     <Box className={classes.epnav}>

@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexDirection: 'column',
-      position: 'absolute',
+      position: 'fixed',
       // left: '0%',
       transition: 'all .2s ease-in',
       // top: '0',
