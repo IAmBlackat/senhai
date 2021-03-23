@@ -203,7 +203,7 @@ function Watch() {
                     </Box> */}
 
                     <Box className={classes.newVideoContainer} >
-                        <Player src={quality} >
+                        <Player src={quality} playsInline >
                             {/* <source src={quality} /> */}
                             <preference name="orientation" value="landscape"/>
                             <BigPlayButton position="center" />
