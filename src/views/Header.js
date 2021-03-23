@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     display: 'block',
-    color: '#88cdf6'
+    // color: '#88cdf6'
   },
   search: {
     position: 'relative',

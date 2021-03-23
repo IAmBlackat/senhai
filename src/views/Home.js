@@ -132,35 +132,8 @@ function Home() {
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             <Download />
-            {/* <Typography variant='h4' align='left' className={classes.title}>
-                Featured
-            </Typography> */}
-            {/* <iframe src='https://animethemes.moe/video/ShingekiNoKyojinS4-OP1.webm' allowFullScreen />  */}
-            {/* <video src='https://v2.4animu.me/Yuru-Camp-S2/Yuru-Camp-S2-Episode-01-1080p.mp4' autoPlay={false} controls /> */}
-
-            {/* <Carousel 
-                mouseTracking
-                // items={page.map( (i,index) => <Featured page={page} id={i.mal_id} image={i.image_url} key={index} index={index} />)}
-                items={lists}
-                // autoPlayControls
-                // autoPlayStrategy={on ? 'action' : 'default'}
-                autoPlay
-                // renderPlayPauseButton={state === undefined ? 'PLAY' : state ? 'PAUSE' : 'PLAY'}
-                renderPlayPauseButton   
-                // autoHeight
-                // playButtonEnabled='true'
-                autoPlayInterval='10000'
-                infinite
-                disableButtonsControls
-                // disableDotsControls={window.innerWidth < 600 ? true : false }
-                disableDotsControls
-                touchTracking
-                autoPlayActionDisabled
-                height='500px'
-            /> */}
-
             <Typography variant='h4' align='left' className={classes.title}>
-                Winter 2021 Ongoing
+                Winter 2021 Ongoing<span style={{ fontSize: '0.5em', opacity: 0.5 }} > src: (MAL)</span>
             </Typography>
             
             <Paper className={classes.ongoingSeason}>

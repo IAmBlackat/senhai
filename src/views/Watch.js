@@ -5,10 +5,24 @@ import Loading from '../components/Loading'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import VideoPlayer from 'react-video-js-player';
+import { 
+    Player,
+    ControlBar,
+    ReplayControl,
+    ForwardControl,
+    CurrentTimeDisplay,
+    TimeDivider,
+    PlaybackRateMenuButton,
+    VolumeMenuButton,
+    BigPlayButton
+} from 'video-react';
+import "./Watch.css"
+import "../../node_modules/video-react/dist/video-react.css"
 
 const useStyles = makeStyles( (theme) => ({
     root: {
-        height: '110vh'
+        // height: '110vh'
         // height: 'auto'
     },
     title: {
@@ -69,7 +83,19 @@ const useStyles = makeStyles( (theme) => ({
         alignItems: 'center'
     },
     epnav: {
-        marginBottom: theme.spacing(2)
+        marginBottom: theme.spacing(2),
+        
+    },
+    newVideoContainer: {
+        width: '70%',
+        margin: 'auto',
+        [theme.breakpoints.down('sm')]: {
+            width: "90%"
+        },
+        [theme.breakpoints.down('xs')]: {
+            width: "95%"
+        },
+        outline: 'none'
     }
 }))
 
@@ -83,6 +109,7 @@ function Watch() {
     const [quality, setQuality] = useState('')
     const [loading, setLoading] = useState(true)
     const [checked, setChecked] = useState(false)
+    const [videoReady, setVideoReady] = useState(false)
     // const [xtream, setXtream] = useState()
 
     const location = useLocation()
@@ -100,6 +127,8 @@ function Watch() {
     var url = rootUrl + id +"/" + currentEp
     
     useEffect( () => {
+        // setLoading(true)
+        setVideoReady(false)
         let unmount = false
         axios.get(url)
         .then( res => {
@@ -124,20 +153,15 @@ function Watch() {
         .catch(err => {
             if(err.response.status !== 200) history.push('/details/' + id)
         })
-        // axios.post('https://senhai-cors.herokuapp.com/https://fcdn.stream/api/source/gqj0db-e41x7q8-')
-        // .then(res => {
-        //     // console.log(res)
-        //     setXtream(res.data.data)
-        // })
-        // .catch(err => console.log(err))
 
         return () => unmount = true
-
     }, [url, history, currentEp, id])
 
-    // console.log(cdn)
     let title = id.split('-').join(' ')
 
+    // video player controls
+
+    console.log(quality)
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
             {/* {console.log(xtream.map( i => i.file)[0])} */}
@@ -151,12 +175,6 @@ function Watch() {
                 
                 <Paper square className={classes.p} elevation={0}>
                     <Container maxWidth='md' className={classes.box}>
-                        {/* <FormControlLabel 
-                            control={<Switch checked={checked} onChange={ () => setChecked(!checked)} />}
-                            label='VidStream'
-                            labelPlacement='bottom'
-                        />
-             */}
                         <FormControl style={{marginLeft: '20px'}} >
                             <InputLabel>Quality</InputLabel>
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
@@ -168,6 +186,12 @@ function Watch() {
                             </Select>
                         </FormControl>
 
+                        {/* <FormControlLabel 
+                            control={<Switch checked={checked} onChange={ () => setChecked(!checked)} />}
+                            label='player'
+                            // labelPlacement='bottom'
+                        /> */}
+
                         <Box>
                             <Button component={Link} to={`/details/${id}`} className={classes.btn}>
                                 Episode List
@@ -176,42 +200,33 @@ function Watch() {
                     </Container>
                 </Paper>
 
-                <Paper square elevation={0} >     
+                <Paper square elevation={0} >   
+                    {/* <Box className={classes.videoContainer} >
+                        <video src={quality} controls className={classes.video} />                     
+                    </Box> */}
 
-                    {/* <video src={quality} controls className={classes.video}/> */}
-
-                    <Box className={ !checked ? classes.videoContainer : classes.iframeContainer}>
-                        { !checked ? 
-                            <video src={quality} controls className={classes.video} /> 
-                            :  
-                            <iframe 
-                                src={vdLink}
-                                title='vidstream'
-                                frameBorder='0'
-                                marginWidth='0'
-                                marginHeight='0'
-                                scrolling='no'
-                                allowFullScreen
-                                className={classes.video} 
-                            // style={{position: 'absolute', top: '0', left: '50%', right: '50%', width: '60%', height: '100%',
-                            //         transform: 'translate(-50%)'
-                            //     }}
-                            />    
-                        }
-
-                        {/* <video src={quality} controls className={classes.video} /> */}
-                        {/* <iframe 
-                            src='//gogo-play.net/streaming.php?id=MTUwNTc3&title=Ore+dake+Haireru+Kakushi+Dungeon+Episode+2'
-                            frameBorder='0'
-                            marginWidth='0'
-                            marginHeight='0'
-                            scrolling='no'
-                            allowFullScreen
-                            style={{position: 'absolute', top: '0', left: '50%', right: '50%', width: '60%', height: '100%',
-                                    transform: 'translate(-50%)'
-                                }}
+                    <Box className={classes.newVideoContainer} >
+                        <Player className src={quality} >
+                            {/* <source src={quality} /> */}
+                            <BigPlayButton position="center" />
+                            <ControlBar>
+                                <VolumeMenuButton disabled />
+                                <ReplayControl seconds={10} order={1.1} />
+                                <ForwardControl seconds={30} order={1.2} />
+                                <CurrentTimeDisplay order={4.1} />
+                                <TimeDivider order={4.2} />
+                            </ControlBar>
+                    
+                        </Player>
+                        {/* <VideoPlayer 
+                            src={quality}
+                            className={classes.newVideo}
+                            height="200"
+                            // onReady={onVideoReady}
+                            hideControls={['volume', 'playbackrates']}
+                            responsive={true}
+                            
                         /> */}
-                        
                     </Box>
 
                     <Box className={classes.epnav}>

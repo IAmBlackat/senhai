@@ -27,7 +27,7 @@ function Logout() {
                 setLoading(false)
                 setTimeout(() => {
                     window.location.reload()
-                }, 1000);
+                }, 800);
                 history.push('/')
             }   
             // window.location.reload()
