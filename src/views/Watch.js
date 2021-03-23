@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import { Box, Button, Container, FormControl, FormControlLabel, InputLabel, makeStyles, MenuItem, Paper, Select, Switch, Typography } from '@material-ui/core'
 import Loading from '../components/Loading'
@@ -13,9 +13,12 @@ import {
     ForwardControl,
     CurrentTimeDisplay,
     TimeDivider,
-    PlaybackRateMenuButton,
     VolumeMenuButton,
-    BigPlayButton
+    BigPlayButton,
+    FullscreenToggle,
+    DurationDisplay,
+    SeekBar,
+    Slider
 } from 'video-react';
 import "./Watch.css"
 import "../../node_modules/video-react/dist/video-react.css"
@@ -160,6 +163,7 @@ function Watch() {
     }, [url, history, currentEp, id])
 
     let title = id.split('-').join(' ')
+    const video = useRef(null)
 
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
@@ -205,16 +209,20 @@ function Watch() {
                     </Box> */}
 
                     <Box className={classes.newVideoContainer} >
-                        <Player src={quality} playsInline >
-                            <preference name="orientation" value="landscape"/>
+                        <Player ref={video} src={quality} playsInline >
                             <BigPlayButton position="center" />
                             <ControlBar>
-                                <VolumeMenuButton disabled />
-                                <ReplayControl seconds={10} order={1.1} />
-                                <ForwardControl seconds={30} order={1.2} />
-                                <CurrentTimeDisplay order={4.1} />
-                                <TimeDivider order={4.2} />
+                                <TimeDivider disabled />
+                                <VolumeMenuButton disabled />  
+
+                                <CurrentTimeDisplay order={2} />
+                                <DurationDisplay order={7} />
+                                {/* <Slider order={5} /> */}
+                                <ReplayControl seconds={10} order={9.1} />
+                                <ForwardControl seconds={30} order={9.2} />
+                                <FullscreenToggle order={10} />
                             </ControlBar>
+                            {console.log(video.current)}
                         </Player>
                         {/* <VideoPlayer 
                             src={quality}
