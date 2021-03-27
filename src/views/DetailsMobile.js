@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Alert } from '@material-ui/lab'
 import Bg from '../utils/Bg';
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
 
 const useStyles = makeStyles( (theme) => ({
     detailsContainer: {
@@ -39,6 +40,9 @@ const useStyles = makeStyles( (theme) => ({
     },
     link: {
         textDecoration: 'none'
+    },
+    summary: {
+        fontSize: 15
     }
 }))
 
@@ -124,11 +128,11 @@ export default function DetailsMobile() {
         return(
             <Box  style={{ display: 'inline-flex', width: '100%', marginBottom: 5 }}>
                 <Box style={{ width: '35%' }} >
-                    <Typography style={{ fontWeight: 'bold' }} >{text}</Typography>
+                    <Typography style={{ fontWeight: 'bold', fontSize: 15 }} >{text}</Typography>
                 </Box>
 
                 <Box style={{ width: '60%' }}  >
-                    <Typography>{data}</Typography>
+                    <Typography style={{ fontSize: 14 }} >{data}</Typography>
                 </Box>
             </Box>
         )
