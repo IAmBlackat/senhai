@@ -33,6 +33,7 @@ const useStyles = makeStyles( (theme) => ({
     },
     more: {
         transform: 'rotate(180deg)',
+        transition: 'transform .5s ease'
     },
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
