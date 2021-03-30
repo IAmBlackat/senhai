@@ -20,7 +20,7 @@ const useStyles = makeStyles( (theme) => ({
         '&::-webkit-scrollbar-track': {
             boxShadow: 'inset 0 0 6px rgba(0,0,0,0.2)',
             webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.5)'
-        },
+        },  
         '&::-webkit-scrollbar-thumb': {
             backgroundColor: '#828687',
             borderRadius: '5px'
@@ -93,7 +93,7 @@ function Upcoming() {
         let unmount = false
 
         // jikan.loadSeason(2021, 'spring')
-        axios.get('https://api.jikan.moe/v3/season/2021/spring')
+        axios.get('https://api.jikan.moe/v3/season/2021/summer')
         .then( res => {
             if(!unmount){
                 let arr = []
@@ -106,7 +106,9 @@ function Upcoming() {
         
         return () => unmount = true
     }, [])
+    
     let a = [1,2,3,4,5,6,7,8,9,10,11,12]
+
     return (
         <Paper className={classes.root}>
             <Box className={classes.box}>

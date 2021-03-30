@@ -68,7 +68,7 @@ function Home() {
     
     useEffect( () => {
         let unmount = false
-        jikan.loadSeason( 2021, 'winter')
+        jikan.loadSeason( 2021, 'spring')
         .then( res => {
             if(!unmount) {
                 // console.log(res)
@@ -133,7 +133,7 @@ function Home() {
         <Paper square className={classes.root}>
             <Download />
             <Typography variant='h4' align='left' className={classes.title}>
-                Winter 2021 Ongoing<span style={{ fontSize: '0.5em', opacity: 0.5 }} > src: (MAL)</span>
+                Spring 2021 Ongoing<span style={{ fontSize: '0.5em', opacity: 0.5 }} > src: (MAL)</span>
             </Typography>
             
             <Paper className={classes.ongoingSeason}>
