@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Alert } from '@material-ui/lab'
 import Bg from '../utils/Bg';
+import { baseUrl } from '../utils/baseUrl'
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
 
 const useStyles = makeStyles( (theme) => ({
@@ -70,7 +71,7 @@ export default function DetailsMobile() {
         }
     ])
 
-    let rooturl = "https://simplesenhaibookmark.herokuapp.com/api/details/"
+    let rooturl = `${baseUrl}details/`
     let url = rooturl + id
 
     useEffect( () => {

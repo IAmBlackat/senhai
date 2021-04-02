@@ -17,11 +17,11 @@ import {
     BigPlayButton,
     FullscreenToggle,
     DurationDisplay,
-    SeekBar,
-    Slider
+    
 } from 'video-react';
 import "./Watch.css"
 import "../../node_modules/video-react/dist/video-react.css"
+import { baseUrl } from '../utils/baseUrl'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -128,7 +128,7 @@ function Watch() {
     // const dispatch = useDispatch()
     // url for getting xtreamcdn get id from params https://fcdn.stream/api/source/gqj0db-e41x7q8-
 
-    const rootUrl = "https://simplesenhaibookmark.herokuapp.com/api/watching/"
+    const rootUrl = `${baseUrl}watching/`
     var url = rootUrl + id +"/" + currentEp
     
     useEffect( () => {

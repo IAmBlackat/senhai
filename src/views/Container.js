@@ -7,6 +7,7 @@ import Loading from '../components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import NoneFound from '../components/NoneFound'
+import {baseUrl} from '../utils/baseUrl'
 
 const useStyles = makeStyles( (theme) => ({
     container: {
@@ -107,11 +108,11 @@ function Container( {page}) {
     const query = location.pathname.split('/')[2]
     const currentPage = Number(location.pathname.split('/')[2])
 
-    const rootUrl = 'https://simplesenhaibookmark.herokuapp.com/api'
+    const rootUrl = baseUrl
     const getPage = page === 'search' ? 
-        '/' + page + '/' + query + '/' + 1 
+        page + '/' + query + '/' + 1 
         : 
-        '/' + page + '/' + currentPage 
+        page + '/' + currentPage 
 
     const url = rootUrl + getPage
 

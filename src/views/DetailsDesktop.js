@@ -7,6 +7,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { Alert } from '@material-ui/lab'
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
+import { baseUrl } from '../utils/baseUrl'
 
 export default function DetailsDesktop() {
     const [loading, setLoading] = useState(true)
@@ -31,7 +32,7 @@ export default function DetailsDesktop() {
         }
     ])
 
-    let rooturl = "https://simplesenhaibookmark.herokuapp.com/api/details/"
+    let rooturl = `${baseUrl}details/`
     let url = rooturl + id
 
     useEffect( () => {
