@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Loading from '../components/Loading'
 import { EmptyBookmark } from './instructions/EmptyBookmark'
 import BookmarkM from './mobile/BookmarkM'
+import { cloudinaryUrl, uploadPreset } from '../utils/baseUrl'
 
 const useStyles = makeStyles( (theme) => ({
     root: {
@@ -48,7 +49,6 @@ function Profile() {
 
     // backdrop state
     const [load, setLoad] = useState(false)
-    const [success, setSuccess] = useState(false)
 
     const history = useHistory()
     const [loading, setLoading] = useState(true)
@@ -84,8 +84,6 @@ function Profile() {
     const [progress, setProgress] = useState(0)
     const _id = localStorage.getItem("_id")
 
-    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/senhai/image/upload"
-    const uploadPreset = "senhai"
     const config = {
         headers: { "X-Requested-With": "XMLHttpRequest" },
         onUploadProgress: progressEvent => {
@@ -138,14 +136,6 @@ function Profile() {
         .catch( err => console.log(err))
         setLoad(false)
     }
-
-    //this handles the alert from snackbar
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setSuccess(false);
-    };
 
     return loading ? <Loading /> : (
         <Container>
@@ -216,14 +206,8 @@ function Profile() {
 
             <Backdrop className={classes.backdrop} open={load}>
                 <CircularProgress color="inherit" />
-                <Typography>Uploading: {progress}%</Typography>
+                <Typography> Uploading: {progress}%</Typography>
             </Backdrop>
-            
-            {/* <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success" elevation={6} variant="filled" >
-                    Log In Success
-                </Alert>
-            </Snackbar> */}
 
         </Container>
     )
