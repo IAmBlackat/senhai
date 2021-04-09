@@ -1,7 +1,7 @@
 import { Box, Button, makeStyles, Paper, Typography } from '@material-ui/core'
 import React from 'react'
 import bg from '../assets/download1.png'
-import apk from '../assets/app-release.apk'
+import apk from '../assets/senhai.apk'
 
 const styles = makeStyles( (theme) => ({
     featuredImg: {
