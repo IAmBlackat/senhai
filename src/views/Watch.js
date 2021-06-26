@@ -168,14 +168,13 @@ function Watch() {
 
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
-            <iframe
+            {/* <iframe
                 src="https://animixplay.to/api/liveTmpnMk1EZz1MVFhzM0dyVTh3ZTlPVG1wbk1rMUVaejA9"
                 allowFullScreen
                 width="70%"
                 height={500}
-            >
+            /> */}
 
-            </iframe>
             {/* {console.log(xtream.map( i => i.file)[0])} */}
             <Paper className={classes.p} square elevation={0}>
                 <Container maxWidth='sm'>
