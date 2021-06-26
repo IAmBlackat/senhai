@@ -7,7 +7,7 @@ import Loading from '../components/Loading'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import NoneFound from '../components/NoneFound'
-import {baseUrl} from '../utils/baseUrl'
+import { baseUrl } from '../utils/baseUrl'
 
 const useStyles = makeStyles( (theme) => ({
     container: {

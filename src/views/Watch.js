@@ -132,17 +132,17 @@ function Watch() {
     var url = rootUrl + id +"/" + currentEp
     
     useEffect( () => {
-        // setLoading(true)
+        setLoading(true)
         setVideoReady(false)
         let unmount = false
         axios.get(url)
         .then( res => {
             if(!unmount) {
-                // console.log(res)
+                console.log(res.data)
                 setVdLink(res.data.link)//vidstream url
-                setLinks(res.data.links)
+                setLinks(res.data.link)
                 setCdn(res.data.cdn)
-                setQuality(res.data.links[0].link)
+                setQuality(res.data.link[0])
                 setLoading(false)
                 var epLinks = []
                 
@@ -156,7 +156,8 @@ function Watch() {
             }
         })
         .catch(err => {
-            if(err.response.status !== 200) history.push('/details/' + id)
+            // if(err.response.status !== 200) history.push('/details/' + id)
+            console.log(err)
         })
 
         return () => unmount = true
@@ -167,6 +168,14 @@ function Watch() {
 
     return loading ? <Loading /> : (
         <Paper square className={classes.root}>
+            <iframe
+                src="https://animixplay.to/api/liveTmpnMk1EZz1MVFhzM0dyVTh3ZTlPVG1wbk1rMUVaejA9"
+                allowFullScreen
+                width="70%"
+                height={500}
+            >
+
+            </iframe>
             {/* {console.log(xtream.map( i => i.file)[0])} */}
             <Paper className={classes.p} square elevation={0}>
                 <Container maxWidth='sm'>
@@ -178,7 +187,7 @@ function Watch() {
                 
                 <Paper square className={classes.p} elevation={0}>
                     <Container maxWidth='md' className={classes.box}>
-                        <FormControl style={{marginLeft: '20px'}} >
+                        {/* <FormControl style={{marginLeft: '20px'}} >
                             <InputLabel>Quality</InputLabel>
                             <Select value={quality} onChange={ (e) => setQuality(e.target.value)} >
                                 {links.map( (i,index) => (
@@ -187,7 +196,7 @@ function Watch() {
                                     </MenuItem>
                                 ))}
                             </Select>
-                        </FormControl>
+                        </FormControl> */}
 
                         {/* <FormControlLabel 
                             control={<Switch checked={checked} onChange={ () => setChecked(!checked)} />}
@@ -208,7 +217,8 @@ function Watch() {
                         <video src={quality} controls className={classes.video} />                     
                     </Box> */}
 
-                    <Box className={classes.newVideoContainer} >
+                   <Box className={classes.newVideoContainer} >
+                    { quality.match(/storage.googleapi/g) ?
                         <Player ref={video} src={quality} playsInline >
                             <BigPlayButton position="center" />
                             <ControlBar>
@@ -224,6 +234,9 @@ function Watch() {
                             </ControlBar>
                             {console.log(video.current)}
                         </Player>
+                        : 
+                        <Typography>Sorry video not available</Typography>
+                    }
                         {/* <VideoPlayer 
                             src={quality}
                             className={classes.newVideo}
@@ -233,7 +246,7 @@ function Watch() {
                             responsive={true}
                             
                         /> */}
-                    </Box>
+                    </Box> 
 
                     <Box className={classes.epnav}>
                         <span>
@@ -253,17 +266,17 @@ function Watch() {
                     </Box>
                 </Paper>
 
-                <Paper square elevation={0}>   
+                {/* <Paper square elevation={0}>   
                     <Typography>
                         Download Links 
                     </Typography>
-                    {/* <Button href='https://fvs.io/redirector?token=U3p3eXVkZWRadHBRKzRqRTNBWk4veHpmejkyZVlCbjluZzdBZnc5WUJmNVJWMkUwRWx1UC8wblY0UVpIclYzWW45L1ZQd3lBMTZNL3BRZVhIUThzbllrWkVIdXNSTzZ6REtMU09WNTFUbTFobTUzQ0J2R0FiYnNYUWxQSCs0dXFQUmNDbTZEVVc1aU5wWmdta0NWdERUWGJpeHJCQVlwZWhYbz06c2lXREFSbFJmTkU3ZlRaMitSVGxNQT09' variant='contained' download className={classes.btn} >Xtreamcdn</Button> */}
+                    <Button href='https://fvs.io/redirector?token=U3p3eXVkZWRadHBRKzRqRTNBWk4veHpmejkyZVlCbjluZzdBZnc5WUJmNVJWMkUwRWx1UC8wblY0UVpIclYzWW45L1ZQd3lBMTZNL3BRZVhIUThzbllrWkVIdXNSTzZ6REtMU09WNTFUbTFobTUzQ0J2R0FiYnNYUWxQSCs0dXFQUmNDbTZEVVc1aU5wWmdta0NWdERUWGJpeHJCQVlwZWhYbz06c2lXREFSbFJmTkU3ZlRaMitSVGxNQT09' variant='contained' download className={classes.btn} >Xtreamcdn</Button>
                     {links.map( (i,index) => (
-                        <Button href={i.link} variant='outlined' download className={classes.btn} key={index}>
-                            {i.name.replace(/ ([^)]) */g, ".").replace("(","").replace(")","")}
+                        <Button href={i.link} variant='outlined' download={`${title.replace(" ","-")}.mp4`} className={classes.btn} key={index}>
+                            {i.name.replace(/ ([^)]) /g, ".").replace("(","").replace(")","")}
                         </Button>
                     ))}
-                </Paper>
+                </Paper> */}
             </Paper>
         </Paper>
     )

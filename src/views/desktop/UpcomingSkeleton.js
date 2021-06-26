@@ -10,11 +10,9 @@ export const UpcomingSkeleton = ({ classes }) => {
                 </ListItemAvatar>
                 <ListItemText 
                     primary={
-                        // <Box className={classes.titleContainer}>
-                            <Typography noWrap component='span' className={classes.title} >
-                                <Skeleton variant='text' height={30} />
-                            </Typography>
-                        // </Box>
+                        <Typography noWrap component='span' className={classes.title} >
+                            <Skeleton variant='text' height={30} />
+                        </Typography>
                     }
                     secondary={
                         <Box component='span'>
@@ -29,9 +27,6 @@ export const UpcomingSkeleton = ({ classes }) => {
                                 </Typography>
                             </Box>
                         </Box>
-                            // <Typography  className={classes.synopsis}>
-                            //     <Skeleton variant='text' height={130} />
-                            // </Typography>
                     }
                 />
             </ListItem>

@@ -79,8 +79,8 @@ function Recent() {
 
     return loading ? <Loading /> : (
         <Paper elevation={0} square>
-            <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' />
-            <iframe src='https://www.youtube.com/embed/ciGB8qOyXrM?enablejsapi=1&wmode=opaque&autoplay=0' />
+            {/* <img src='https://zjcdn.mangahere.org/store/manga/15241/001.0/compressed/o001.jpg' alt='' /> */}
+            {/* <iframe src='https://www.youtube.com/embed/ciGB8qOyXrM?enablejsapi=1&wmode=opaque&autoplay=0' /> */}
             {/* <video src='https://storage.googleapis.com/auengine.appspot.com/2205/dub/11_39715.mp4' controls /> */}
 {/* 
             <Typography variant='h4' className={classes.title}>Newest Episode</Typography>

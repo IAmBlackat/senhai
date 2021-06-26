@@ -24,7 +24,7 @@ function OngoingGrid({ page }) {
                     {page.map( (i,index) => (
                         <Grid item xs={6} sm={3} key={index}>
                             <Card className={classes.seasonalList}>
-                                {console.log(i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' '))}
+                                {/* {console.log(i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' '))} */}
                                 <CardActionArea
                                     component={Link} 
                                     to={'/search/' + i.title.replace(/[^a-zA-Z0-9]/g, ' ').split(' ').filter( e => e.trim() ).join(' ')}

@@ -36,7 +36,6 @@ function Search() {
     const dispatch = useDispatch()
 
     const location = useLocation()
-    console.log(location.pathname)
 
     const rootUrl = 'https://anime-x.vercel.app/api/search/'
     const url = rootUrl + query + '/' + 1

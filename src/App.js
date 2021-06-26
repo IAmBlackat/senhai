@@ -22,21 +22,24 @@ function App() {
           <Route exact path='/'>
             <Home />
           </Route>
+          
           <Route path='/recentlyadded'>
             <Container page={'recentlyadded'} />
           </Route>
           <Route path='/popular'>
             <Container page={'popular'} />
           </Route>
+          <Route path="/search">
+            <Container page={'search'} />
+          </Route>
+
           <Route path='/details'>
             <Details />
           </Route>
           <Route path="/watching/">
             <Watch />
           </Route>
-          <Route path="/search">
-            <Container page={'search'} />
-          </Route>
+          
           <Route path="/error">
             <Error />
           </Route>
