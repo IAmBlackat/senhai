@@ -19,6 +19,7 @@ import {
     DurationDisplay,
     
 } from 'video-react';
+import Hls from './Hls'
 import "./Watch.css"
 import "../../node_modules/video-react/dist/video-react.css"
 import { baseUrl } from '../utils/baseUrl'
@@ -91,29 +92,41 @@ const useStyles = makeStyles( (theme) => ({
     },
     newVideoContainer: {
         width: '70%',
-        // height: 600,
+        height: 600,
         margin: 'auto',
         [theme.breakpoints.down('sm')]: {
             width: "90%"
         },
         [theme.breakpoints.down('xs')]: {
             width: "95%",
-            // height: 220
+            height: 220
         },
+        outline: 'none',
+        position: 'relative'
+
+    },
+    newVideo: {
+        objectFit: 'fill',
         outline: 'none'
+    },
+    controlWrapper: {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        height: '100%'
     }
 }))
 
 
 function Watch() {
     const classes = useStyles()
-    const [dl, setDl] = useState( { epdl: {}} )
-    const [links, setLinks] = useState()
-    const [cdn, setCdn] = useState('')
-    const [vdLink, setVdLink] = useState('')
+    // const [dl, setDl] = useState( { epdl: {}} )
+    // const [links, setLinks] = useState()
+    // const [cdn, setCdn] = useState('')
+    // const [vdLink, setVdLink] = useState('')
     const [quality, setQuality] = useState('')
     const [loading, setLoading] = useState(true)
-    const [checked, setChecked] = useState(false)
+    // const [checked, setChecked] = useState(false)
     const [videoReady, setVideoReady] = useState(false)
     // const [xtream, setXtream] = useState()
 
@@ -123,10 +136,6 @@ function Watch() {
     let path = location.pathname.split('/') 
     let currentEp = Number(path[3])
     const id = path[2]
-
-    // const state = useSelector( state => state)
-    // const dispatch = useDispatch()
-    // url for getting xtreamcdn get id from params https://fcdn.stream/api/source/gqj0db-e41x7q8-
 
     const rootUrl = `${baseUrl}watching/`
     var url = rootUrl + id +"/" + currentEp
@@ -139,20 +148,24 @@ function Watch() {
         .then( res => {
             if(!unmount) {
                 console.log(res.data)
-                setVdLink(res.data.link)//vidstream url
-                setLinks(res.data.link)
-                setCdn(res.data.cdn)
-                setQuality(res.data.link[0])
-                setLoading(false)
-                var epLinks = []
-                
-                for (var i = 0; i < res.data.links.length; i++){
-                    let a = res.data.links[i].link.split('?')
-                    let b = a[0].split('/')
-                    b[5] === undefined ? epLinks.push('original') : epLinks.push(b[5])
-                    // epLinks.push(b[5])
+                // setVdLink(res.data.link)//vidstream url
+                // setLinks(res.data.hd)
+                // setCdn(res.data.cdn)
+                if(res.data.hd !== "") {
+                    setQuality(res.data.hd)
+                } else {
+                    setQuality(res.data.alt)
                 }
-                setDl({epdl: epLinks})
+                setLoading(false)
+                // var epLinks = []
+                
+                // for (var i = 0; i < res.data.links.length; i++){
+                //     let a = res.data.links[i].link.split('?')
+                //     let b = a[0].split('/')
+                //     b[5] === undefined ? epLinks.push('original') : epLinks.push(b[5])
+                //     // epLinks.push(b[5])
+                // }
+                // setDl({epdl: epLinks})
             }
         })
         .catch(err => {
@@ -167,7 +180,7 @@ function Watch() {
     const video = useRef(null)
 
     return loading ? <Loading /> : (
-        <Paper square className={classes.root}>
+        <Box square className={classes.root}>
             {/* <iframe
                 src="https://animixplay.to/api/liveTmpnMk1EZz1MVFhzM0dyVTh3ZTlPVG1wbk1rMUVaejA9"
                 allowFullScreen
@@ -176,7 +189,7 @@ function Watch() {
             /> */}
 
             {/* {console.log(xtream.map( i => i.file)[0])} */}
-            <Paper className={classes.p} square elevation={0}>
+            <Box className={classes.p} square elevation={0}>
                 <Container maxWidth='sm'>
                     <Typography className={classes.title} variant='h5'>{title}</Typography>
                     <Typography variant='h6'>
@@ -184,7 +197,7 @@ function Watch() {
                     </Typography>
                 </Container>
                 
-                <Paper square className={classes.p} elevation={0}>
+                <Box square className={classes.p} elevation={0}>
                     <Container maxWidth='md' className={classes.box}>
                         {/* <FormControl style={{marginLeft: '20px'}} >
                             <InputLabel>Quality</InputLabel>
@@ -209,16 +222,16 @@ function Watch() {
                             </Button>
                         </Box>
                     </Container>
-                </Paper>
+                </Box>
 
-                <Paper square elevation={0} >   
+                <Box square elevation={0} >   
                     {/* <Box className={classes.videoContainer} >
                         <video src={quality} controls className={classes.video} />                     
                     </Box> */}
 
-                   <Box className={classes.newVideoContainer} >
-                    { quality.match(/storage.googleapi/g) ?
-                        <Player ref={video} src={quality} playsInline >
+                   <Box onClick={()=>console.log("Asdfasdf")} className={classes.newVideoContainer} >
+                        <Player ref={video} playsInline >
+                            { quality.includes("storage.googleapi") ? <source src={quality} /> : <Hls isVideoChild src={quality} /> }
                             <BigPlayButton position="center" />
                             <ControlBar>
                                 <TimeDivider disabled />
@@ -226,25 +239,24 @@ function Watch() {
 
                                 <CurrentTimeDisplay order={2} />
                                 <DurationDisplay order={7} />
-                                {/* <Slider order={5} /> */}
                                 <ReplayControl seconds={10} order={9.1} />
                                 <ForwardControl seconds={30} order={9.2} />
                                 <FullscreenToggle order={10} />
                             </ControlBar>
-                            {console.log(video.current)}
                         </Player>
-                        : 
-                        <Typography>Sorry video not available</Typography>
-                    }
                         {/* <VideoPlayer 
                             src={quality}
                             className={classes.newVideo}
-                            // height="200"
+                            height="100%"
                             // onReady={onVideoReady}
-                            hideControls={['volume', 'playbackrates']}
+                            // hideControls={['volume', 'playbackrates']}
                             responsive={true}
-                            
+                            controls={true}
+                            autoplay={true}
                         /> */}
+                        {/* <div onClick={()=>console.log("asdasd")} className={classes.controlWrapper} >
+                            <p>asdfsdf</p>
+                        </div> */}
                     </Box> 
 
                     <Box className={classes.epnav}>
@@ -263,9 +275,9 @@ function Watch() {
                             </Link>
                         </span>
                     </Box>
-                </Paper>
+                </Box>
 
-                {/* <Paper square elevation={0}>   
+                {/* <Box square elevation={0}>   
                     <Typography>
                         Download Links 
                     </Typography>
@@ -275,9 +287,9 @@ function Watch() {
                             {i.name.replace(/ ([^)]) /g, ".").replace("(","").replace(")","")}
                         </Button>
                     ))}
-                </Paper> */}
-            </Paper>
-        </Paper>
+                </Box> */}
+            </Box>
+        </Box>
     )
 }
 
