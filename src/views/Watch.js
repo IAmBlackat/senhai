@@ -92,14 +92,14 @@ const useStyles = makeStyles( (theme) => ({
     },
     newVideoContainer: {
         width: '70%',
-        height: 600,
+        // height: 600,
         margin: 'auto',
         [theme.breakpoints.down('sm')]: {
             width: "90%"
         },
         [theme.breakpoints.down('xs')]: {
             width: "95%",
-            height: 220
+            // height: 220
         },
         outline: 'none',
         position: 'relative'
@@ -122,7 +122,7 @@ function Watch() {
     const classes = useStyles()
     // const [dl, setDl] = useState( { epdl: {}} )
     // const [links, setLinks] = useState()
-    // const [cdn, setCdn] = useState('')
+    // const [cdn, setCdn] = useState([])
     // const [vdLink, setVdLink] = useState('')
     const [quality, setQuality] = useState('')
     const [loading, setLoading] = useState(true)
@@ -147,10 +147,10 @@ function Watch() {
         axios.get(url)
         .then( res => {
             if(!unmount) {
-                console.log(res.data)
+                // console.log(res.data)
                 // setVdLink(res.data.link)//vidstream url
                 // setLinks(res.data.hd)
-                // setCdn(res.data.cdn)
+                // setCdn(res.data.xtrm[0])
                 if(res.data.hd !== "") {
                     setQuality(res.data.hd)
                 } else {
@@ -231,12 +231,12 @@ function Watch() {
 
                    <Box onClick={()=>console.log("Asdfasdf")} className={classes.newVideoContainer} >
                         <Player ref={video} playsInline >
-                            { quality.includes("storage.googleapi") ? <source src={quality} /> : <Hls isVideoChild src={quality} /> }
+                            {/* { quality.includes("storage.googleapi") ? <source src={quality} /> : <Hls isVideoChild src={quality} /> } */}
+                            <source src="https://fvs.io/redirector?token=cjFQQTNKVlNGSnFPZ0xoMlg4NXN2YUEwYlNJVjJMQThBc2ZGeDBzUDB1a0dUKzZENkJhUGNRNW10b0RzMng2YkE0NTQzdzN5QzRycUI3RUUvbFQ4anpkS1VMOVRBd0MrajNOR2ptTGpBZG95cHRjU0k0Sm01NlM1aklTb2RKOUZIeHhsaVIrVDVNdHd0Vk4zNUNIb2pNaWdsd3k4OTNzeG1HZz06bUJzMFZVaVhpbjV3N1hMWHo2emZtdz09" />
                             <BigPlayButton position="center" />
                             <ControlBar>
                                 <TimeDivider disabled />
                                 <VolumeMenuButton disabled />  
-
                                 <CurrentTimeDisplay order={2} />
                                 <DurationDisplay order={7} />
                                 <ReplayControl seconds={10} order={9.1} />
@@ -276,7 +276,12 @@ function Watch() {
                         </span>
                     </Box>
                 </Box>
-
+                {/* <Button 
+                    href="https://fvs.io/redirector?token=a0lsZEtSS3dsbTBDTEVwQ2JmZE5aMDZUK0prTUJURUxwakIwa2NIQUI4QkhQVG1lWURDQi90Uitic0dIR3VBN2hqR21SMUNBK3VtbUoxNEY4R0lKTHJYbVM3akJqaHFVNitURC9jaWdmUWh3OUJkOTkxczZYZ2VkdHE3YXFMbGxBdVQ2V0YySGw0ZmZRNFhFa2prTXk2SUlOK1p6YkxHd2ZYYz06VWJmaHNTMjRBTVhVZ0FzUzR3OXA4dz09" 
+                    download
+                >
+                    dl
+                </Button> */}
                 {/* <Box square elevation={0}>   
                     <Typography>
                         Download Links 

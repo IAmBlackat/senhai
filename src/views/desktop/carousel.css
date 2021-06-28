@@ -2,7 +2,7 @@
     /* position: initial; */
     margin-bottom: 10px;
 }
-/* .alice-carousel__prev-btn, .alice-carousel__next-btn {
+.alice-carousel__prev-btn, .alice-carousel__next-btn {
     position: absolute;
     top: 0;
     right: 0;
@@ -40,9 +40,9 @@
     border: 1px solid whitesmoke;
     color: white;
     /* color: aliceblue; */
-/* } */
+} 
 
-/* .alice-carousel__next-btn-item:hover, 
+.alice-carousel__next-btn-item:hover, 
 .alice-carousel__prev-btn-item:hover {
     color: whitesmoke;
     transform: scale(1.1);
@@ -56,4 +56,4 @@
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transition: 'all .5s ease';
-} */ 
+}
