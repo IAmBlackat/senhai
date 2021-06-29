@@ -231,8 +231,8 @@ function Watch() {
 
                    <Box onClick={()=>console.log("Asdfasdf")} className={classes.newVideoContainer} >
                         <Player ref={video} playsInline >
-                            {/* { quality.includes("storage.googleapi") ? <source src={quality} /> : <Hls isVideoChild src={quality} /> } */}
-                            <source src="https://fvs.io/redirector?token=cjFQQTNKVlNGSnFPZ0xoMlg4NXN2YUEwYlNJVjJMQThBc2ZGeDBzUDB1a0dUKzZENkJhUGNRNW10b0RzMng2YkE0NTQzdzN5QzRycUI3RUUvbFQ4anpkS1VMOVRBd0MrajNOR2ptTGpBZG95cHRjU0k0Sm01NlM1aklTb2RKOUZIeHhsaVIrVDVNdHd0Vk4zNUNIb2pNaWdsd3k4OTNzeG1HZz06bUJzMFZVaVhpbjV3N1hMWHo2emZtdz09" />
+                            { quality.includes("storage.googleapi") ? <source src={quality} /> : <Hls isVideoChild src={quality} /> }
+                            {/* <source src="https://fvs.io/redirector?token=cjFQQTNKVlNGSnFPZ0xoMlg4NXN2YUEwYlNJVjJMQThBc2ZGeDBzUDB1a0dUKzZENkJhUGNRNW10b0RzMng2YkE0NTQzdzN5QzRycUI3RUUvbFQ4anpkS1VMOVRBd0MrajNOR2ptTGpBZG95cHRjU0k0Sm01NlM1aklTb2RKOUZIeHhsaVIrVDVNdHd0Vk4zNUNIb2pNaWdsd3k4OTNzeG1HZz06bUJzMFZVaVhpbjV3N1hMWHo2emZtdz09" /> */}
                             <BigPlayButton position="center" />
                             <ControlBar>
                                 <TimeDivider disabled />
@@ -260,22 +260,22 @@ function Watch() {
                     </Box> 
 
                     <Box className={classes.epnav}>
-                        <span>
-                            <Link to={'/watching/' + id + '/' + (currentEp-1)} className={currentEp === 1 ? classes.linkDisabled : classes.link}>
-                                <Button variant='outlined' className={classes.btn} startIcon={<NavigateBeforeIcon />} disabled={currentEp === 1 ? true : false}>
-                                    Prev
-                                </Button>
-                            </Link>
-                        </span>
-                        <span>
-                            <Link to={'/watching/' + id + '/' + (currentEp+1)} className={classes.link}>
-                                <Button variant='outlined' className={classes.btn} endIcon={<NavigateNextIcon /> } >
-                                    Next
-                                </Button>
-                            </Link>
-                        </span>
+                            <span>
+                                <Link to={'/watching/' + id + '/' + (currentEp-1)} className={currentEp === 1 ? classes.linkDisabled : classes.link}>
+                                    <Button variant='outlined' className={classes.btn} startIcon={<NavigateBeforeIcon />} disabled={currentEp === 1 ? true : false}>
+                                        Prev
+                                    </Button>
+                                </Link>
+                            </span>
+                            <span>
+                                <Link to={'/watching/' + id + '/' + (currentEp+1)} className={classes.link}>
+                                    <Button variant='outlined' className={classes.btn} endIcon={<NavigateNextIcon /> } >
+                                        Next
+                                    </Button>
+                                </Link>
+                            </span>
+                        </Box>
                     </Box>
-                </Box>
                 {/* <Button 
                     href="https://fvs.io/redirector?token=a0lsZEtSS3dsbTBDTEVwQ2JmZE5aMDZUK0prTUJURUxwakIwa2NIQUI4QkhQVG1lWURDQi90Uitic0dIR3VBN2hqR21SMUNBK3VtbUoxNEY4R0lKTHJYbVM3akJqaHFVNitURC9jaWdmUWh3OUJkOTkxczZYZ2VkdHE3YXFMbGxBdVQ2V0YySGw0ZmZRNFhFa2prTXk2SUlOK1p6YkxHd2ZYYz06VWJmaHNTMjRBTVhVZ0FzUzR3OXA4dz09" 
                     download
