@@ -5,7 +5,7 @@ import Details from './views/Details';
 import Watch from './views/Watch';
 import Container from './views/Container';
 import Error from './components/Error';
-import { HashRouter as Router, Switch, Route, useHistory, useLocation} from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './views/Home';
 import UpcomingSeason from './views/mobile/UpcomingSeason';
 import Profile from './user/Profile';
@@ -15,10 +15,13 @@ import Logout from './user/Logout';
 import Report from './user/Report';
 
 function App() {
-  const history = useHistory()
+  // const history = useHistory()
   // const location = useLocation()
   useEffect( () => {
-    console.log(window.location.hostname)
+    // console.log(window.location.hostname)
+    if (window.location.hostname==="senpaikouhai.github.io") {
+      window.location.href = "https://www.senhai.cf"; 
+    }
   }, [])
   return (
     <div className="App">
