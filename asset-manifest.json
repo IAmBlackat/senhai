@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/senhai/static/css/main.ca781319.chunk.css",
-    "main.js": "/senhai/static/js/main.01b08baf.chunk.js",
-    "main.js.map": "/senhai/static/js/main.01b08baf.chunk.js.map",
-    "runtime-main.js": "/senhai/static/js/runtime-main.c8e04a80.js",
-    "runtime-main.js.map": "/senhai/static/js/runtime-main.c8e04a80.js.map",
-    "static/css/2.d68e4e15.chunk.css": "/senhai/static/css/2.d68e4e15.chunk.css",
-    "static/js/2.2f8e4923.chunk.js": "/senhai/static/js/2.2f8e4923.chunk.js",
-    "static/js/2.2f8e4923.chunk.js.map": "/senhai/static/js/2.2f8e4923.chunk.js.map",
-    "index.html": "/senhai/index.html",
-    "static/css/2.d68e4e15.chunk.css.map": "/senhai/static/css/2.d68e4e15.chunk.css.map",
-    "static/css/main.ca781319.chunk.css.map": "/senhai/static/css/main.ca781319.chunk.css.map",
-    "static/js/2.2f8e4923.chunk.js.LICENSE.txt": "/senhai/static/js/2.2f8e4923.chunk.js.LICENSE.txt",
-    "static/media/download1.b3356e99.png": "/senhai/static/media/download1.b3356e99.png",
-    "static/media/senhai.8848f907.apk": "/senhai/static/media/senhai.8848f907.apk"
+    "main.css": "/static/css/main.c7833a21.chunk.css",
+    "main.js": "/static/js/main.ab0f481d.chunk.js",
+    "main.js.map": "/static/js/main.ab0f481d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.83546e98.js",
+    "runtime-main.js.map": "/static/js/runtime-main.83546e98.js.map",
+    "static/css/2.d68e4e15.chunk.css": "/static/css/2.d68e4e15.chunk.css",
+    "static/js/2.eb759360.chunk.js": "/static/js/2.eb759360.chunk.js",
+    "static/js/2.eb759360.chunk.js.map": "/static/js/2.eb759360.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.d68e4e15.chunk.css.map": "/static/css/2.d68e4e15.chunk.css.map",
+    "static/css/main.c7833a21.chunk.css.map": "/static/css/main.c7833a21.chunk.css.map",
+    "static/js/2.eb759360.chunk.js.LICENSE.txt": "/static/js/2.eb759360.chunk.js.LICENSE.txt",
+    "static/media/download1.b3356e99.png": "/static/media/download1.b3356e99.png",
+    "static/media/senhai.8848f907.apk": "/static/media/senhai.8848f907.apk"
   },
   "entrypoints": [
-    "static/js/runtime-main.c8e04a80.js",
+    "static/js/runtime-main.83546e98.js",
     "static/css/2.d68e4e15.chunk.css",
-    "static/js/2.2f8e4923.chunk.js",
-    "static/css/main.ca781319.chunk.css",
-    "static/js/main.01b08baf.chunk.js"
+    "static/js/2.eb759360.chunk.js",
+    "static/css/main.c7833a21.chunk.css",
+    "static/js/main.ab0f481d.chunk.js"
   ]
 }
