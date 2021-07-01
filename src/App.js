@@ -17,12 +17,14 @@ import Report from './user/Report';
 function App() {
   // const history = useHistory()
   // const location = useLocation()
-  useEffect( () => {
-    // console.log(window.location.hostname)
-    if (window.location.hostname==="senpaikouhai.github.io") {
-      window.location.href = "https://www.senhai.cf"; 
-    }
-  }, [])
+  // useEffect( () => {
+  //   // console.log(window.location.hostname)
+  //   if (window.location.hostname==="senpaikouhai.github.io") {
+  //     window.location.href = "https://www.senhai.cf"; 
+  
+  // "homepage": "https://senpaikouhai.github.io/senhai/",
+  //   }
+  // }, [])
   return (
     <div className="App">
       <Router>
