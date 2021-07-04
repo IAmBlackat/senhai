@@ -172,7 +172,8 @@ function Watch() {
             // if(err.response.status !== 200) history.push('/details/' + id)
             console.log(err)
         })
-
+        axios.get('https://v.vrv.co/evs1/150da159dafb6c91363807375a315970/assets/9ff6c93e96c5cb58b9933351c18c8a47_,4097855.mp4,4097861.mp4,4097849.mp4,4097837.mp4,4097843.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMxLzE1MGRhMTU5ZGFmYjZjOTEzNjM4MDczNzVhMzE1OTcwL2Fzc2V0cy85ZmY2YzkzZTk2YzVjYjU4Yjk5MzMzNTFjMThjOGE0N18sNDA5Nzg1NS5tcDQsNDA5Nzg2MS5tcDQsNDA5Nzg0OS5tcDQsNDA5NzgzNy5tcDQsNDA5Nzg0My5tcDQsLnVybHNldC9tYXN0ZXIubTN1OCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTYyNTM2MTk5Mn19fV19&Signature=K6vk7U2~VgjJAdEfHak9VxJent~KbqCBsLKr~ZtYWtu3Khoa1Nz7FRf~suydEAaDCESmmRMgcfFZO85GTE1OzpzGwrowU-2PJbtXpgzoSxVMMI1Z4w6fMz4fHJhSuuVyRedTQfI0GOisyNArzlZ2-nDAPUkj5Jdc3zPbj~rv~FNCA3kXylDYy-Q9suwybZYBvmVKDVz0jQWFJ~ixO~kzN0-8SmBBqz0p9njTsHSy0TrsjBLEIvw1oGMJ71~tmRfcarLPAsL~pXutsJlCTCHx44ydBRQeSBs2QlpD9-hKxC-w~TX6r3vf1cocGK0gt-ZwHyl9Vcl2eYfgPY7XKKLczw__&Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA')
+        .then( res => console.log(res.data))
         return () => unmount = true
     }, [url, history, currentEp, id])
 

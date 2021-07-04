@@ -1,6 +1,6 @@
 .alice-carousel__wrapper {
-    /* position: initial; */
-    margin-bottom: 10px;
+    position: initial;
+    /* margin-bottom: 10px; */
 }
 .alice-carousel__prev-btn, .alice-carousel__next-btn {
     position: absolute;

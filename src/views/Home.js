@@ -68,7 +68,7 @@ function Home() {
     
     useEffect( () => {
         let unmount = false
-        jikan.loadSeason( 2021, 'spring')
+        jikan.loadSeason( 2021, 'summer')
         .then( res => {
             if(!unmount) {
                 // console.log(res)
